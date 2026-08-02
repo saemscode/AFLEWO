@@ -4,8 +4,11 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import SvgIcon from "@/components/ui/SvgIcon";
 import GlassSurface from "@/components/GlassSurface";
+import SpecularButton from "@/components/SpecularButton";
+import BorderGlow from "@/components/BorderGlow";
 import { motion, AnimatePresence } from "framer-motion";
 import { getIslandDisplayItems } from "@/lib/events";
 import { useDeviceTier } from "@/hooks/useDeviceTier";
@@ -31,6 +34,7 @@ export default function HeroSection() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const islandRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     // ─── GSAP entrance animations ─────────────────────────────────────────────
     useEffect(() => {
@@ -277,7 +281,7 @@ export default function HeroSection() {
                     {/* ── Dynamic Island ── */}
                     {/* Wrapper holds exact collapsed height (44px) in the document flow to prevent layout shifting. */}
                     <div className="mb-8 relative z-50 w-full h-[44px]">
-                        
+
                         {/* Fullscreen Dimmer Backdrop */}
                         <AnimatePresence>
                             {isExpanded && (
@@ -426,13 +430,47 @@ export default function HeroSection() {
 
                     {/* Mobile CTA buttons */}
                     <div className="flex flex-col md:hidden gap-6 justify-center items-center">
-                        <Link href="/media" className="hero-btn press-scale bg-white text-brown px-12 py-5 rounded-full font-black uppercase tracking-tighter flex items-center gap-3 group hover:bg-gold transition-all">
-                            <SvgIcon name="play" size={20} className="group-hover:scale-110 transition-transform" />
-                            Watch Archive
-                        </Link>
-                        <Link href="#about" className="hero-btn press-scale glass-card-elevated px-12 py-5 rounded-full font-black uppercase tracking-tighter text-white hover:bg-white/10 transition-all border-white/20">
-                            Our Vision
-                        </Link>
+                        <div className="hero-btn press-scale">
+                            <SpecularButton
+                                size="lg"
+                                radius={999}
+                                blur={0}
+                                lineColor="#ffffff"
+                                baseColor="#8a6d4f"
+                                intensity={1}
+                                shineSize={10}
+                                shineFade={40}
+                                thickness={1}
+                                speed={0.35}
+                                followMouse
+                                proximity={250}
+                                autoAnimate={false}
+                                onClick={() => router.push("/media")}
+                                className="bg-[hsl(20_14%_6%)] border border-white/15 text-white hover:bg-gold hover:text-brown transition-all font-black uppercase tracking-tighter"
+                            >
+                                <span className="flex items-center gap-3">
+                                    <SvgIcon name="play" size={20} className="transition-transform" />
+                                    Watch Archive
+                                </span>
+                            </SpecularButton>
+                        </div>
+                        <BorderGlow
+                            edgeSensitivity={30}
+                            glowColor="40 80 80"
+                            backgroundColor="hsl(20 14% 6%)"
+                            borderRadius={999}
+                            glowRadius={40}
+                            glowIntensity={0.8}
+                            coneSpread={25}
+                            animated={true}
+                            colors={["#d4af37", "#ffffff", "#8a6d4f"]}
+                            fillOpacity={0.18}
+                            className="hero-btn press-scale"
+                        >
+                            <Link href="#about" className="px-12 py-5 rounded-full font-black uppercase tracking-widest text-white transition-all block">
+                                Our Vision
+                            </Link>
+                        </BorderGlow>
                     </div>
                 </div>
 
@@ -445,13 +483,47 @@ export default function HeroSection() {
 
             {/* Desktop CTA buttons below hero */}
             <div className="hidden md:flex w-full bg-background pt-12 pb-20 justify-center items-center gap-6 relative z-10">
-                <Link href="/media" className="hero-btn press-scale bg-white text-brown px-12 py-5 rounded-full font-black uppercase tracking-tighter flex items-center gap-3 group hover:bg-gold transition-all">
-                    <SvgIcon name="play" size={20} className="group-hover:scale-110 transition-transform" />
-                    Watch This
-                </Link>
-                <Link href="#about" className="hero-btn press-scale glass-card-elevated px-12 py-5 rounded-full font-black uppercase tracking-tighter text-white hover:bg-white/10 transition-all border-white/20">
-                    Our Vision
-                </Link>
+                <div className="hero-btn press-scale">
+                    <SpecularButton
+                        size="lg"
+                        radius={999}
+                        blur={0}
+                        lineColor="#ffffff"
+                        baseColor="#8a6d4f"
+                        intensity={1}
+                        shineSize={10}
+                        shineFade={40}
+                        thickness={1}
+                        speed={0.35}
+                        followMouse
+                        proximity={250}
+                        autoAnimate={false}
+                        onClick={() => router.push("/media")}
+                        className="bg-[hsl(20_14%_6%)] border border-white/15 text-white hover:bg-gold hover:text-brown transition-all font-black uppercase tracking-tighter"
+                    >
+                        <span className="flex items-center gap-3">
+                            <SvgIcon name="play" size={20} className="transition-transform" />
+                            Watch This
+                        </span>
+                    </SpecularButton>
+                </div>
+                <BorderGlow
+                    edgeSensitivity={30}
+                    glowColor="40 80 80"
+                    backgroundColor="hsl(20 14% 6%)"
+                    borderRadius={999}
+                    glowRadius={40}
+                    glowIntensity={0.8}
+                    coneSpread={25}
+                    animated={true}
+                    colors={["#d4af37", "#ffffff", "#8a6d4f"]}
+                    fillOpacity={0.18}
+                    className="hero-btn press-scale"
+                >
+                    <Link href="#about" className="px-12 py-5 rounded-full font-black uppercase tracking-widest text-white transition-all block">
+                        Our Vision
+                    </Link>
+                </BorderGlow>
             </div>
         </div>
     );

@@ -282,7 +282,7 @@ export default function ElasticNavigator() {
                         {/* Close button */}
                         <motion.button
                             onClick={() => setIsExpanded(false)}
-                            className="text-white/40 hover:text-white mb-4 transition-colors duration-200 flex items-center justify-center w-8 h-8 rounded-full hover:bg-white/10"
+                            className="text-white/40 hover:text-white mb-4 -mt-6 transition-colors duration-200 flex items-center justify-center w-8 h-8 rounded-full hover:bg-white/10"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             aria-label="Close navigator"
