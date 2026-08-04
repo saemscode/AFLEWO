@@ -4,14 +4,14 @@ import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 
-// ─── Spring preset — Apple critically-damped (no overshoot) ───────────────────
+// ─── Spring preset - Apple critically-damped (no overshoot) ───────────────────
 const SPRING = { type: "spring", stiffness: 340, damping: 34, mass: 0.9 } as const;
 
 const timelineEvents = [
     {
         year: "2004",
         title: "The Birth",
-        desc: "Inaugural event at CITAM Karen, birthed by the Sing Africa Alumni from Daystar University — a seed planted in continental worship.",
+        desc: "Inaugural event at CITAM Karen, birthed by the Sing Africa Alumni from Daystar University - a seed planted in continental worship.",
         image: "/archival-1.jpg",
     },
     {
@@ -29,7 +29,7 @@ const timelineEvents = [
     {
         year: "2024",
         title: "Heirs of God's Glory",
-        desc: "Celebrating 20 years of the continental altar — 11 chapters, 4 nations, one unbroken sound.",
+        desc: "Celebrating 20 years of the continental altar - 8 chapters, 3 nations, one unbroken sound.",
         image: "/archival-1.jpg",
     },
 ];
@@ -50,18 +50,15 @@ function TimelineItem({ event, index }: { event: typeof timelineEvents[number]; 
         >
             {/* ── Text block ── */}
             <div className="flex-1 text-center md:text-left space-y-4">
-                {/* Year — large editorial watermark */}
+                {/* Year - large editorial watermark */}
                 <span
-                    className="block font-black tracking-tighter text-white/5 leading-none select-none"
-                    style={{ fontSize: "clamp(5rem,10vw,9rem)" }}
+                    className="block font-black tracking-tighter text-gold/60 leading-none select-none"
+                    style={{ fontSize: "clamp(3rem,7vw,5rem)" }}
                     aria-hidden="true"
                 >
                     {event.year}
                 </span>
                 <div className="-mt-6 space-y-2">
-                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-gold/60">
-                        {event.year}
-                    </span>
                     <h3
                         className="font-black tracking-tight text-white leading-none"
                         style={{ fontSize: "clamp(1.6rem,3.5vw,2.8rem)" }}
@@ -96,10 +93,7 @@ function TimelineItem({ event, index }: { event: typeof timelineEvents[number]; 
                     </div>
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
-                    {/* Year badge */}
-                    <div className="absolute top-4 left-4 px-3 py-1 rounded-full border border-gold/20 bg-gold/8 backdrop-blur-sm">
-                        <span className="text-[8px] font-black uppercase tracking-[0.3em] text-gold">{event.year}</span>
-                    </div>
+
                 </div>
             </div>
         </motion.div>
@@ -145,7 +139,7 @@ export default function AboutSection() {
                         OF <span className="text-gold">ALTARS.</span>
                     </h2>
                     <p className="text-white/45 max-w-xl font-medium text-[13px] md:text-[15px] leading-relaxed">
-                        Since 2004, AFLEWO has been more than an event — it is a continental movement of unity, intercession, and the relentless pursuit of God's presence across Africa.
+                        Since 2004, AFLEWO has been more than an event - it is a continental movement of unity, intercession, and the relentless pursuit of God's presence across Africa.
                     </p>
                 </motion.div>
 

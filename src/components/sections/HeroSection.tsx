@@ -450,7 +450,7 @@ export default function HeroSection() {
                             >
                                 <span className="flex items-center gap-3">
                                     <SvgIcon name="play" size={20} className="transition-transform" />
-                                    Watch Archive
+                                    Watch Media
                                 </span>
                             </SpecularButton>
                         </div>
@@ -473,12 +473,6 @@ export default function HeroSection() {
                         </BorderGlow>
                     </div>
                 </div>
-
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-0 sm:bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30 z-0 pointer-events-none">
-                    <span className="text-[10px] font-black tracking-widest uppercase">Scroll</span>
-                    <div className="w-[2px] h-4 bg-gradient-to-b from-white to-transparent" />
-                </div>
             </section>
 
             {/* Desktop CTA buttons below hero */}
@@ -499,10 +493,10 @@ export default function HeroSection() {
                         proximity={250}
                         autoAnimate={false}
                         onClick={() => router.push("/media")}
-                        className="bg-[hsl(20_14%_6%)] border border-white/15 text-white hover:bg-gold hover:text-brown transition-all font-black uppercase tracking-tighter"
+                        className="bg-[hsl(20_14%_6%)] border border-white/15 text-white hover:bg-gold/60 hover:text-[hsl(var(--midnight-dark))] transition-all font-black uppercase tracking-tighter"
                     >
                         <span className="flex items-center gap-3">
-                            <SvgIcon name="play" size={20} className="transition-transform" />
+                            <SvgIcon name="play" size={16} className="transition-transform" />
                             Watch This
                         </span>
                     </SpecularButton>

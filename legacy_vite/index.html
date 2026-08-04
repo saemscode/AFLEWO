@@ -1,28 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AFLEWO - Africa Let's Worship | Uniting Africa in Worship Since 2004</title>
-    <meta name="description" content="AFLEWO (Africa Let's Worship) is an inter-denominational worship movement bringing believers together through annual all-night worship events across Kenya and East Africa." />
-    <meta name="author" content="AFLEWO" />
-    <meta name="keywords" content="AFLEWO, Africa worship, Christian worship Kenya, all-night worship, African worship movement, gospel music Kenya" />
 
-    <meta property="og:title" content="AFLEWO - Africa Let's Worship" />
-    <meta property="og:description" content="Uniting Africa in worship through annual events of music and prayer since 2004." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+<head>
+  <!-- Preconnect to critical domains -->
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+  <!-- TODO: replace with your actual Supabase project ref, e.g. https://xxxxxxxx.supabase.co -->
+  <link rel="preconnect" href="https://wjwjsjzfhcxdrcjugnbp.supabase.co" crossorigin />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@AFLEWO" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- TODO: get this from Google Search Console once aflewo.saemstunes.com is verified there -->
+  <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> -->
+
+  <!-- Primary SEO Meta Tags -->
+  <title>AFLEWO - Africa Let's Worship | Uniting Africa in Worship Since 2004</title>
+  <meta name="author" content="AFLEWO" />
+  <meta name="keywords"
+    content="AFLEWO, Africa Let's Worship, Africa worship, Christian worship Kenya, all-night worship, African worship movement, gospel music Kenya, inter-denominational worship, worship movement East Africa, AFLEWO Night, Nairobi worship event, Mombasa worship, Nyeri worship, Nakuru worship, Meru worship, Tanzania worship, Rwanda worship, African heritage worship, prayer and music Kenya, Uniting in Worship, United in Worship" />
+
+  <!-- Essential SEO Tags -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AFLEWO - Africa Let's Worship" />
+  <meta property="og:description"
+    content="AFLEWO vision is to stir up hope in Jesus through annual events of worship in music and prayer from a united front of the church across Africa." />
+  <meta property="og:image" content="https://aflewo.saemstunes.com/mission-1.jpg" />
+  <meta property="og:site_name" content="AFLEWO - Africa Let's Worship" />
+  <meta property="og:locale" content="en_KE" />
+  <meta property="og:url" content="https://aflewo.saemstunes.com/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@AFLEWO" />
+  <meta name="twitter:creator" content="@AFLEWO" />
+  <meta name="twitter:title" content="AFLEWO - Africa Let's Worship" />
+  <meta name="twitter:description"
+    content="Uniting Africa in worship through annual events of music and prayer since 2004." />
+  <meta name="twitter:image" content="https://aflewo.saemstunes.com/mission-1.jpg" />
+
+  <!-- Favicon and App Icons -->
+  <!-- TODO: these files need to exist in /public before uncommenting/using -->
+  <link rel="icon" href="/favicon.ico" />
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> -->
+  <meta name="theme-color" content="#0C0A09" />
+  <meta name="msapplication-TileColor" content="#0C0A09" />
+
+  <!-- PWA Manifest (only if aflewo has one at /public/manifest.json) -->
+  <!-- <link rel="manifest" href="/manifest.json" /> -->
+
+  <!-- Apple PWA Specific -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="AFLEWO" />
+
+  <!-- Preload the hero/OG image since it's used above the fold and in social previews -->
+  <link rel="preload" href="/mission-1.jpg" as="image" fetchpriority="high" />
+
+  <!-- Structured Data for Better SEO -->
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"AFLEWO","alternateName":"Africa Let's Worship","url":"https://aflewo.saemstunes.com/","logo":"https://aflewo.saemstunes.com/mission-1.jpg","description":"Inter-denominational worship movement uniting believers across Kenya and East Africa through annual all-night worship events since 2004.","foundingDate":"2004","areaServed":[{"@type":"Country","name":"Kenya"},{"@type":"Country","name":"Tanzania"},{"@type":"Country","name":"Rwanda"}],"contactPoint":{"@type":"ContactPoint","contactType":"Customer Service","availableLanguage":["English","Swahili"]},"sameAs":["https://twitter.com/AFLEWO"]},{"@type":"WebSite","name":"AFLEWO - Africa Let's Worship","url":"https://aflewo.saemstunes.com/"},{"@type":"Event","name":"AFLEWO Night","startDate":"2026-10-02","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","description":"Annual all-night worship event uniting believers across Kenya and East Africa.","organizer":{"@type":"Organization","name":"AFLEWO","url":"https://aflewo.saemstunes.com/"}}]}</script>
+
+  <!--
+    Deferred third-party script loader, following the same pattern as CEKA's build.
+    AFLEWO's actual analytics/marketing stack isn't confirmed here, so this is left
+    as a template — uncomment and fill in only the services you actually use.
+    Real IDs/keys are not invented; drop yours in below.
+  -->
+  <!--
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loadScript = (src, id = null, attrs = {}) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.defer = true;
+          if (id) script.id = id;
+          Object.keys(attrs).forEach(key => script.setAttribute(key, attrs[key]));
+          document.head.appendChild(script);
+        };
+
+        // Google Analytics — replace G-XXXXXXXXXX with your real Measurement ID
+        // loadScript("https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX");
+        // window.dataLayer = window.dataLayer || [];
+        // function gtag(){dataLayer.push(arguments);}
+        // gtag('js', new Date());
+        // gtag('config', 'G-XXXXXXXXXX');
+
+        // Cloudflare Insights — replace token with your real beacon token
+        // loadScript("https://static.cloudflareinsights.com/beacon.min.js", null, { "data-cf-beacon": '{"token": "YOUR_TOKEN"}' });
+
+      }, 2000);
+    });
+  </script>
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
