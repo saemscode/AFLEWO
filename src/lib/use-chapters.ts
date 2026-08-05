@@ -22,7 +22,7 @@ export function useChaptersWithLiveData(): Chapter[] {
     useEffect(() => {
         supabase
             .from("chapters")
-            .select("slug, status, contact_email, contact_phone, whatsapp_link, is_active, highlight, color, upcoming_event, event_date, registration_open, venue_image, has_prayer_circle, has_qr, size, link")
+            .select("id, slug, status, contact_email, contact_phone, whatsapp_link, is_active, highlight, color, upcoming_event, event_date, registration_open, venue_image, has_prayer_circle, has_qr, size, link, qr_mode")
             .then(({ data, error }) => {
                 if (error || !data) return;
                 setMerged(
@@ -32,6 +32,7 @@ export function useChaptersWithLiveData(): Chapter[] {
                         return {
                             ...c,
                             // Override with live DB values if they exist
+                            id: live.id || c.id,
                             status: live.status || c.status,
                             contactEmail: live.contact_email || c.contactEmail,
                             contactPhone: live.contact_phone || c.contactPhone,
@@ -46,6 +47,7 @@ export function useChaptersWithLiveData(): Chapter[] {
                             hasQr: live.has_qr !== null ? live.has_qr : c.hasQr,
                             size: (live.size as "hero" | "featured" | "standard" | undefined) || c.size,
                             link: live.link || c.link,
+                            qrMode: (live.qr_mode as "external" | "internal" | undefined) || c.qrMode || "external",
                         };
                     })
                 );

@@ -14,18 +14,18 @@ const SPRING_IN = { type: "spring", stiffness: 260, damping: 32, mass: 1.0 } as 
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const chapterColors: Record<string, string> = {
-    Nairobi:  "text-gold border-gold/30 bg-gold/10",
-    Nakuru:   "text-orange-400 border-orange-500/30 bg-orange-500/10",
-    Eldoret:  "text-purple-400 border-purple-500/30 bg-purple-500/10",
-    Mombasa:  "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
-    Tanzania: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
-    Rwanda:   "text-blue-400 border-blue-500/30 bg-blue-500/10",
-    Nyeri:    "text-green-400 border-green-500/30 bg-green-500/10",
-    Meru:     "text-lime-400 border-lime-500/30 bg-lime-500/10",
+    Nairobi: "text-gold border-gold/30 bg-gold/10",
+    Nakuru: "text-gold border-gold/30 bg-gold/10",
+    Eldoret: "text-gold border-gold/30 bg-gold/10",
+    Mombasa: "text-gold border-gold/30 bg-gold/10",
+    Tanzania: "text-gold border-gold/30 bg-gold/10",
+    Rwanda: "text-gold border-gold/30 bg-gold/10",
+    Nyeri: "text-gold border-gold/30 bg-gold/10",
+    Meru: "text-gold border-gold/30 bg-gold/10",
 };
 const CHAPTERS = Object.keys(chapterColors);
-const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-const WEEKDAYS = ["S","M","T","W","T","F","S"];
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
 import FlipClockCountdown from "@/components/ui/FlipClock";
 
@@ -113,10 +113,10 @@ export default function EventHub() {
             if (!d) return;
             const diff = Math.max(0, d.getTime() - Date.now());
             setTimeLeft({
-                days:  Math.floor(diff / 86400000),
+                days: Math.floor(diff / 86400000),
                 hours: Math.floor((diff % 86400000) / 3600000),
-                mins:  Math.floor((diff % 3600000) / 60000),
-                secs:  Math.floor((diff % 60000) / 1000),
+                mins: Math.floor((diff % 3600000) / 60000),
+                secs: Math.floor((diff % 60000) / 1000),
             });
         };
         tick();
@@ -124,8 +124,8 @@ export default function EventHub() {
         return () => clearInterval(id);
     }, [nextEvent]);
 
-    const getDaysInMonth  = useCallback((d: Date) => new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(), []);
-    const getFirstDay     = useCallback((d: Date) => new Date(d.getFullYear(), d.getMonth(), 1).getDay(), []);
+    const getDaysInMonth = useCallback((d: Date) => new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(), []);
+    const getFirstDay = useCallback((d: Date) => new Date(d.getFullYear(), d.getMonth(), 1).getDay(), []);
     const getEventsForDate = useCallback((d: Date) => events.filter(e => {
         if (e.visibility === "member" && !session) return false;
         const ed = parseEventDate(e.date);
@@ -140,8 +140,8 @@ export default function EventHub() {
         return list;
     }, [activeFilters, selectedDate, session, mounted]);
 
-    const toggleFilter   = (c: string) => setActiveFilters(p => p.includes(c) ? p.filter(x => x !== c) : [...p, c]);
-    const navigateMonth  = (dir: number) => setCurrentMonth(d => new Date(d.getFullYear(), d.getMonth() + dir, 1));
+    const toggleFilter = (c: string) => setActiveFilters(p => p.includes(c) ? p.filter(x => x !== c) : [...p, c]);
+    const navigateMonth = (dir: number) => setCurrentMonth(d => new Date(d.getFullYear(), d.getMonth() + dir, 1));
 
     const downloadICS = () => {
         const vis = events.filter(e => e.visibility !== "member" || session);
@@ -248,12 +248,11 @@ export default function EventHub() {
                                             whileTap={{ scale: 0.88 }}
                                             transition={SPRING}
                                             onClick={() => setSelectedDate(isSelected ? null : date)}
-                                            className={`relative h-10 md:h-12 rounded-xl text-sm font-bold transition-all ${
-                                                isSelected  ? "bg-gold text-brown shadow-glow" :
-                                                isToday     ? "bg-white/10 text-white border border-white/20" :
-                                                hasEvents   ? "bg-white/5 hover:bg-white/10 text-white" :
-                                                              "text-white/30 hover:bg-white/5 hover:text-white/60"
-                                            }`}
+                                            className={`relative h-10 md:h-12 rounded-xl text-sm font-bold transition-all ${isSelected ? "bg-gold text-brown shadow-glow" :
+                                                    isToday ? "bg-white/10 text-white border border-white/20" :
+                                                        hasEvents ? "bg-white/5 hover:bg-white/10 text-white" :
+                                                            "text-white/30 hover:bg-white/5 hover:text-white/60"
+                                                }`}
                                             style={{ WebkitTapHighlightColor: "transparent" }}
                                         >
                                             {i + 1}
@@ -312,11 +311,10 @@ export default function EventHub() {
                                                 whileTap={{ scale: 0.93 }}
                                                 transition={SPRING}
                                                 onClick={() => toggleFilter(c)}
-                                                className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border transition-all flex items-center gap-1.5 ${
-                                                    activeFilters.includes(c)
+                                                className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border transition-all flex items-center gap-1.5 ${activeFilters.includes(c)
                                                         ? `${chapterColors[c]} shadow-sm`
                                                         : "border-white/8 text-white/40 hover:border-white/20 hover:text-white/70"
-                                                }`}
+                                                    }`}
                                             >
                                                 {activeFilters.includes(c) && <SvgIcon name="check" size={10} />}
                                                 {c}

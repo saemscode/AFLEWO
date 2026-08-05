@@ -7,6 +7,8 @@ import SvgIcon from "@/components/ui/SvgIcon";
 import Link from "next/link";
 import Image from "next/image";
 import { useChaptersWithLiveData, type Chapter } from "@/lib/use-chapters";
+import { useQrModalState } from "@/hooks/use-qr-modal-state";
+import FlipClockCountdown from "@/components/ui/FlipClock";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -191,83 +193,313 @@ interface QrModalProps {
     onClose: () => void;
 }
 
+// ── QR Modal: four server-driven states ─────────────────────────────────────
+// State is NEVER computed client-side from cached tier info.
+// The server resolves it fresh on every modal open (tier and visibility_state
+// can both change between page load and modal open).
+
 function QrModal({ chapter, isOpen, onClose }: QrModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
+    // Resource ID for a chapter registration = the chapter's own DB id.
+    // Falls back to the chapter's slug if no DB id is available.
+    const resourceId = chapter?.id || null;
+    const { state, fetchState, reset } = useQrModalState(
+        resourceId,
+        "chapter_registration"
+    );
+
+    // Fetch state from server whenever the modal opens (or resourceId changes)
     useEffect(() => {
-        if (isOpen && modalRef.current) {
-            gsap.fromTo(modalRef.current,
-                { opacity: 0, scale: 0.9 },
-                { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }
+        if (isOpen && resourceId) {
+            fetchState();
+        }
+        if (!isOpen) {
+            reset();
+        }
+    }, [isOpen, resourceId, fetchState, reset]);
+
+    // Entrance animation
+    useEffect(() => {
+        if (isOpen && modalRef.current && contentRef.current) {
+            gsap.fromTo(
+                modalRef.current,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.3, ease: "power2.out" }
+            );
+            gsap.fromTo(
+                contentRef.current,
+                { scale: 0.88, y: 32, opacity: 0 },
+                { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: "expo.out", delay: 0.05 }
             );
         }
     }, [isOpen]);
 
+    // Escape key
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (e.key === "Escape") onClose();
         };
-        if (isOpen) document.addEventListener("keydown", handleEscape);
-        return () => document.removeEventListener("keydown", handleEscape);
+        if (isOpen) {
+            document.addEventListener("keydown", handleEscape);
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.removeEventListener("keydown", handleEscape);
+            document.body.style.overflow = "";
+        };
     }, [isOpen, onClose]);
 
     if (!isOpen || !chapter) return null;
 
+    // ── External mode: chapter still using Google Form link ─────────────────
+    // qr_mode = 'external' (default for all chapters) keeps the original
+    // redirect behavior — no token generated, no tier check needed.
+    if (chapter.qrMode === "external" || !chapter.id) {
+        const registrationLink =
+            chapter.link ||
+            "https://docs.google.com/forms/d/e/1FAIpQLSevWug3ISRoyVTi4edAgdehWJZCR4wZ1FkhfFmtYsXUazQLyQ/viewform";
+
+        return (
+            <div
+                ref={modalRef}
+                className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl"
+                onClick={onClose}
+            >
+                <div
+                    ref={contentRef}
+                    className="relative glass-card-elevated p-8 rounded-[2rem] border-white/10 text-center max-w-sm w-full"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <button
+                        onClick={onClose}
+                        className="absolute top-4 right-4 p-2 rounded-full glass-card hover:bg-white/10 transition-colors"
+                    >
+                        <SvgIcon name="close" size={16} />
+                    </button>
+                    <div className="space-y-6">
+                        <div className="space-y-2">
+                            <h3 className="text-2xl font-black tracking-tighter">
+                                Register for <span className="text-gold">{chapter.name}</span>
+                            </h3>
+                            <p className="text-foreground/50 text-sm">Scan or tap to register for the 2026 season</p>
+                        </div>
+                        {/* Static QR placeholder — links to registration form */}
+                        <div className="relative mx-auto w-48 h-48 bg-white rounded-2xl p-3 flex items-center justify-center shadow-xl">
+                            <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent rounded-2xl pointer-events-none" />
+                            {/* 5×5 deterministic dot grid for visual identity */}
+                            <div className="relative grid grid-cols-5 gap-1">
+                                {Array.from({ length: 25 }).map((_, i) => {
+                                    const seed = chapter.name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+                                    const filled = ((seed * (i + 1) * 37) % 97) > 45;
+                                    return (
+                                        <div
+                                            key={i}
+                                            className={`w-6 h-6 rounded-sm ${filled ? "bg-[#201C18]" : "bg-transparent"}`}
+                                        />
+                                    );
+                                })}
+                            </div>
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md">
+                                    <SvgIcon name="music" className="text-gold" size={20} />
+                                </div>
+                            </div>
+                        </div>
+                        <Link
+                            href={registrationLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full py-4 rounded-full bg-gold text-brown font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all"
+                        >
+                            Open Registration Form
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // ── Internal mode: server-resolved token system ──────────────────────────
     return (
         <div
+            ref={modalRef}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl"
             onClick={onClose}
         >
             <div
-                ref={modalRef}
-                className="relative glass-card-elevated p-8 rounded-[2rem] border-white/10 text-center max-w-sm"
+                ref={contentRef}
+                className="relative glass-card-elevated rounded-[2rem] border-white/10 text-center max-w-sm w-full overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-2 rounded-full glass-card hover:bg-white/10 transition-colors"
+                    className="absolute top-4 right-4 z-10 p-2 rounded-full glass-card hover:bg-white/10 transition-colors"
                 >
                     <SvgIcon name="close" size={16} />
                 </button>
 
-                <div className="space-y-6">
-                    <div className="space-y-2">
-                        <h3 className="text-2xl font-black tracking-tighter">
-                            Register for <span className="text-gold">{chapter.name}</span>
-                        </h3>
-                        <p className="text-foreground/50 text-sm">Scan to register for the 2026 season</p>
+                {/* ── Loading state ── */}
+                {(state.status === "idle" || state.status === "loading") && (
+                    <div className="p-8 space-y-6">
+                        <div className="space-y-2">
+                            <div className="h-7 bg-white/5 rounded-xl animate-pulse mx-auto w-48" />
+                            <div className="h-4 bg-white/5 rounded-lg animate-pulse mx-auto w-36" />
+                        </div>
+                        <div className="mx-auto w-48 h-48 bg-white/5 rounded-2xl animate-pulse" />
+                        <div className="h-12 bg-white/5 rounded-full animate-pulse" />
                     </div>
+                )}
 
-                    <div className="relative mx-auto w-48 h-48 bg-white rounded-2xl p-4 flex items-center justify-center">
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent rounded-2xl" />
-                        <div className="relative grid grid-cols-5 gap-1">
-                            {Array.from({ length: 25 }).map((_, i) => {
-                                // Deterministic pattern seeded by chapter name + position
-                                const seed = chapter.name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-                                const filled = ((seed * (i + 1) * 37) % 97) > 45;
-                                return (
-                                    <div
-                                        key={i}
-                                        className={`w-6 h-6 rounded-sm ${filled ? "bg-brown" : "bg-transparent"}`}
-                                    />
-                                );
+                {/* ── Access Granted: real QR + action ── */}
+                {state.status === "access_granted" && (
+                    <div className="p-8 space-y-6">
+                        <div className="space-y-1">
+                            <h3 className="text-2xl font-black tracking-tighter">
+                                Register for <span className="text-gold">{chapter.name}</span>
+                            </h3>
+                            <p className="text-foreground/40 text-xs uppercase tracking-widest font-bold">
+                                2026 Season
+                            </p>
+                        </div>
+
+                        {/* Real server-generated QR code */}
+                        <div className="relative mx-auto w-52 h-52 bg-white rounded-2xl p-3 shadow-xl">
+                            <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent rounded-2xl pointer-events-none" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={state.data.qrDataUrl}
+                                alt={`QR code for ${chapter.name} registration`}
+                                className="w-full h-full object-contain rounded-xl"
+                            />
+                        </div>
+
+                        {/* Expires label */}
+                        <p className="text-foreground/30 text-[10px] font-bold uppercase tracking-widest">
+                            Valid until{" "}
+                            {new Date(state.data.expiresAt).toLocaleString("en-KE", {
+                                timeZone: "Africa/Nairobi",
+                                month: "short",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
                             })}
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-lg">
-                                <SvgIcon name="music" className="text-gold" size={24} />
-                            </div>
+                        </p>
+
+                        <div className="space-y-3">
+                            <Link
+                                href={state.data.actionHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full py-4 rounded-full bg-gold text-brown font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all"
+                            >
+                                {state.data.actionLabel}
+                            </Link>
+                            {/* Regenerate: gets a fresh token + new QR */}
+                            <button
+                                onClick={fetchState}
+                                className="w-full py-2 text-foreground/40 hover:text-gold text-[9px] uppercase tracking-widest font-bold transition-colors"
+                            >
+                                ↻ Regenerate QR
+                            </button>
                         </div>
                     </div>
+                )}
 
-                    <Link
-                        href={chapter.link || "/join"}
-                        target="_blank"
-                        className="block w-full py-4 rounded-full bg-gold text-brown font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all"
-                    >
-                        Open Registration Link
-                    </Link>
-                </div>
+                {/* ── Not Yet Live: countdown + waitlist ── */}
+                {state.status === "not_yet_live" && (
+                    <div className="p-8 space-y-6">
+                        <div className="space-y-2">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[9px] font-black uppercase tracking-widest">
+                                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse inline-block" />
+                                Coming Soon
+                            </div>
+                            <h3 className="text-2xl font-black tracking-tighter">
+                                Registration for{" "}
+                                <span className="text-gold">{chapter.name}</span>
+                                <br />
+                                opens in
+                            </h3>
+                        </div>
+
+                        {/* FlipClock countdown */}
+                        <div className="py-2">
+                            <FlipClockCountdown
+                                targetDate={new Date(state.data.countdownTarget)}
+                            />
+                        </div>
+
+                        <div className="space-y-3">
+                            <button
+                                onClick={() => {
+                                    // Waitlist action: navigate to join page for now
+                                    // This can be wired to a waitlist email capture later
+                                    window.location.href = "/join";
+                                }}
+                                className="block w-full py-4 rounded-full bg-gold text-brown font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all"
+                            >
+                                {state.data.waitlistLabel}
+                            </button>
+                            <button
+                                onClick={onClose}
+                                className="w-full py-2 text-foreground/40 hover:text-white text-[9px] uppercase tracking-widest font-bold transition-colors"
+                            >
+                                I&apos;ll check back later
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* ── Access Denied: witty redirect (no "access denied" language) ── */}
+                {state.status === "access_denied" && (
+                    <div className="p-8 space-y-6">
+                        {/* Subtle visual: music note / wave icon, not a lock */}
+                        <div className="w-16 h-16 mx-auto rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                            <SvgIcon name="music" className="text-gold" size={28} />
+                        </div>
+
+                        <div className="space-y-3">
+                            <h3 className="text-xl font-black tracking-tighter leading-tight">
+                                {state.data.wittyRedirect}
+                            </h3>
+                        </div>
+
+                        <div className="space-y-3">
+                            <Link
+                                href={state.data.redirectHref}
+                                onClick={onClose}
+                                className="block w-full py-4 rounded-full bg-gold text-brown font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all"
+                            >
+                                {state.data.redirectLabel}
+                            </Link>
+                            <button
+                                onClick={onClose}
+                                className="w-full py-2 text-foreground/40 hover:text-white text-[9px] uppercase tracking-widest font-bold transition-colors"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* ── Error state ── */}
+                {state.status === "error" && (
+                    <div className="p-8 space-y-6">
+                        <div className="space-y-2">
+                            <h3 className="text-xl font-black tracking-tighter text-foreground/60">
+                                Something went sideways
+                            </h3>
+                            <p className="text-foreground/40 text-sm">{state.message}</p>
+                        </div>
+                        <button
+                            onClick={fetchState}
+                            className="block w-full py-4 rounded-full bg-white/10 font-black text-[10px] uppercase tracking-widest hover:bg-white/15 transition-all"
+                        >
+                            Try again
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -366,22 +598,28 @@ export default function ChaptersSection() {
             </div>
 
             <div className="max-container relative z-10">
-                <div className="chapter-header flex flex-col md:flex-row justify-between items-end gap-12 mb-20">
-                    <div className="max-w-2xl space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-gold text-[10px] font-black uppercase tracking-[0.2em]">
+                {/* ─── HEADER ──────────────────────────────────────────────────────── */}
+                {/*
+                    Desktop (≥768px): row layout – title on left, description + WhatsApp on right (right‑aligned).
+                    Tablet (≥400px and <768px): column with left‑aligned text.
+                    Mobile (<400px): column with centered text (left‑aligned fallback).
+                */}
+                <div className="chapter-header flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20 max-[400px]:items-center max-[400px]:text-center">
+                    {/* Left block: chip + title */}
+                    <div className="max-w-2xl space-y-6 max-[400px]:mx-auto">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-gold text-[10px] font-black uppercase tracking-[0.2em] max-[400px]:mx-auto">
                             <SvgIcon name="location" size={12} /> AFLEWO Chapters
                         </div>
-                        <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9]">
+                        <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] max-[400px]:mx-auto">
                             OUR <br /><span className="text-gold">CHAPTERS</span>
                         </h2>
                     </div>
-                    <div className="flex flex-col gap-4 text-right">
-                        <p className="text-foreground/50 max-w-sm font-bold text-sm uppercase tracking-widest leading-relaxed">
-                            A continental network of worship, uniting 10+ major hubs across East Africa.
+
+                    {/* Right block: description + WhatsApp link */}
+                    <div className="flex flex-col gap-4 text-left md:text-right max-[400px]:text-center max-[400px]:mx-auto">
+                        <p className="text-foreground/50 max-w-sm font-bold text-sm uppercase tracking-widest leading-relaxed max-[400px]:mx-auto">
+                            A continental network of worship, uniting 8 major hubs across East Africa.
                         </p>
-                        <Link href="https://whatsapp.com/channel/AFLEWO" className="press-scale inline-flex items-center gap-2 text-gold font-black uppercase tracking-widest text-[10px] hover:gap-4 transition-all justify-end">
-                            Join our WhatsApp Channel <SvgIcon name="whatsapp" size={14} />
-                        </Link>
                     </div>
                 </div>
 

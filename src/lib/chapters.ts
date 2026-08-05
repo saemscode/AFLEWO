@@ -1,5 +1,7 @@
 
 export interface Chapter {
+    /** DB UUID — populated from Supabase live data. Undefined for static-only chapters. */
+    id?: string;
     slug: string;
     name: string;
     status: string;
@@ -22,6 +24,12 @@ export interface Chapter {
     hasQr?: boolean;
     size?: "hero" | "featured" | "standard";
     link?: string;
+    /**
+     * qrMode: 'external' (default) = use Google Form link; no token generated.
+     * 'internal' = use the new /api/qr/[resourceId] token system.
+     * Flip per-chapter in Supabase when ready to migrate off Google Forms.
+     */
+    qrMode?: "external" | "internal";
 }
 
 export const chapters: Chapter[] = [

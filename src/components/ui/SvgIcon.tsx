@@ -25,6 +25,7 @@ const paths: Record<string, React.ReactNode> = {
         <path fillRule="evenodd" clipRule="evenodd" d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C11.8487 18 13.551 17.3729 14.9056 16.3199L20.2929 21.7071C20.6834 22.0976 21.3166 22.0976 21.7071 21.7071C22.0976 21.3166 22.0976 20.6834 21.7071 20.2929L16.3199 14.9056C17.3729 13.551 18 11.8487 18 10C18 5.58172 14.4183 2 10 2Z" fill="currentColor" />
     ),
     location: (
+        // The path is unchanged, but will now render with viewBox 0 0 56 56 via override
         <path d="M 28.0117 52.8203 C 28.9492 52.8203 30.1679 49.0703 30.1679 42.1328 L 30.1679 20.5703 C 33.9883 19.6094 36.8008 16.1406 36.8008 12.0156 C 36.8008 7.1641 32.8867 3.1797 28.0117 3.1797 C 23.1133 3.1797 19.1992 7.1641 19.1992 12.0156 C 19.1992 16.1172 22.0117 19.5859 25.8086 20.5703 L 25.8086 42.1328 C 25.8086 49.0469 27.0508 52.8203 28.0117 52.8203 Z M 25.4805 12.5078 C 23.8867 12.5078 22.4805 11.1016 22.4805 9.4609 C 22.4805 7.8437 23.8867 6.4609 25.4805 6.4609 C 27.1445 6.4609 28.4805 7.8437 28.4805 9.4609 C 28.4805 11.1016 27.1445 12.5078 25.4805 12.5078 Z" fill="currentColor" />
     ),
     calendar: (
@@ -133,7 +134,10 @@ const paths: Record<string, React.ReactNode> = {
         <path d="M16 8.41l-4-4-4 4V9h2v6h4V9h2V8.41zM12 2L4 9h2v10h5v-4h2v4h5V9h2z" fill="currentColor" />
     ),
     qr: (
-        <><rect x="3" y="3" width="7" height="7" fill="currentColor" /><rect x="14" y="3" width="7" height="7" fill="currentColor" /><rect x="3" y="14" width="7" height="7" fill="currentColor" /><path d="M14 14h2v2h-2zm2 2h2v2h-2zm2-2h1v1h-1zm0 3h1v1h-1z" fill="currentColor" /><rect x="5" y="5" width="3" height="3" fill="var(--background, #0a0805)" /><rect x="16" y="5" width="3" height="3" fill="var(--background, #0a0805)" /><rect x="5" y="16" width="3" height="3" fill="var(--background, #0a0805)" /></>
+        <>
+            <path d="M10,15v2a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V15a1,1,0,0,1,1-1H9A1,1,0,0,1,10,15Zm7-9H15a1,1,0,0,0-1,1V9a1,1,0,0,0,1,1h2a1,1,0,0,0,1-1V7A1,1,0,0,0,17,6Zm0,6H13a1,1,0,0,0-1,1v4a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V13A1,1,0,0,0,17,12ZM12,7a1,1,0,0,0-1-1H7A1,1,0,0,0,6,7v4a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1Z" fill="currentColor" />
+            <path d="M3,9A1,1,0,0,1,2,8V4A2,2,0,0,1,4,2H8A1,1,0,0,1,8,4H4V8A1,1,0,0,1,3,9ZM22,8V4a2,2,0,0,0-2-2H16a1,1,0,0,0,0,2h4V8a1,1,0,0,0,2,0ZM9,21a1,1,0,0,0-1-1H4V16a1,1,0,0,0-2,0v4a2,2,0,0,0,2,2H8A1,1,0,0,0,9,21Zm13-1V16a1,1,0,0,0-2,0v4H16a1,1,0,0,0,0,2h4A2,2,0,0,0,22,20Z" fill="currentColor" />
+        </>
     ),
     quote: (
         <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" fill="currentColor" />
@@ -605,6 +609,13 @@ const paths: Record<string, React.ReactNode> = {
     ),
 };
 
+// ─── Per‑icon viewBox overrides ─────────────────────────────────────────────
+const viewBoxOverrides: Record<string, string> = {
+    // The location icon uses coordinates up to ~52, so it needs a 56×56 viewBox
+    location: "0 0 56 56",
+    // Add other overrides here if needed (e.g., for icons with non‑standard viewBoxes)
+};
+
 // ─── Bot icon uses its own viewBox (164×164) so it needs a dedicated component ─
 export function BotIcon({ size = 24, className = "", style }: { size?: number; className?: string; style?: React.CSSProperties }) {
     return (
@@ -636,11 +647,12 @@ type SvgIconProps = {
 export default function SvgIcon({ name, size = 24, className = "", style }: SvgIconProps) {
     const content = paths[name];
     if (!content) return null;
+    const viewBox = viewBoxOverrides[name] || "0 0 24 24";
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox={viewBox}
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={className}

@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import Preloader from "@/components/Preloader";
 import Navbar from "@/components/Navbar";
 import AIAssistant from "@/components/AIAssistant";
+import YearJoinedModal from "@/components/ui/YearJoinedModal";
 import loaderJson from "../../context/lottie/Loader.json";
 
 /**
@@ -49,6 +50,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         {children}
         {/* AI assistant — rendered globally, always accessible */}
         <AIAssistant onNavigate={() => setIsTransitioning(true)} />
+        {/* Post-auth year-joined onboarding modal — self-gates on needsYearJoined */}
+        <YearJoinedModal />
       </div>
 
       {/* Light Glassmorphic iOS-inspired Transition Overlay */}

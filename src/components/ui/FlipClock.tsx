@@ -23,40 +23,42 @@ export default function FlipClockCountdown({ targetDate }: FlipClockCountdownPro
     );
   }
 
-  // We are using the exact AFLEWO design mapped into the proven library props.
   return (
-    <FlipClockCountdownLib
-      to={targetDate.getTime()}
-      labels={["DAYS", "HOURS", "MINS", "SECS"]}
-      labelStyle={{
-        fontSize: "10px",
-        fontWeight: 900,
-        textTransform: "uppercase",
-        color: "rgba(255,255,255,0.3)",
-        letterSpacing: "0.25em",
-        marginTop: "16px",
-        fontFamily: "inherit",
-      }}
-      digitBlockStyle={{
-        width: "clamp(56px,8vw,96px)",
-        height: "clamp(70px,10vw,120px)",
-        fontSize: "clamp(2.2rem,6vw,4.2rem)",
-        fontWeight: 900,
-        color: "#D4AF37", // text-gold
-        background: "linear-gradient(180deg, rgb(32,28,24) 0%, rgb(20,18,14) 100%)",
-        boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.04), 0 8px 24px rgba(0,0,0,0.4)",
-        borderRadius: "10px",
-      }}
-      dividerStyle={{
-        color: "rgba(0,0,0,0.85)",
-        height: 2,
-      }}
-      separatorStyle={{
-        color: "rgba(212,175,55,0.4)", // text-gold/40
-        size: "6px",
-      }}
-      duration={0.7}
-      hideOnComplete={false}
-    />
+    <div className="w-full max-w-full overflow-hidden flex justify-center">
+      <FlipClockCountdownLib
+        to={targetDate.getTime()}
+        labels={["DAYS", "HOURS", "MINS", "SECS"]}
+        labelStyle={{
+          fontSize: "10px",
+          fontWeight: 900,
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.3)",
+          letterSpacing: "0.25em",
+          marginTop: "16px",
+          fontFamily: "inherit",
+        }}
+        digitBlockStyle={{
+          // Smaller on mobile, scales up on larger screens
+          width: "clamp(38px, 6vw, 80px)",
+          height: "clamp(48px, 8vw, 100px)",
+          fontSize: "clamp(1.6rem, 4vw, 3.6rem)",
+          fontWeight: 900,
+          color: "#D4AF37",
+          background: "linear-gradient(180deg, rgb(32,28,24) 0%, rgb(20,18,14) 100%)",
+          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.04), 0 8px 24px rgba(0,0,0,0.4)",
+          borderRadius: "10px",
+        }}
+        dividerStyle={{
+          color: "rgba(0,0,0,0.85)",
+          height: 2,
+        }}
+        separatorStyle={{
+          color: "rgba(212,175,55,0.4)",
+          size: "6px",
+        }}
+        duration={0.7}
+        hideOnComplete={false}
+      />
+    </div>
   );
 }
