@@ -23,11 +23,63 @@ const chapterColors: Record<string, string> = {
     Nyeri: "text-gold border-gold/30 bg-gold/10",
     Meru: "text-gold border-gold/30 bg-gold/10",
 };
+
+// Chapter colour tokens for avatar clusters on calendar cells
+const CHAPTER_AVATAR_COLOUR: Record<string, string> = {
+    Nairobi: "#D4AF37", Mombasa: "#22d3ee", Nakuru: "#f97316",
+    Eldoret: "#a855f7", Nyeri: "#22c55e", Meru: "#84cc16",
+    Tanzania: "#10b981", Rwanda: "#3b82f6", Kampala: "#eab308",
+    Machakos: "#f43f5e", Kisumu: "#60a5fa",
+};
+
+const CHAPTER_FLAGS: Record<string, string> = {
+    Nairobi: "🇰🇪", Mombasa: "🇰🇪", Nakuru: "🇰🇪", Eldoret: "🇰🇪",
+    Nyeri: "🇰🇪", Meru: "🇰🇪", Machakos: "🇰🇪", Kisumu: "🇰🇪",
+    Tanzania: "🇹🇿", Rwanda: "🇷🇼", Kampala: "🇺🇬",
+};
+
 const CHAPTERS = Object.keys(chapterColors);
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
 import FlipClockCountdown from "@/components/ui/FlipClock";
+
+// ─── Attendee Avatar Cluster — shown on calendar day cells with events ─────────
+function DayAvatarCluster({ dayEvents, isSelected }: { dayEvents: AFLEWOEvent[]; isSelected: boolean }) {
+    const visible = dayEvents.slice(0, 3);
+    const overflow = dayEvents.length - 3;
+    if (isSelected) {
+        // On selected (gold) day, show a simple white dot instead to preserve contrast
+        return (
+            <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-brown/80" />
+        );
+    }
+    return (
+        <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 flex items-center">
+            <div className="flex -space-x-0.5">
+                {visible.map((ev, idx) => (
+                    <div
+                        key={ev.id}
+                        title={`${ev.chapter} — ${ev.title}`}
+                        className="w-[9px] h-[9px] rounded-full border border-black/50 shrink-0"
+                        style={{
+                            background: CHAPTER_AVATAR_COLOUR[ev.chapter] ?? "#D4AF37",
+                            zIndex: visible.length - idx,
+                        }}
+                    />
+                ))}
+                {overflow > 0 && (
+                    <div
+                        className="w-[9px] h-[9px] rounded-full border border-black/50 bg-white/20 flex items-center justify-center text-[4px] font-black text-white/60"
+                        style={{ zIndex: 0 }}
+                    >
+                        +{overflow}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
 
 // ─── Countdown Panel ──────────────────────────────────────────────────────────
 function CountdownPanel({ nextEvent, timeLeft }: { nextEvent: AFLEWOEvent | null; timeLeft: { days: number; hours: number; mins: number; secs: number } }) {
@@ -54,22 +106,20 @@ function CountdownPanel({ nextEvent, timeLeft }: { nextEvent: AFLEWOEvent | null
 
             <div className="relative z-10 flex justify-center mb-8">
                 {nextEvent ? (
-                    <FlipClockCountdown targetDate={parseEventDate(nextEvent.date) || new Date()} />
+                    <FlipClockCountdown targetDate={parseEventDate(nextEvent.date) || new Date()} size="compact" />
                 ) : (
                     <div className="text-white/30 text-xs font-black uppercase tracking-widest py-8">No Upcoming Events</div>
                 )}
             </div>
 
-            <motion.div
-                whileTap={{ scale: 0.97 }}
-                transition={SPRING}
-                className="relative z-10"
-            >
+            <motion.div whileTap={{ scale: 0.97 }} transition={SPRING} className="relative z-10">
                 <Link
                     href={nextEvent?.url || "/join"}
-                    className="flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl bg-gold text-brown font-black text-[11px] uppercase tracking-[0.25em] hover:brightness-110 active:scale-95 transition-all shadow-[0_0_24px_rgba(212,175,55,0.2)]"
+                    className="flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl bg-gold text-brown font-black text-[11px] uppercase tracking-[0.25em] hover:brightness-110 active:scale-95 transition-all shadow-[0_0_24px_rgba(212,175,55,0.2)] relative overflow-hidden"
                     style={{ WebkitTapHighlightColor: "transparent" }}
                 >
+                    {/* Shimmer sweep */}
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent -translate-x-full animate-[shimmer_3s_ease-in-out_infinite]" />
                     <SvgIcon name="check_circle" size={16} />
                     Register Now
                 </Link>
@@ -126,6 +176,8 @@ export default function EventHub() {
 
     const getDaysInMonth = useCallback((d: Date) => new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(), []);
     const getFirstDay = useCallback((d: Date) => new Date(d.getFullYear(), d.getMonth(), 1).getDay(), []);
+
+    // Returns all visible events for a given calendar date
     const getEventsForDate = useCallback((d: Date) => events.filter(e => {
         if (e.visibility === "member" && !session) return false;
         const ed = parseEventDate(e.date);
@@ -170,7 +222,7 @@ export default function EventHub() {
                 >
                     <div className="space-y-4">
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/20 bg-gold/8 text-gold text-[10px] font-black uppercase tracking-[0.25em]">
-                            <SvgIcon name="calendar" size={12} /> Events & Calendar
+                            <SvgIcon name="calendar" size={12} /> Events &amp; Calendar
                         </div>
                         <h2 className="text-[clamp(3rem,8vw,5.5rem)] font-black tracking-tighter leading-[0.85]">
                             THE <span className="text-gold">CALENDAR</span>
@@ -232,14 +284,15 @@ export default function EventHub() {
                                 ))}
                             </div>
 
-                            {/* Days grid */}
+                            {/* Days grid — upgraded with avatar clusters */}
                             <div className="grid grid-cols-7 gap-1">
                                 {Array.from({ length: getFirstDay(currentMonth) }).map((_, i) => (
                                     <div key={`e-${i}`} className="h-10 md:h-12" />
                                 ))}
                                 {Array.from({ length: getDaysInMonth(currentMonth) }).map((_, i) => {
                                     const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i + 1);
-                                    const hasEvents = getEventsForDate(date).length > 0;
+                                    const dayEvents = getEventsForDate(date);
+                                    const hasEvents = dayEvents.length > 0;
                                     const isSelected = selectedDate?.toDateString() === date.toDateString();
                                     const isToday = new Date().toDateString() === date.toDateString();
                                     return (
@@ -248,16 +301,18 @@ export default function EventHub() {
                                             whileTap={{ scale: 0.88 }}
                                             transition={SPRING}
                                             onClick={() => setSelectedDate(isSelected ? null : date)}
-                                            className={`relative h-10 md:h-12 rounded-xl text-sm font-bold transition-all ${isSelected ? "bg-gold text-brown shadow-glow" :
-                                                    isToday ? "bg-white/10 text-white border border-white/20" :
-                                                        hasEvents ? "bg-white/5 hover:bg-white/10 text-white" :
-                                                            "text-white/30 hover:bg-white/5 hover:text-white/60"
-                                                }`}
+                                            className={`relative h-10 md:h-12 rounded-xl text-sm font-bold transition-all flex flex-col items-center justify-start pt-1.5 ${
+                                                isSelected ? "bg-gold text-brown shadow-glow" :
+                                                isToday ? "bg-white/10 text-white border border-white/20" :
+                                                hasEvents ? "bg-white/5 hover:bg-white/10 text-white" :
+                                                "text-white/30 hover:bg-white/5 hover:text-white/60"
+                                            }`}
                                             style={{ WebkitTapHighlightColor: "transparent" }}
                                         >
-                                            {i + 1}
-                                            {hasEvents && !isSelected && (
-                                                <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gold shadow-[0_0_4px_rgba(212,175,55,0.8)]" />
+                                            <span className="text-[12px] leading-none">{i + 1}</span>
+                                            {/* Avatar cluster for days with events */}
+                                            {hasEvents && (
+                                                <DayAvatarCluster dayEvents={dayEvents} isSelected={isSelected} />
                                             )}
                                         </motion.button>
                                     );
@@ -278,6 +333,22 @@ export default function EventHub() {
                                     </motion.button>
                                 )}
                             </AnimatePresence>
+                        </div>
+
+                        {/* Calendar Legend */}
+                        <div
+                            className="rounded-2xl border border-white/6 px-5 py-4"
+                            style={{ background: "rgba(255,255,255,0.014)", backdropFilter: "blur(16px)" }}
+                        >
+                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-white/25 mb-3">Legend — Chapter Colours</p>
+                            <div className="flex flex-wrap gap-2">
+                                {Object.entries(CHAPTER_AVATAR_COLOUR).slice(0, 8).map(([chapter, colour]) => (
+                                    <div key={chapter} className="flex items-center gap-1.5">
+                                        <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: colour }} />
+                                        <span className="text-[8px] font-bold text-white/35">{chapter}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                         {/* Chapter filters */}
@@ -311,12 +382,15 @@ export default function EventHub() {
                                                 whileTap={{ scale: 0.93 }}
                                                 transition={SPRING}
                                                 onClick={() => toggleFilter(c)}
-                                                className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border transition-all flex items-center gap-1.5 ${activeFilters.includes(c)
+                                                className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border transition-all flex items-center gap-1.5 ${
+                                                    activeFilters.includes(c)
                                                         ? `${chapterColors[c]} shadow-sm`
                                                         : "border-white/8 text-white/40 hover:border-white/20 hover:text-white/70"
-                                                    }`}
+                                                }`}
                                             >
                                                 {activeFilters.includes(c) && <SvgIcon name="check" size={10} />}
+                                                {/* Chapter avatar colour dot */}
+                                                <span className="w-2 h-2 rounded-full" style={{ background: CHAPTER_AVATAR_COLOUR[c] ?? "#D4AF37" }} />
                                                 {c}
                                             </motion.button>
                                         ))}
@@ -361,47 +435,60 @@ export default function EventHub() {
                                         >
                                             No events for this selection
                                         </motion.div>
-                                    ) : filteredEvents.map((e, i) => (
-                                        <motion.div
-                                            key={e.id}
-                                            layout
-                                            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ ...SPRING_IN, delay: i * 0.04 }}
-                                            className="group flex items-center justify-between gap-4 p-5 rounded-2xl border border-white/5 hover:border-gold/20 transition-all"
-                                            style={{ background: "rgba(255,255,255,0.02)" }}
-                                        >
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-14 h-14 rounded-xl bg-gold/10 border border-gold/20 flex flex-col items-center justify-center text-gold shrink-0">
-                                                    <span className="text-lg font-black leading-none">
-                                                        {e.date === "Every Night" ? "∞" : e.date.split(" ")[1]}
-                                                    </span>
-                                                    <span className="text-[8px] font-black uppercase tracking-wide">
-                                                        {e.date === "Every Night" ? "DAILY" : e.date.split(" ")[0]}
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <h4 className="font-black text-white group-hover:text-gold transition-colors text-sm leading-tight">{e.title}</h4>
-                                                    <div className="flex items-center gap-2 mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-white/35">
-                                                        <SvgIcon name="schedule" size={10} />
-                                                        <span>{e.time}</span>
-                                                        <span className={`px-2 py-0.5 rounded-full border ${chapterColors[e.chapter] || "text-white/40 border-white/10 bg-white/5"}`}>
-                                                            {e.chapter}
+                                    ) : filteredEvents.map((e, i) => {
+                                        const chapterColour = CHAPTER_AVATAR_COLOUR[e.chapter] ?? "#D4AF37";
+                                        return (
+                                            <motion.div
+                                                key={e.id}
+                                                layout
+                                                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ ...SPRING_IN, delay: i * 0.04 }}
+                                                className="group flex items-center justify-between gap-4 p-5 rounded-2xl border border-white/5 hover:border-gold/20 transition-all"
+                                                style={{ background: "rgba(255,255,255,0.02)" }}
+                                            >
+                                                <div className="flex items-center gap-4">
+                                                    {/* Date badge with chapter colour */}
+                                                    <div
+                                                        className="w-14 h-14 rounded-xl flex flex-col items-center justify-center shrink-0 border"
+                                                        style={{ background: `${chapterColour}18`, borderColor: `${chapterColour}30` }}
+                                                    >
+                                                        <span className="text-lg font-black leading-none" style={{ color: chapterColour }}>
+                                                            {e.date === "Every Night" ? "∞" : e.date.split(" ")[1]?.replace(",", "") ?? "?"}
+                                                        </span>
+                                                        <span className="text-[8px] font-black uppercase tracking-wide" style={{ color: `${chapterColour}90` }}>
+                                                            {e.date === "Every Night" ? "DAILY" : e.date.split(" ")[0]}
                                                         </span>
                                                     </div>
+                                                    <div>
+                                                        {/* Chapter flag + name */}
+                                                        <div className="flex items-center gap-1.5 mb-0.5">
+                                                            <span className="text-[8px]">{CHAPTER_FLAGS[e.chapter] ?? "🌍"}</span>
+                                                            <span className="text-[8px] font-black uppercase tracking-[0.2em]" style={{ color: `${chapterColour}80` }}>{e.chapter}</span>
+                                                        </div>
+                                                        <h4 className="font-black text-white group-hover:text-gold transition-colors text-sm leading-tight">{e.title}</h4>
+                                                        <div className="flex items-center gap-2 mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-white/35">
+                                                            <SvgIcon name="schedule" size={10} />
+                                                            <span>{e.time}</span>
+                                                            <span className={`px-2 py-0.5 rounded-full border ${chapterColors[e.chapter] || "text-white/40 border-white/10 bg-white/5"}`}>
+                                                                {e.chapter}
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <Link
-                                                href={`https://maps.google.com/?q=${encodeURIComponent(e.location)}`}
-                                                target="_blank"
-                                                className="p-2.5 rounded-xl bg-gold/10 hover:bg-gold border border-gold/20 hover:border-gold text-gold hover:text-brown transition-all shrink-0 active:scale-90"
-                                                style={{ WebkitTapHighlightColor: "transparent" }}
-                                            >
-                                                <SvgIcon name="location" size={16} />
-                                            </Link>
-                                        </motion.div>
-                                    ))}
+                                                <a
+                                                    href={`https://maps.google.com/?q=${encodeURIComponent(e.location)}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="p-2.5 rounded-xl bg-gold/10 hover:bg-gold border border-gold/20 hover:border-gold text-gold hover:text-brown transition-all shrink-0 active:scale-90"
+                                                    style={{ WebkitTapHighlightColor: "transparent" }}
+                                                >
+                                                    <SvgIcon name="location" size={16} />
+                                                </a>
+                                            </motion.div>
+                                        );
+                                    })}
                                 </AnimatePresence>
                             </div>
 

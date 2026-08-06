@@ -427,6 +427,7 @@ function QrModal({ chapter, isOpen, onClose }: QrModalProps) {
                         <div className="py-2">
                             <FlipClockCountdown
                                 targetDate={new Date(state.data.countdownTarget)}
+                                size="compact"
                             />
                         </div>
 

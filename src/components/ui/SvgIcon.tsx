@@ -604,6 +604,26 @@ const paths: Record<string, React.ReactNode> = {
             </g>
         </svg>
     ),
+    // ─── New icons added for Events page / EventHub redesign ──────────────────
+    location_on: (
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor" />
+    ),
+    event_busy: (
+        <path d="M9.31 17l2.44-2.44 2.44 2.44 1.41-1.41-2.44-2.44 2.44-2.44-1.41-1.41-2.44 2.44-2.44-2.44-1.41 1.41 2.44 2.44-2.44 2.44L9.31 17zM19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z" fill="currentColor" />
+    ),
+    event: (
+        <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" fill="currentColor" />
+    ),
+    photo_library: (
+        <path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z" fill="currentColor" />
+    ),
+    group_add: (
+        <path d="M8 10H5V7H3v3H0v2h3v3h2v-3h3v-2zm10 1c1.66 0 2.99-1.34 2.99-3S19.66 5 18 5c-.32 0-.63.05-.91.14.57.81.9 1.79.9 2.86s-.33 2.05-.9 2.86c.28.09.59.14.91.14zm-5 0c1.66 0 2.99-1.34 2.99-3S14.66 5 13 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm6.62 2.16c.83.73 1.38 1.66 1.38 2.84v2h3v-2c0-1.54-2.37-2.49-4.38-2.84zM13 13c-2 0-6 1-6 3v2h12v-2c0-2-4-3-6-3z" fill="currentColor" />
+    ),
+    sync: (
+        <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" fill="currentColor" />
+    ),
+    // ─────────────────────────────────────────────────────────────────────────
     track_video: (
         <svg fill="currentColor" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" className="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet"><path fill="currentColor" d="M29 18H16c-3.668 0-5-2.99-5-5v-2H7c-3 0-3 3-3 3s-2-1-3-1s-1 1-1 1v10s0 1 1 1s3-1 3-1v7c0 4 4 4 4 4h18c4 0 4-4 4-4V17.894A5.174 5.174 0 0 1 29 18z"></path><path fill="currentColor" opacity="0.6" d="M35 6c-.559 0-2.05.934-3.26 1.76C31.413 6.934 30.674 6 29 6H18s-5 0-5 5v2s0 3 3 3h13s2.075-.006 2.771-1.739C32.976 15.082 34.446 16 35 16c1 0 1-1 1-1V7s0-1-1-1zM9 35v-9s0-3 2.75-3H22s3 0 3 3v9h-2v-9s0-1-1-1H12s-1 0-1 1v9H9z"></path></svg>
     ),

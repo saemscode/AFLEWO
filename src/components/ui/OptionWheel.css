@@ -1,0 +1,43 @@
+.option-wheel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.option-wheel-overlay {
+  display: none;
+}
+
+.option-wheel-drag-zone {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.option-wheel-drag-zone.draggable {
+  cursor: grab;
+}
+
+.option-wheel-drag-zone.draggable:active {
+  cursor: grabbing;
+}
+
+.option-wheel-item {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform, opacity, filter;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+  text-align: right;
+  right: 0;
+  transform-origin: right center;
+}

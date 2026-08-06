@@ -20,10 +20,10 @@ export function useChaptersWithLiveData(): Chapter[] {
     const [merged, setMerged] = useState<Chapter[]>(chapters);
 
     useEffect(() => {
-        supabase
-            .from("chapters")
+        (supabase
+            .from("chapters") as any)
             .select("id, slug, status, contact_email, contact_phone, whatsapp_link, is_active, highlight, color, upcoming_event, event_date, registration_open, venue_image, has_prayer_circle, has_qr, size, link, qr_mode")
-            .then(({ data, error }) => {
+            .then(({ data, error }: any) => {
                 if (error || !data) return;
                 setMerged(
                     chapters.map((c) => {
