@@ -369,6 +369,37 @@ function EventRowCard({
     );
 }
 
+// ─── Attendee Avatar Cluster (Panel A) ─────────────────────────────────────────
+function AvatarCluster({ dayEvents }: { dayEvents: AFLEWOEvent[] }) {
+    const visible = dayEvents.slice(0, 3);
+    const overflow = dayEvents.length - 3;
+    return (
+        <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 flex items-center">
+            <div className="flex -space-x-0.5">
+                {visible.map((ev, idx) => (
+                    <div
+                        key={ev.id}
+                        title={`${ev.chapter} - ${ev.title}`}
+                        className="w-[9px] h-[9px] rounded-full border border-black/50 shrink-0"
+                        style={{
+                            background: CHAPTER_COLOUR[ev.chapter] ?? "#D4AF37",
+                            zIndex: visible.length - idx,
+                        }}
+                    />
+                ))}
+                {overflow > 0 && (
+                    <div
+                        className="w-[9px] h-[9px] rounded-full border border-black/50 bg-white/20 flex items-center justify-center text-[4px] font-black text-white/60"
+                        style={{ zIndex: 0 }}
+                    >
+                        +{overflow}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
 // ─── Panel A - Calendar Widget ─────────────────────────────────────────────────
 function CalendarPanel({
     currentMonth, selectedDate,

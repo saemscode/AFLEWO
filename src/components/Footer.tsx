@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import SvgIcon from "@/components/ui/SvgIcon";
+import AflewoHorizon from "@/components/AflewoHorizon";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -29,8 +30,13 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-brown pt-24 pb-12 px-6 border-t border-gold/10">
-            <div className="max-w-6xl mx-auto">
+        <footer className="relative pt-24 pb-12 px-6 overflow-hidden z-10 bg-[#0d0908]">
+            {/* ─── Layered Horizon Illustration Background ─── */}
+            <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
+                <AflewoHorizon className="absolute bottom-0 w-full h-full" />
+            </div>
+
+            <div className="max-w-6xl mx-auto relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
                     {/* Logo & Vision */}
                     <div className="md:col-span-12 lg:col-span-5 space-y-8">
@@ -43,27 +49,27 @@ export default function Footer() {
                                     className="object-contain"
                                 />
                             </div>
-                            <span className="font-black text-3xl tracking-tighter text-white">AFRICA LET&apos;S WORSHIP</span>
+                            <span className="font-display font-black text-3xl tracking-tighter text-adaptive-contrast">AFRICA LET&apos;S WORSHIP</span>
                         </Link>
-                        <p className="text-white/40 text-lg font-medium leading-relaxed italic max-w-md">
+                        <p className="text-adaptive-contrast text-lg font-medium leading-relaxed italic max-w-md">
                             Igniting and uniting Africa through worship. One God, one people, one Africa.
                             The sound of heaven echoing from the heart of the continent since 2004.
                         </p>
                         <div className="flex gap-4">
                             <a href="https://aflewo.org" target="_blank" rel="noopener noreferrer" aria-label="AFLEWO Website"
-                                className="p-3 glass-card rounded-ios text-gold hover:bg-gold hover:text-brown transition-all">
+                                className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
                                 <SvgIcon name="globe" size={20} className="text-gold" />
                             </a>
                             <a href="https://chat.whatsapp.com/AflewoNairobi" target="_blank" rel="noopener noreferrer" aria-label="AFLEWO WhatsApp"
-                                className="p-3 glass-card rounded-ios text-gold hover:bg-gold hover:text-brown transition-all">
+                                className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
                                 <SvgIcon name="whatsapp" size={20} className="text-gold" />
                             </a>
                             <a href="https://youtube.com/@aflewoke" target="_blank" rel="noopener noreferrer" aria-label="AFLEWO YouTube"
-                                className="p-3 glass-card rounded-ios text-gold hover:bg-gold hover:text-brown transition-all">
+                                className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
                                 <SvgIcon name="youtube" size={20} className="text-gold" />
                             </a>
                             <a href="mailto:nairobi@aflewo.org" aria-label="Email AFLEWO"
-                                className="p-3 glass-card rounded-ios text-gold hover:bg-gold hover:text-brown transition-all">
+                                className="p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
                                 <SvgIcon name="mail" size={20} className="text-gold" />
                             </a>
                         </div>
@@ -72,35 +78,35 @@ export default function Footer() {
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:col-span-12 lg:col-span-7">
                         {/* Quick Links */}
                         <div className="space-y-6">
-                            <h4 className="font-black text-gold uppercase tracking-widest text-xs">Explore</h4>
-                            <ul className="space-y-4 text-white/50 font-black text-[10px] uppercase tracking-widest">
-                                <li><Link href="/about" className="hover:text-gold transition-all">Our Story</Link></li>
-                                <li><Link href="/about#timeline" className="hover:text-gold transition-all">Timeline</Link></li>
-                                <li><Link href="/media" className="hover:text-gold transition-all">Media</Link></li>
-                                <li><Link href="/testify" className="hover:text-gold transition-all">Testify</Link></li>
-                                <li><Link href="/join" className="hover:text-gold transition-all">Join Us</Link></li>
-                                <li><Link href="/alumni" className="hover:text-gold transition-all">Alumni</Link></li>
+                            <h4 className="font-display font-black text-gold uppercase tracking-widest text-xs text-adaptive-contrast">Explore</h4>
+                            <ul className="space-y-4 text-adaptive-contrast font-black text-[10px] uppercase tracking-widest">
+                                <li><Link href="/about" className="hover:opacity-75 transition-all">Our Story</Link></li>
+                                <li><Link href="/about#timeline" className="hover:opacity-75 transition-all">Timeline</Link></li>
+                                <li><Link href="/media" className="hover:opacity-75 transition-all">Media</Link></li>
+                                <li><Link href="/testify" className="hover:opacity-75 transition-all">Testify</Link></li>
+                                <li><Link href="/join" className="hover:opacity-75 transition-all">Join Us</Link></li>
+                                <li><Link href="/alumni" className="hover:opacity-75 transition-all">Alumni</Link></li>
                             </ul>
                         </div>
 
                         {/* Chapters */}
                         <div className="space-y-6">
-                            <h4 className="font-black text-gold uppercase tracking-widest text-xs">Chapters</h4>
-                            <ul className="space-y-4 text-white/50 font-black text-[10px] uppercase tracking-widest">
-                                <li><Link href="/chapters/nairobi" className="hover:text-gold transition-all">Nairobi</Link></li>
-                                <li><Link href="/chapters/mombasa" className="hover:text-gold transition-all">Mombasa</Link></li>
-                                <li><Link href="/chapters/kampala" className="hover:text-gold transition-all">Kampala</Link></li>
-                                <li><Link href="/chapters/rwanda" className="hover:text-gold transition-all">Kigali</Link></li>
-                                <li><Link href="/chapters/tanzania" className="hover:text-gold transition-all">Tanzania</Link></li>
-                                <li><Link href="/chapters/nakuru" className="hover:text-gold transition-all">Nakuru</Link></li>
+                            <h4 className="font-display font-black text-gold uppercase tracking-widest text-xs text-adaptive-contrast">Chapters</h4>
+                            <ul className="space-y-4 text-adaptive-contrast font-black text-[10px] uppercase tracking-widest">
+                                <li><Link href="/chapters/nairobi" className="hover:opacity-75 transition-all">Nairobi</Link></li>
+                                <li><Link href="/chapters/mombasa" className="hover:opacity-75 transition-all">Mombasa</Link></li>
+                                <li><Link href="/chapters/kampala" className="hover:opacity-75 transition-all">Kampala</Link></li>
+                                <li><Link href="/chapters/rwanda" className="hover:opacity-75 transition-all">Kigali</Link></li>
+                                <li><Link href="/chapters/tanzania" className="hover:opacity-75 transition-all">Tanzania</Link></li>
+                                <li><Link href="/chapters/nakuru" className="hover:opacity-75 transition-all">Nakuru</Link></li>
                             </ul>
                         </div>
 
                         {/* Newsletter */}
                         <div className="space-y-6 md:col-span-1 min-w-[200px]">
-                            <h4 className="font-black text-gold uppercase tracking-widest text-xs">Stay Connected</h4>
+                            <h4 className="font-display font-black text-gold uppercase tracking-widest text-xs text-adaptive-contrast">Stay Connected</h4>
                             <div className="space-y-4">
-                                <p className="text-[10px] text-white/30 font-black uppercase tracking-widest leading-relaxed">
+                                <p className="text-[10px] text-adaptive-contrast font-black uppercase tracking-widest leading-relaxed">
                                     Join 15K+ worshippers in the movement.
                                 </p>
                                 {subState === "done" ? (
@@ -128,17 +134,17 @@ export default function Footer() {
                                         </button>
                                     </form>
                                 )}
-                                <div className="space-y-2 pt-2">
-                                    <p className="text-[9px] text-white/20 font-black uppercase tracking-widest">M-Pesa Support</p>
-                                    <p className="text-white/50 text-[10px] font-black cursor-pointer hover:text-white transition-colors" onClick={() => handleCopy('891300')}>
-                                        Paybill: <span className="text-gold">891300</span>
-                                        <span className="text-[8px] text-white/30 ml-2 font-normal">
+                                <div className="space-y-2 pt-2 text-adaptive-contrast">
+                                    <p className="text-[9px] opacity-40 font-black uppercase tracking-widest">M-Pesa Support</p>
+                                    <p className="text-[10px] font-black cursor-pointer hover:opacity-80 transition-colors" onClick={() => handleCopy('891300')}>
+                                        Paybill: <span className="opacity-80 font-bold">891300</span>
+                                        <span className="text-[8px] opacity-50 ml-2 font-normal">
                                             {copiedText === '891300' ? '(Copied!)' : '(tap to copy)'}
                                         </span>
                                     </p>
-                                    <p className="text-white/30 text-[9px] font-black cursor-pointer hover:text-white transition-colors" onClick={() => handleCopy('AFLEWONBI')}>
-                                        Account: <span className="text-gold">AFLEWONBI</span>
-                                        <span className="text-[8px] text-white/30 ml-2 font-normal">
+                                    <p className="text-[9px] font-black cursor-pointer hover:opacity-80 transition-colors" onClick={() => handleCopy('AFLEWONBI')}>
+                                        Account: <span className="opacity-80 font-bold">AFLEWONBI</span>
+                                        <span className="text-[8px] opacity-50 ml-2 font-normal">
                                             {copiedText === 'AFLEWONBI' ? '(Copied!)' : '(tap to copy)'}
                                         </span>
                                     </p>

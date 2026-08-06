@@ -119,8 +119,8 @@ export default function AdminOverviewPage() {
     if (!selectedChapterId) return;
     setSaveStatus("saving");
     try {
-      const { error } = await supabase
-        .from("chapters")
+      const { error } = await (supabase
+        .from("chapters") as any)
         .update({
           venue: formVenue,
           capacity: formCapacity,
