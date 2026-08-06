@@ -8,7 +8,7 @@ Use a modern JAMstack / edge-first architecture: **React (Vite) or Next.js with 
 
 # Why this stack
 
-- **React + TypeScript**: fastest developer velocity, large ecosystem, predictable tooling. Vite is great for local dev; **Next.js** (still React/TypeScript) adds built-in SSR/SSG and edge-function support — useful for SEO and scaling.
+- **React + TypeScript**: fastest developer velocity, large ecosystem, predictable tooling. Vite is great for local dev; **Next.js** (still React/TypeScript) adds built-in SSR/SSG and edge-function support - useful for SEO and scaling.
     
 - **Postgres**: feature-rich, strong JSONB, full-text search, extensions (pg_trgm, PostGIS), mature tooling. Prefer managed Postgres (Supabase, Neon, AWS RDS/Aurora) over local MySQL for reliability, scaling, backups.
     
@@ -152,7 +152,7 @@ Use a modern JAMstack / edge-first architecture: **React (Vite) or Next.js with 
 
 ---
 
-# Image-heavy site—how to prevent crashes & slowness
+# Image-heavy site-how to prevent crashes & slowness
 
 - Use **responsive images** and serve appropriate sizes per device.
     
@@ -259,7 +259,7 @@ Use a modern JAMstack / edge-first architecture: **React (Vite) or Next.js with 
 
 ---
 
-# Language & runtime choices — concise pros/cons
+# Language & runtime choices - concise pros/cons
 
 - **TypeScript / Node (Fastify)**: fastest to implement, huge ecosystem, many libraries for auth, payments, Supabase. Good default.
     
@@ -355,7 +355,7 @@ Use a modern JAMstack / edge-first architecture: **React (Vite) or Next.js with 
     
 - **How to handle memberships for 7k historical members and hundreds/year new?** Migrate data into Postgres with deduplication; maintain archive table for legacy records; implement import tooling with validation and logging.
     
-- **Do I need a separate DB for analytics?** Yes—large analytics workloads should run in a dedicated warehouse to protect transactional DB performance.
+- **Do I need a separate DB for analytics?** Yes-large analytics workloads should run in a dedicated warehouse to protect transactional DB performance.
     
 - **How to plan for cross-media marketing (TV/radio)?** Pre-create landing pages and tracked UTM links; pre-warm CDN; set up campaign-specific caching and capacity.
     
@@ -446,7 +446,7 @@ ___
 ![[AFLEWO flowchart architecture.svg]]
 
 **Diagram notes**
-- Edge CDN is the first layer—serve static assets and cached SSR/SSG pages. WAF filters attacks.
+- Edge CDN is the first layer-serve static assets and cached SSR/SSG pages. WAF filters attacks.
 - Frontend is React + TypeScript (Next.js preferred for SSR/ISR). Deploy to Vercel or Cloudflare Pages.
 - Object store holds originals; image CDN handles transforms and caching.
 - API layer is a mix of edge functions for low-latency personalization and microservices for heavy tasks.

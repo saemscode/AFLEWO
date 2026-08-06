@@ -53,7 +53,7 @@ export default function AlumniPage() {
         e.preventDefault();
         setSubmitting(true);
         setError(null);
-        
+
         try {
             const res = await fetch("/api/alumni", {
                 method: "POST",
@@ -62,7 +62,7 @@ export default function AlumniPage() {
             });
 
             if (!res.ok) throw new Error("Failed to submit");
-            
+
             setSubmitted(true);
         } catch (err) {
             setError("Something went wrong. Please try again.");
@@ -98,7 +98,7 @@ export default function AlumniPage() {
                         <h2 className="text-5xl font-black tracking-tighter">Birthed from <span className="text-gold">Sing Africa</span></h2>
                         <div className="space-y-6 text-lg text-white/50 font-medium leading-relaxed">
                             <p>
-                                In 2004, a group of Daystar University alumni — members of the renowned Sing Africa choir — felt a divine burden
+                                In 2004, a group of Daystar University alumni - members of the renowned Sing Africa choir - felt a divine burden
                                 to unite the body of Christ in Kenya through corporate worship. They did not know they were launching a movement.
                             </p>
                             <p>
@@ -111,12 +111,12 @@ export default function AlumniPage() {
                             <div className="glass-card p-6 rounded-lg space-y-2 flex-1 min-w-[200px]">
                                 <SvgIcon name="explore" className="text-gold" size={24} />
                                 <h4 className="font-black text-white text-sm">Visionaries</h4>
-                                <p className="text-white/40 text-xs">Sing Africa Alumni — Daystar University</p>
+                                <p className="text-white/40 text-xs">Sing Africa Alumni - Daystar University</p>
                             </div>
                             <div className="glass-card p-6 rounded-lg space-y-2 flex-1 min-w-[200px]">
                                 <SvgIcon name="favorite" className="text-gold" size={24} />
                                 <h4 className="font-black text-white text-sm">Founding Venue</h4>
-                                <p className="text-white/40 text-xs">CITAM Karen, Nairobi — October 2004</p>
+                                <p className="text-white/40 text-xs">CITAM Karen, Nairobi - October 2004</p>
                             </div>
                         </div>
                     </div>

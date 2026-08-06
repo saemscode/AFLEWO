@@ -181,7 +181,7 @@ export default function Navbar() {
                         {LogoImg}
                     </div>
 
-                    {/* Tablet Links (md: 768px–1279px) — inline pill row */}
+                    {/* Tablet Links (md: 768px–1279px) - inline pill row */}
                     <div className="relative z-10 hidden md:flex items-center gap-1">
                         {links.map((link) => {
                             const isActive = pathname === link.href || (link.href.startsWith("/#") && pathname === "/");
@@ -207,9 +207,9 @@ export default function Navbar() {
                         })}
                     </div>
 
-                    {/* Right — Auth + Connect (tablet) + Mobile toggle */}
+                    {/* Right - Auth + Connect (tablet) + Mobile toggle */}
                     <div className="relative z-10 flex items-center gap-3">
-                        {/* Connect CTA — tablet only */}
+                        {/* Connect CTA - tablet only */}
                         <Link
                             href="/join"
                             aria-label="Connect"
@@ -218,7 +218,7 @@ export default function Navbar() {
                             <SvgIcon name="user_add" size={20} />
                         </Link>
 
-                        {/* Auth link — tablet only */}
+                        {/* Auth link - tablet only */}
                         <Link
                             href={authLink.href}
                             aria-label={authLink.name}

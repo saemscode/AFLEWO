@@ -31,7 +31,7 @@ DROP TYPE IF EXISTS event_type CASCADE;
 DROP TYPE IF EXISTS donation_status CASCADE;
 
 -- ────────────────────────────────────────────────────────────
---  1. ENUMS — Strict typing for roles and statuses
+--  1. ENUMS - Strict typing for roles and statuses
 -- ────────────────────────────────────────────────────────────
 
 CREATE TYPE user_role AS ENUM (
@@ -104,7 +104,7 @@ CREATE TYPE donation_status AS ENUM (
 );
 
 -- ────────────────────────────────────────────────────────────
---  2. CHAPTERS — Decentralization base
+--  2. CHAPTERS - Decentralization base
 -- ────────────────────────────────────────────────────────────
 
 CREATE TABLE public.chapters (
@@ -126,7 +126,7 @@ CREATE TABLE public.chapters (
 );
 
 -- ────────────────────────────────────────────────────────────
---  3. PROFILES — Linked to Supabase Auth users
+--  3. PROFILES - Linked to Supabase Auth users
 -- ────────────────────────────────────────────────────────────
 
 CREATE TABLE public.profiles (
@@ -371,7 +371,7 @@ CREATE POLICY "attendance_admin_manage"
   );
 
 -- ────────────────────────────────────────────────────────────
---  8. RESOURCE LIBRARY — Access-tiered file vault
+--  8. RESOURCE LIBRARY - Access-tiered file vault
 -- ────────────────────────────────────────────────────────────
 
 CREATE TABLE public.resources (
@@ -431,7 +431,7 @@ CREATE POLICY "resources_admin_manage"
   );
 
 -- ────────────────────────────────────────────────────────────
---  9. REGISTRATIONS — Event attendee sign-ups + skeleton ticketing
+--  9. REGISTRATIONS - Event attendee sign-ups + skeleton ticketing
 -- ────────────────────────────────────────────────────────────
 
 CREATE TABLE public.registrations (
@@ -478,7 +478,7 @@ CREATE POLICY "registrations_admin_manage"
   );
 
 -- ────────────────────────────────────────────────────────────
---  10. SYSTEM AUDIT LOGS — Unalterable accountability trail
+--  10. SYSTEM AUDIT LOGS - Unalterable accountability trail
 -- ────────────────────────────────────────────────────────────
 
 CREATE TABLE public.system_audit_logs (
@@ -520,7 +520,7 @@ CREATE POLICY "audit_logs_chapter_admin_read"
   );
 
 -- ────────────────────────────────────────────────────────────
---  11. AUDIT TRIGGER — Auto-log audition status changes
+--  11. AUDIT TRIGGER - Auto-log audition status changes
 -- ────────────────────────────────────────────────────────────
 
 CREATE OR REPLACE FUNCTION public.log_audition_status_change()
@@ -553,7 +553,7 @@ CREATE TRIGGER audition_status_audit
   EXECUTE FUNCTION public.log_audition_status_change();
 
 -- ────────────────────────────────────────────────────────────
---  12. MPESA DONATION LEDGER — Async webhook capture
+--  12. MPESA DONATION LEDGER - Async webhook capture
 -- ────────────────────────────────────────────────────────────
 
 CREATE TABLE public.donation_ledger (
@@ -591,7 +591,7 @@ CREATE POLICY "donations_super_admin_all"
   );
 
 -- ────────────────────────────────────────────────────────────
---  13. UPDATED_AT TRIGGER — Auto-update timestamps
+--  13. UPDATED_AT TRIGGER - Auto-update timestamps
 -- ────────────────────────────────────────────────────────────
 
 CREATE OR REPLACE FUNCTION public.handle_updated_at()

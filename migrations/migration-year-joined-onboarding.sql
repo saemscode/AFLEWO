@@ -1,5 +1,5 @@
 -- ============================================================
---  AFLEWO — YEAR-JOINED ONBOARDING + min_tier BACKFILL FIX
+--  AFLEWO - YEAR-JOINED ONBOARDING + min_tier BACKFILL FIX
 --  Run AFTER migration-access-tiers-qr.sql
 -- ============================================================
 
@@ -17,10 +17,10 @@ SET min_tier = 'member'
 WHERE allowed_role IN ('choir_member', 'band_member', 'volunteer');
 
 -- volunteer/chapter_admin/super_admin scoped resources: leave at
--- the 'member' default — reachable by member tier and above.
+-- the 'member' default - reachable by member tier and above.
 
 -- ────────────────────────────────────────────────────────────
---  1. profiles.year_joined — required onboarding field
+--  1. profiles.year_joined - required onboarding field
 --     Nullable intentionally: adding NOT NULL now would break
 --     existing rows before the app can backfill via the modal.
 --     Enforce "required" at the app layer (YearJoinedModal)
@@ -32,7 +32,7 @@ ALTER TABLE public.profiles
     CHECK (year_joined >= 2004 AND year_joined <= EXTRACT(YEAR FROM NOW())::INT);
 
 -- ────────────────────────────────────────────────────────────
---  2. onboarding_completed_at — cheap flag the modal checks
+--  2. onboarding_completed_at - cheap flag the modal checks
 --     instead of re-deriving from year_joined every render
 -- ────────────────────────────────────────────────────────────
 
@@ -40,7 +40,7 @@ ALTER TABLE public.profiles
   ADD COLUMN IF NOT EXISTS onboarding_completed_at TIMESTAMPTZ;
 
 -- ────────────────────────────────────────────────────────────
---  3. Write-once guard — user can set year_joined once;
+--  3. Write-once guard - user can set year_joined once;
 --     only a chapter_admin or super_admin can change it after.
 -- ────────────────────────────────────────────────────────────
 
@@ -74,7 +74,7 @@ CREATE TRIGGER guard_year_joined_edit
 --  4. Sync year_joined → service_history
 --     This is the ONLY path that writes service_history from
 --     a user action. No direct self-insert RLS policy exists
---     on service_history — that would let users self-promote
+--     on service_history - that would let users self-promote
 --     into alumni tier by inserting arbitrary prior years.
 -- ────────────────────────────────────────────────────────────
 

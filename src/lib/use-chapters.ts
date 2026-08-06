@@ -9,7 +9,7 @@ export type { Chapter };
 /**
  * useChaptersWithLiveData
  *
- * Client-side hook — fetches live chapter overrides from Supabase and merges
+ * Client-side hook - fetches live chapter overrides from Supabase and merges
  * them onto the static chapter config. Falls back to static data gracefully
  * if the DB is unreachable (before migration, or network failure).
  *
@@ -22,7 +22,7 @@ export function useChaptersWithLiveData(): Chapter[] {
     useEffect(() => {
         (supabase
             .from("chapters") as any)
-            .select("id, slug, status, contact_email, contact_phone, whatsapp_link, is_active, highlight, color, upcoming_event, event_date, registration_open, venue_image, has_prayer_circle, has_qr, size, link, qr_mode")
+            .select("id, slug, status, contact_email, contact_phone, whatsapp_link, is_active, highlight, color, upcoming_event, event_date, registration_open, venue_image, has_prayer_circle, has_qr, size, link, qr_mode, capacity")
             .then(({ data, error }: any) => {
                 if (error || !data) return;
                 setMerged(
@@ -48,6 +48,7 @@ export function useChaptersWithLiveData(): Chapter[] {
                             size: (live.size as "hero" | "featured" | "standard" | undefined) || c.size,
                             link: live.link || c.link,
                             qrMode: (live.qr_mode as "external" | "internal" | undefined) || c.qrMode || "external",
+                            capacity: live.capacity || c.capacity,
                         };
                     })
                 );

@@ -88,7 +88,7 @@ export function useOfflineManifest() {
                 setManifests(parsed);
             }
         } catch {
-            // Corrupt data — reset silently
+            // Corrupt data - reset silently
             localStorage.removeItem(OFFLINE_CACHE_KEY);
         }
     }, []);
@@ -104,7 +104,7 @@ export function useOfflineManifest() {
             try {
                 localStorage.setItem(OFFLINE_CACHE_KEY, JSON.stringify(updated));
             } catch {
-                // Storage full — skip silently
+                // Storage full - skip silently
             }
 
             return updated;

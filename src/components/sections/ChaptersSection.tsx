@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useChaptersWithLiveData, type Chapter } from "@/lib/use-chapters";
 import { useQrModalState } from "@/hooks/use-qr-modal-state";
 import FlipClockCountdown from "@/components/ui/FlipClock";
+import QRCode from "qrcode";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,7 +88,7 @@ function ChapterModal({ chapter, isOpen, onClose }: ChapterModalProps) {
                 <div className="p-8 md:p-12 space-y-8">
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                            <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-gradient-to-r ${chapter.color} text-white`}>
+                            <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-gold/10 border border-gold/20 text-gold">
                                 {chapter.status}
                             </span>
                             {chapter.hasPrayerCircle && (
@@ -195,12 +196,10 @@ interface QrModalProps {
 
 // ── QR Modal: four server-driven states ─────────────────────────────────────
 // State is NEVER computed client-side from cached tier info.
-// The server resolves it fresh on every modal open (tier and visibility_state
-// can both change between page load and modal open).
-
 function QrModal({ chapter, isOpen, onClose }: QrModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
+    const [externalQrUrl, setExternalQrUrl] = useState<string>("");
 
     // Resource ID for a chapter registration = the chapter's own DB id.
     // Falls back to the chapter's slug if no DB id is available.
@@ -219,6 +218,18 @@ function QrModal({ chapter, isOpen, onClose }: QrModalProps) {
             reset();
         }
     }, [isOpen, resourceId, fetchState, reset]);
+
+    // Generate client-side QR for external mode
+    useEffect(() => {
+        if (isOpen && chapter && (chapter.qrMode === "external" || !chapter.id)) {
+            const registrationLink =
+                chapter.link ||
+                "https://docs.google.com/forms/d/e/1FAIpQLSevWug3ISRoyVTi4edAgdehWJZCR4wZ1FkhfFmtYsXUazQLyQ/viewform";
+            QRCode.toDataURL(registrationLink, { width: 256, margin: 2 })
+                .then((url) => setExternalQrUrl(url))
+                .catch((err) => console.error("Error generating QR code", err));
+        }
+    }, [isOpen, chapter]);
 
     // Entrance animation
     useEffect(() => {
@@ -285,24 +296,21 @@ function QrModal({ chapter, isOpen, onClose }: QrModalProps) {
                             </h3>
                             <p className="text-foreground/50 text-sm">Scan or tap to register for the 2026 season</p>
                         </div>
-                        {/* Static QR placeholder — links to registration form */}
+                        {/* Real dynamic QR generated client-side from the registration form link */}
                         <div className="relative mx-auto w-48 h-48 bg-white rounded-2xl p-3 flex items-center justify-center shadow-xl">
                             <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent rounded-2xl pointer-events-none" />
-                            {/* 5×5 deterministic dot grid for visual identity */}
-                            <div className="relative grid grid-cols-5 gap-1">
-                                {Array.from({ length: 25 }).map((_, i) => {
-                                    const seed = chapter.name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-                                    const filled = ((seed * (i + 1) * 37) % 97) > 45;
-                                    return (
-                                        <div
-                                            key={i}
-                                            className={`w-6 h-6 rounded-sm ${filled ? "bg-[#201C18]" : "bg-transparent"}`}
-                                        />
-                                    );
-                                })}
-                            </div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md">
+                            {externalQrUrl ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                    src={externalQrUrl}
+                                    alt={`QR code for ${chapter.name} registration`}
+                                    className="w-full h-full object-contain rounded-xl"
+                                />
+                            ) : (
+                                <div className="w-full h-full bg-white/5 rounded-xl animate-pulse" />
+                            )}
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md border border-white/10">
                                     <SvgIcon name="music" className="text-gold" size={20} />
                                 </div>
                             </div>
@@ -544,7 +552,7 @@ export default function ChaptersSection() {
         const ctx = gsap.context(() => {
             cardsRef.current.forEach((card, index) => {
                 if (card) {
-                    // iOS spring tilt — no positional shift, only perspective rotation + scale
+                    // iOS spring tilt - no positional shift, only perspective rotation + scale
                     gsap.set(card, { transformPerspective: 800, transformOrigin: "center center" });
                     tiltRefs.current[index] = {
                         rx: gsap.quickTo(card, "rotationX", { duration: 0.4, ease: "power2.out" }),

@@ -13,10 +13,10 @@ type AttendanceWithEvent = Attendance & {
 };
 
 const statusDisplay: Record<Attendance["status"], { label: string; icon: string; color: string }> = {
-  present: { label: "Present",   icon: "check_circle", color: "text-emerald" },
-  absent:  { label: "Absent",    icon: "cancel",       color: "text-red-400" },
-  excused: { label: "Excused",   icon: "info",         color: "text-blue-400" },
-  late:    { label: "Late",      icon: "schedule",     color: "text-yellow-400" },
+  present: { label: "Present", icon: "check_circle", color: "text-emerald" },
+  absent: { label: "Absent", icon: "cancel", color: "text-red-400" },
+  excused: { label: "Excused", icon: "info", color: "text-blue-400" },
+  late: { label: "Late", icon: "schedule", color: "text-yellow-400" },
 };
 
 export default function PortalAttendancePage() {
@@ -60,7 +60,7 @@ export default function PortalAttendancePage() {
       {/* Stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="glass-card rounded-2xl p-5 text-center">
-          <p className="text-3xl font-black text-gold">{rate !== null ? `${rate}%` : "—"}</p>
+          <p className="text-3xl font-black text-gold">{rate !== null ? `${rate}%` : "-"}</p>
           <p className="text-[10px] text-white/30 uppercase tracking-widest font-black mt-1">Rate</p>
         </div>
         <div className="glass-card rounded-2xl p-5 text-center">
@@ -86,9 +86,8 @@ export default function PortalAttendancePage() {
           </div>
           <div className="h-2 bg-white/5 rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-1000 ${
-                rate >= 80 ? "bg-emerald" : rate >= 60 ? "bg-yellow-400" : "bg-red-400"
-              }`}
+              className={`h-full rounded-full transition-all duration-1000 ${rate >= 80 ? "bg-emerald" : rate >= 60 ? "bg-yellow-400" : "bg-red-400"
+                }`}
               style={{ width: `${rate}%` }}
             />
           </div>
@@ -105,7 +104,7 @@ export default function PortalAttendancePage() {
       {/* Records */}
       {loading ? (
         <div className="animate-pulse space-y-2">
-          {[1,2,3,4,5].map(i => <div key={i} className="h-16 bg-white/5 rounded-xl" />)}
+          {[1, 2, 3, 4, 5].map(i => <div key={i} className="h-16 bg-white/5 rounded-xl" />)}
         </div>
       ) : records.length === 0 ? (
         <div className="text-center py-24 space-y-4 glass-card rounded-3xl border-white/5">
@@ -126,9 +125,9 @@ export default function PortalAttendancePage() {
                   <p className="text-xs text-white/30">
                     {event?.starts_at
                       ? new Date(event.starts_at).toLocaleDateString("en-KE", {
-                          weekday: "short", day: "numeric", month: "short", year: "numeric"
-                        })
-                      : "—"}
+                        weekday: "short", day: "numeric", month: "short", year: "numeric"
+                      })
+                      : "-"}
                     {event?.event_type && ` · ${event.event_type.replace("_", " ")}`}
                   </p>
                 </div>

@@ -70,7 +70,7 @@ export default function PartnersSection() {
                         >
                             {/* Logo area with initials fallback behind */}
                             <div className="w-14 h-14 rounded-xl overflow-hidden flex items-center justify-center bg-white/5 border border-white/8 group-hover:border-gold/20 transition-colors duration-500 relative">
-                                {/* Initials badge — always rendered, image sits on top */}
+                                {/* Initials badge - always rendered, image sits on top */}
                                 <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-white/30 tracking-tighter pointer-events-none select-none" aria-hidden="true">
                                     {partner.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
                                 </span>

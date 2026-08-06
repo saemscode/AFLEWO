@@ -16,18 +16,18 @@ const narrativeStories = [
         id: "altar-of-2004",
         title: "The Altar of 2004",
         subtitle: "The night Africa answered",
-        desc: "It began with a few graduates from Daystar University, members of the Sing Africa choir, carrying a single prayer: that the church of Africa would worship as one. There was no stadium, no budget, no guarantee — only a promise. On a cold October evening at CITAM Karen, something shifted in the atmosphere over Nairobi. That night became the foundation of a movement that would touch ten nations.",
+        desc: "It began with a few graduates from Daystar University, members of the Sing Africa choir, carrying a single prayer: that the church of Africa would worship as one. There was no stadium, no budget, no guarantee - only a promise. On a cold October evening at CITAM Karen, something shifted in the atmosphere over Nairobi. That night became the foundation of a movement that would touch ten nations.",
         author: "Sing Africa Alumni",
         year: "2004",
         chapter: "Nairobi",
         image: "/archival-1.jpg",
-        quote: "We didn't have a stage — we had an altar.",
+        quote: "We didn't have a stage - we had an altar.",
     },
     {
         id: "thousands-in-the-rain",
         title: "Thousands in the Rain",
-        subtitle: "October 3rd, 2025 — Grace for Wholeness",
-        desc: "October 3rd, 2025. Winners' Chapel International was at capacity — 15,000 worshippers filling every seat, aisle, and overflow space — despite a heavy downpour that began two hours before the gates opened. No one left. If anything, people pressed in harder. It wasn't about the weather or the discomfort. It was about the undeniable sense that Heaven was hosting this gathering, and no storm could interrupt the appointment.",
+        subtitle: "October 3rd, 2025 - Grace for Wholeness",
+        desc: "October 3rd, 2025. Winners' Chapel International was at capacity - 15,000 worshippers filling every seat, aisle, and overflow space - despite a heavy downpour that began two hours before the gates opened. No one left. If anything, people pressed in harder. It wasn't about the weather or the discomfort. It was about the undeniable sense that Heaven was hosting this gathering, and no storm could interrupt the appointment.",
         author: "Nairobi Chapter, 2025",
         year: "2025",
         chapter: "Nairobi",
@@ -38,7 +38,7 @@ const narrativeStories = [
         id: "healing-in-kigali",
         title: "Healing in Kigali",
         subtitle: "The year Rwanda sang again",
-        desc: "In 2014, as Rwanda commemorated 20 years since the genocide, AFLEWO Kigali raised a sound of reconciliation. Men and women who had been on opposite sides of the worst chapter in their nation's history stood side by side under the same roof, singing to the same God. Music didn't fix everything — but it opened the door. It created space for tears, for dialogue, for the slow, sacred work of healing that politics alone could never accomplish.",
+        desc: "In 2014, as Rwanda commemorated 20 years since the genocide, AFLEWO Kigali raised a sound of reconciliation. Men and women who had been on opposite sides of the worst chapter in their nation's history stood side by side under the same roof, singing to the same God. Music didn't fix everything - but it opened the door. It created space for tears, for dialogue, for the slow, sacred work of healing that politics alone could never accomplish.",
         author: "Kigali Chapter Team",
         year: "2014",
         chapter: "Rwanda",
@@ -49,7 +49,7 @@ const narrativeStories = [
         id: "mombasa-prayer-circle",
         title: "The Circle That Never Closes",
         subtitle: "Every night since 2020",
-        desc: "During the COVID-19 lockdowns of 2020, AFLEWO Mombasa faced the same crisis every chapter did: how do you hold a worship event when no one can gather? The answer was the JCC Bamburi Centre — a nightly Zoom call that started with 12 people and now draws intercessors from Mombasa, Malindi, Lamu, and even diaspora communities in the UK and Canada. Five years later, the circle still meets every night at 9 PM EAT. It has not missed a single night.",
+        desc: "During the COVID-19 lockdowns of 2020, AFLEWO Mombasa faced the same crisis every chapter did: how do you hold a worship event when no one can gather? The answer was the JCC Bamburi Centre - a nightly Zoom call that started with 12 people and now draws intercessors from Mombasa, Malindi, Lamu, and even diaspora communities in the UK and Canada. Five years later, the circle still meets every night at 9 PM EAT. It has not missed a single night.",
         author: "Mombasa Chapter Leadership",
         year: "2020 – Present",
         chapter: "Mombasa",
@@ -77,7 +77,7 @@ function StorySubmitModal({ onClose }: { onClose: () => void }) {
         e.preventDefault();
         setSubmitting(true);
         await new Promise((r) => setTimeout(r, 1200));
-        const subject = encodeURIComponent(`AFLEWO Testimony Submission — ${form.name}`);
+        const subject = encodeURIComponent(`AFLEWO Testimony Submission - ${form.name}`);
         const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nChapter: ${form.chapter}\nYear: ${form.year}\n\nTestimony:\n${form.story}`);
         window.location.href = `mailto:stories@aflewo.org?subject=${subject}&body=${body}`;
         setSubmitting(false);
@@ -267,11 +267,10 @@ export default function TestifyPage() {
                             <button
                                 key={ch}
                                 onClick={() => setActiveChapter(ch)}
-                                className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${
-                                    activeChapter === ch
+                                className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${activeChapter === ch
                                         ? "bg-gold text-brown shadow-glow"
                                         : "glass-card text-white/40 hover:text-white border-white/5"
-                                }`}
+                                    }`}
                             >
                                 {ch}
                             </button>

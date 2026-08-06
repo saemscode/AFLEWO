@@ -8,7 +8,7 @@ import { createClient } from '@supabase/supabase-js';
  * We write the FULL raw payload immediately to donation_ledger (so we NEVER
  * lose a donation record), then parse the receipt and update status.
  *
- * This endpoint must be publicly accessible — no auth header required.
+ * This endpoint must be publicly accessible - no auth header required.
  * Register it in Safaricom Developer Portal as your callback URL.
  *
  * Important: Respond with 200 OK within 5 seconds or Safaricom retries.
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
   try {
     rawBody = await request.json();
   } catch {
-    // Malformed JSON — still return 200 to stop retries
+    // Malformed JSON - still return 200 to stop retries
     return NextResponse.json({ ResultCode: 0, ResultDesc: 'Accepted' });
   }
 
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.error('[mpesa/callback] Processing error:', error);
-    // ALWAYS return 200 — never let a bug cause Safaricom to retry indefinitely
+    // ALWAYS return 200 - never let a bug cause Safaricom to retry indefinitely
     return NextResponse.json({ ResultCode: 0, ResultDesc: 'Accepted' });
   }
 }

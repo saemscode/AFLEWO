@@ -8,7 +8,6 @@ import MediaPreview from "@/components/sections/MediaPreview";
 import StoriesTeaser from "@/components/sections/StoriesTeaser";
 import JoinCTA from "@/components/sections/JoinCTA";
 import Footer from "@/components/Footer";
-import ElasticNavigator from "@/components/ElasticNavigator";
 import { useEffect } from "react";
 import gsap from "gsap";
 
@@ -32,7 +31,6 @@ export default function Home() {
         <JoinCTA />
       </div>
 
-      <ElasticNavigator />
       <Footer />
     </main>
   );

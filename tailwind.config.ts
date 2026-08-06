@@ -46,11 +46,16 @@ const config: Config = {
                 brown: "hsl(20 30% 18%)",
                 emerald: "hsl(160 84% 39%)",
             },
+            fontFamily: {
+                display: ['League Spartan', 'system-ui', 'sans-serif'],
+                serif: ['Marcellus', 'Georgia', 'serif'],
+                sans: ['Manrope', 'system-ui', 'sans-serif'],
+            },
             screens: {
                 // AFLEWO Responsive Tier Demarcation:
                 // mobile:  0px – 767px        (no prefix / base)
                 // tablet:  768px – 1279px      (md: prefix)
-                // desktop: 1280px+             (lg: prefix — new tier)
+                // desktop: 1280px+             (lg: prefix - new tier)
                 'sm': '640px',
                 'md': '768px',
                 'lg': '1280px',

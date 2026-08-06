@@ -1,5 +1,5 @@
 /**
- * AFLEWO — QR Token Scan Handler
+ * AFLEWO - QR Token Scan Handler
  * Route: GET /api/qr/scan?t=[token]
  *
  * Called when a QR code is physically scanned (e.g. at an event check-in desk,
@@ -13,7 +13,7 @@
  *   5. Set consumed_at if single_use
  *   6. Redirect to the appropriate action (registration, download, etc.)
  *
- * NOTE: user_id is never logged to analytics — only identity_fp crosses that boundary.
+ * NOTE: user_id is never logged to analytics - only identity_fp crosses that boundary.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -57,13 +57,13 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
   // ── 2. Validate expiry ───────────────────────────────────────────────────
   if (new Date(qr.expires_at) < now) {
-    console.info(`[QR Scan] Token expired — identity_fp: ${qr.identity_fp}`);
+    console.info(`[QR Scan] Token expired - identity_fp: ${qr.identity_fp}`);
     return NextResponse.redirect(new URL("/?qr=expired", req.url));
   }
 
   // ── 3. Validate single-use consumption ───────────────────────────────────
   if (qr.single_use && qr.consumed_at) {
-    console.info(`[QR Scan] Token already consumed — identity_fp: ${qr.identity_fp}`);
+    console.info(`[QR Scan] Token already consumed - identity_fp: ${qr.identity_fp}`);
     return NextResponse.redirect(new URL("/?qr=used", req.url));
   }
 

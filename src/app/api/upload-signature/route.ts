@@ -6,7 +6,7 @@ import crypto from 'crypto';
  *
  * Generates a Cloudinary signed upload credential.
  * The client uses this signature to upload files DIRECTLY from the browser
- * to Cloudinary — bypassing the Next.js 4.5MB serverless payload limit.
+ * to Cloudinary - bypassing the Next.js 4.5MB serverless payload limit.
  *
  * Security: The CLOUDINARY_API_SECRET never leaves this server route.
  */

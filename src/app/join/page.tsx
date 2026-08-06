@@ -17,8 +17,8 @@ const tracks = [
         id: "choir",
         title: "Choir",
         shortTitle: "Choir",
-        desc: "Join the mass choir. Open to vocalists — soprano, alto, tenor, and bass. Registration leads to auditions.",
-        mobileExplainer: "Mass choir vocals — all voice parts welcome. Commitment to attend all rehearsals required. Registration opens the auditions pathway.",
+        desc: "Join the mass choir. Open to vocalists - soprano, alto, tenor, and bass. Registration leads to auditions.",
+        mobileExplainer: "Mass choir vocals - all voice parts welcome. Commitment to attend all rehearsals required. Registration opens the auditions pathway.",
         iconName: "track_mic",
         color: "from-gold/20 to-gold/5",
         requirements: ["Ability to read sheet music or learn by ear", "Commitment to attend all rehearsals", "Fill registration form below"],
@@ -68,7 +68,7 @@ const tracks = [
         title: "Dancing",
         shortTitle: "Dance",
         desc: "Lead congregational movement in worship. Dance ministry expressing the full spectrum of praise.",
-        mobileExplainer: "Praise and worship dance ministry. All styles welcome — African, contemporary, and liturgical. Audition required.",
+        mobileExplainer: "Praise and worship dance ministry. All styles welcome - African, contemporary, and liturgical. Audition required.",
         iconName: "track_dance",
         color: "from-gold/20 to-gold/5",
         requirements: ["Dance experience (any style)", "Heart for expressive worship", "Attend choreography rehearsals"],
@@ -228,9 +228,9 @@ export default function JoinPage() {
             {/* Track Cards */}
             <section className="section-padding">
                 <div className="max-container space-y-8">
-            {/* ── Mobile (< md): 3×2/4×2 button grid above form ── */}
+                    {/* ── Mobile (< md): 3×2/4×2 button grid above form ── */}
                     <div className="md:hidden space-y-4 mb-8">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-white/30 text-center">Choose your track to get started</p>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-white/30 text-center">Choose where you would like to serve</p>
                         <div className="grid grid-cols-3 gap-2.5">
                             {tracks.map((track) => (
                                 <button
@@ -247,15 +247,13 @@ export default function JoinPage() {
                                             }, 200);
                                         }
                                     }}
-                                    className={`flex flex-col items-center justify-center gap-2 py-4 px-2 rounded-2xl border transition-all duration-300 text-center ${
-                                        activeTrack === track.id
-                                            ? "bg-gold/10 border-gold/50 text-gold"
-                                            : "glass-card border-white/5 hover:border-gold/20 text-white/50 hover:text-white"
-                                    }`}
+                                    className={`flex flex-col items-center justify-center gap-2 py-4 px-2 rounded-2xl border transition-all duration-300 text-center ${activeTrack === track.id
+                                        ? "bg-gold/10 border-gold/50 text-gold"
+                                        : "glass-card border-white/5 hover:border-gold/20 text-white/50 hover:text-white"
+                                        }`}
                                 >
-                                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${track.color} flex items-center justify-center transition-transform duration-300 ${
-                                        activeTrack === track.id ? "scale-110" : ""
-                                    }`}>
+                                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${track.color} flex items-center justify-center transition-transform duration-300 ${activeTrack === track.id ? "scale-110" : ""
+                                        }`}>
                                         <SvgIcon name={track.iconName} size={18} className={activeTrack === track.id ? "text-gold" : "text-gold/60"} />
                                     </div>
                                     <span className="text-[9px] font-black uppercase tracking-widest leading-tight">{track.shortTitle}</span>
@@ -263,7 +261,7 @@ export default function JoinPage() {
                             ))}
                         </div>
 
-                        {/* Mobile explainer — appears below button grid on track selection */}
+                        {/* Mobile explainer - appears below button grid on track selection */}
                         {activeTrack && (() => {
                             const selected = tracks.find((t) => t.id === activeTrack);
                             if (!selected) return null;
@@ -296,9 +294,8 @@ export default function JoinPage() {
                             <div
                                 key={track.id}
                                 id={`track-${track.id}`}
-                                className={`track-card glass-card-elevated p-6 lg:p-10 space-y-4 group cursor-pointer rounded-lg transition-colors duration-500 border ${
-                                    activeTrack === track.id ? "border-gold/50 bg-gold/5" : "border-white/5 hover:border-gold/20"
-                                }`}
+                                className={`track-card glass-card-elevated p-6 lg:p-10 space-y-4 group cursor-pointer rounded-lg transition-colors duration-500 border ${activeTrack === track.id ? "border-gold/50 bg-gold/5" : "border-white/5 hover:border-gold/20"
+                                    }`}
                                 onClick={() => {
                                     setActiveTrack(activeTrack === track.id ? null : track.id);
                                     setFormState((prev) => ({ ...prev, track: track.title }));
@@ -307,7 +304,7 @@ export default function JoinPage() {
                                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${track.color} flex items-center justify-center text-gold group-hover:scale-110 transition-transform duration-500`}>
                                     <SvgIcon name={track.iconName} size={28} className="text-gold" />
                                 </div>
-                                {/* Tablet: shorter copy — full desc only when expanded */}
+                                {/* Tablet: shorter copy - full desc only when expanded */}
                                 <h3 className="text-xl lg:text-2xl font-black tracking-tighter group-hover:text-gold transition-colors">{track.title}</h3>
                                 <p className="text-foreground/50 text-xs lg:text-sm font-bold leading-relaxed line-clamp-3 lg:line-clamp-none">{track.desc}</p>
                                 {activeTrack === track.id && (
@@ -321,9 +318,8 @@ export default function JoinPage() {
                                     </ul>
                                 )}
                                 <div className="pt-2 flex items-center justify-between w-full">
-                                    <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${
-                                        activeTrack === track.id ? "text-gold" : "text-gold/50 group-hover:text-gold"
-                                    }`}>
+                                    <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${activeTrack === track.id ? "text-gold" : "text-gold/50 group-hover:text-gold"
+                                        }`}>
                                         {activeTrack === track.id ? "Selected ✓" : "Select to Apply"}
                                     </span>
                                     {activeTrack !== track.id && (
@@ -344,7 +340,7 @@ export default function JoinPage() {
                             <div className="text-center space-y-3">
                                 <h2 className="text-4xl font-black tracking-tighter">SUBMIT YOUR <span className="text-gold">APPLICATION</span></h2>
                                 <p className="text-white/40 text-sm font-bold uppercase tracking-widest">
-                                    {activeTrack ? `Applying for: ${tracks.find((t) => t.id === activeTrack)?.title}` : "Select a card above, then complete the form"}
+                                    {activeTrack ? `Applying for: ${tracks.find((t) => t.id === activeTrack)?.title}` : "After selecting your service above, please complete the form below"}
                                 </p>
                             </div>
 
@@ -387,10 +383,10 @@ export default function JoinPage() {
                                         </div>
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-gold">Track *</label>
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-gold">Service *</label>
                                         <select name="track" required value={formState.track} onChange={handleChange}
                                             className="w-full bg-white/5 border border-white/10 rounded-lg py-4 px-5 text-sm font-medium text-white outline-none focus:border-gold/50 transition-colors appearance-none">
-                                            <option value="">Select a track</option>
+                                            <option value="">Select a service</option>
                                             {tracks.map((t) => <option key={t.id} value={t.title}>{t.title}</option>)}
                                         </select>
                                     </div>

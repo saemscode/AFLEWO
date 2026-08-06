@@ -21,13 +21,13 @@ type GalleryItem = {
 
 const localGallery: GalleryItem[] = [
   // ── bg series ──
-  { id: 1, src: "/images/gallery/bg1.jpg.jpeg", title: "The Altar of Thousands", chapter: "Nairobi", year: "2024", category: "Gatherings", desc: "Grace for Wholeness — October 2024", wide: true },
-  { id: 2, src: "/images/gallery/bg2.jpg.jpeg", title: "Continental Sound", chapter: "Nairobi", year: "2023", category: "Gatherings", desc: "Night of Wholeness — Winners Chapel International" },
+  { id: 1, src: "/images/gallery/bg1.jpg.jpeg", title: "The Altar of Thousands", chapter: "Nairobi", year: "2024", category: "Gatherings", desc: "Grace for Wholeness - October 2024", wide: true },
+  { id: 2, src: "/images/gallery/bg2.jpg.jpeg", title: "Continental Sound", chapter: "Nairobi", year: "2023", category: "Gatherings", desc: "Night of Wholeness - Winners Chapel International" },
   { id: 3, src: "/images/gallery/bg3.jpg.jpeg", title: "African Vigil Night", chapter: "Mombasa", year: "2022", category: "Gatherings", desc: "Coastal intercession gathering" },
   { id: 4, src: "/images/gallery/bg4.jpg.jpeg", title: "House of Prayer", chapter: "Tanzania", year: "2023", category: "Worship", desc: "CCC Upanga Church, Dar es Salaam" },
   { id: 5, src: "/images/gallery/bg5.jpg.jpeg", title: "The Sound Goes Out", chapter: "Rwanda", year: "2014", category: "Worship", desc: "20-year commemoration service, Kigali" },
   { id: 6, src: "/images/gallery/bg6.jpg.jpeg", title: "Nakuru Season Launch", chapter: "Nakuru", year: "2022", category: "Gatherings", desc: "Deliverance Church opening night" },
-  { id: 7, src: "/images/gallery/bg7.jpg.jpeg", title: "The First Altar", chapter: "Nairobi", year: "2004", category: "Archive", desc: "CITAM Karen — the inaugural AFLEWO gathering", wide: true },
+  { id: 7, src: "/images/gallery/bg7.jpg.jpeg", title: "The First Altar", chapter: "Nairobi", year: "2004", category: "Archive", desc: "CITAM Karen - the inaugural AFLEWO gathering", wide: true },
 
   // ── numbered series (01–12, two variants each) ──
   { id: 8, src: "/images/gallery/01.jpg_1.jpeg", title: "Opening Worship", chapter: "Nairobi", year: "2023", category: "Worship", desc: "Pre-event gathering, 2023" },
@@ -35,11 +35,11 @@ const localGallery: GalleryItem[] = [
   { id: 10, src: "/images/gallery/02.jpg.jpeg", title: "JCC Bamburi Centre", chapter: "Mombasa", year: "2022", category: "Worship", desc: "Coastal evening prayer" },
   { id: 11, src: "/images/gallery/02.jpg_1.jpeg", title: "Mombasa Congregation", chapter: "Mombasa", year: "2022", category: "Gatherings", desc: "JCC Bamburi Centre" },
   { id: 12, src: "/images/gallery/03.jpg.jpeg", title: "A Decade of Grace", chapter: "Nairobi", year: "2013", category: "Archive", desc: "10th anniversary, Sarit Centre" },
-  { id: 13, src: "/images/gallery/03.jpg_1.jpeg", title: "Memory Lane", chapter: "Nairobi", year: "2013", category: "Archive", desc: "Behind the scenes — decade celebration" },
+  { id: 13, src: "/images/gallery/03.jpg_1.jpeg", title: "Memory Lane", chapter: "Nairobi", year: "2013", category: "Archive", desc: "Behind the scenes - decade celebration" },
   { id: 14, src: "/images/gallery/04.jpg.jpeg", title: "Sound of One Voice", chapter: "Nairobi", year: "2016", category: "Worship", desc: "1,000-voice national choir event" },
   { id: 15, src: "/images/gallery/04.jpg_1.jpeg", title: "Band Setup", chapter: "Nairobi", year: "2016", category: "Behind the Scenes", desc: "Pre-show production setup" },
-  { id: 16, src: "/images/gallery/05.jpg.jpeg", title: "Rwanda Reconciliation", chapter: "Rwanda", year: "2014", category: "Worship", desc: "Annual healing worship — April 7th", wide: true },
-  { id: 17, src: "/images/gallery/05.jpg_1.jpeg", title: "Kigali Overflow", chapter: "Rwanda", year: "2014", category: "Gatherings", desc: "Outside the venue — overflow crowd" },
+  { id: 16, src: "/images/gallery/05.jpg.jpeg", title: "Rwanda Reconciliation", chapter: "Rwanda", year: "2014", category: "Worship", desc: "Annual healing worship - April 7th", wide: true },
+  { id: 17, src: "/images/gallery/05.jpg_1.jpeg", title: "Kigali Overflow", chapter: "Rwanda", year: "2014", category: "Gatherings", desc: "Outside the venue - overflow crowd" },
   { id: 18, src: "/images/gallery/06.jpg.jpeg", title: "Tanzania Night", chapter: "Tanzania", year: "2019", category: "Gatherings", desc: "Dar es Salaam chapter gathering" },
   { id: 19, src: "/images/gallery/06.jpg_1.jpeg", title: "Tanzania Praise", chapter: "Tanzania", year: "2019", category: "Worship", desc: "Congregational worship, Dar es Salaam" },
   { id: 20, src: "/images/gallery/07.jpg.jpeg", title: "Morning Devotion", chapter: "Nakuru", year: "2021", category: "Worship", desc: "Dawn prayer session, Nakuru chapter" },
@@ -51,7 +51,7 @@ const localGallery: GalleryItem[] = [
   { id: 26, src: "/images/gallery/10.jpg.jpeg", title: "Midnight Cry", chapter: "Mombasa", year: "2019", category: "Worship", desc: "Coastal midnight worship session" },
   { id: 27, src: "/images/gallery/10.jpg_1.jpeg", title: "The Prayer Wall", chapter: "Mombasa", year: "2019", category: "Worship", desc: "Intercessory prayer corner" },
   { id: 28, src: "/images/gallery/11.jpg.jpeg", title: "Continental Assembly", chapter: "Nairobi", year: "2024", category: "Gatherings", desc: "All-chapter continental summit", wide: true },
-  { id: 29, src: "/images/gallery/11.jpg_1.jpeg", title: "Leaders' Meeting", chapter: "Nairobi", year: "2024", category: "Community", desc: "Leadership roundtable — AFLEWO summit" },
+  { id: 29, src: "/images/gallery/11.jpg_1.jpeg", title: "Leaders' Meeting", chapter: "Nairobi", year: "2024", category: "Community", desc: "Leadership roundtable - AFLEWO summit" },
   { id: 30, src: "/images/gallery/12.jpg.jpeg", title: "Golden Jubilee of Sound", chapter: "Nairobi", year: "2024", category: "Archive", desc: "20-year commemorative gathering" },
   { id: 31, src: "/images/gallery/12.jpg_1.jpeg", title: "The Legacy Continues", chapter: "Nairobi", year: "2024", category: "Archive", desc: "Documentation of the 2024 milestone" },
 
@@ -95,7 +95,7 @@ const YOUTUBE_VIDEOS = [
   {
     id: "uY1o6cJHcRc",
     title: "AFLEWO Nairobi 2025",
-    desc: "Grace for Wholeness — Winners Chapel International",
+    desc: "Grace for Wholeness - Winners Chapel International",
     chapter: "Nairobi",
     year: "2025",
     url: "https://www.youtube.com/live/uY1o6cJHcRc?si=UGZJ3u37sK9qKaEv",
@@ -111,7 +111,7 @@ const YOUTUBE_VIDEOS = [
   {
     id: "JVh8FwFG21k",
     title: "AFLEWO 2021 Night 1",
-    desc: "Night of Wholeness — a landmark AFLEWO gathering",
+    desc: "Night of Wholeness - a landmark AFLEWO gathering",
     chapter: "Nairobi",
     year: "2021",
     url: "https://youtu.be/JVh8FwFG21k?si=C5D9qKWN8sMwmOFy",
@@ -336,7 +336,7 @@ export default function MediaPage() {
     fetchGallery();
   }, []);
 
-  // Use DB items when loaded, fall back to local gallery — prevents double-render
+  // Use DB items when loaded, fall back to local gallery - prevents double-render
   // when DB contains the same images as the local catalog.
   const gallery = dbItems.length > 0 ? dbItems : localGallery;
 
@@ -389,7 +389,7 @@ export default function MediaPage() {
                 <span className="text-gold">& MEDIA.</span>
               </h1>
               <p className="text-foreground/40 max-w-md font-bold text-xs uppercase tracking-widest leading-relaxed">
-                20 years of worship across Africa — documented.
+                20 years of worship across Africa - documented.
               </p>
             </div>
 
@@ -417,8 +417,8 @@ export default function MediaPage() {
                   key={f}
                   onClick={() => setCategoryFilter(f)}
                   className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${categoryFilter === f
-                      ? "bg-gold text-brown"
-                      : "text-white/40 hover:text-white"
+                    ? "bg-gold text-brown"
+                    : "text-white/40 hover:text-white"
                     }`}
                 >
                   {f}
@@ -433,8 +433,8 @@ export default function MediaPage() {
                   key={c}
                   onClick={() => setChapterFilter(c)}
                   className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${chapterFilter === c
-                      ? "bg-white/20 text-white"
-                      : "text-white/30 hover:text-white"
+                    ? "bg-white/20 text-white"
+                    : "text-white/30 hover:text-white"
                     }`}
                 >
                   {c === "All Chapters" ? "All" : c}
@@ -447,9 +447,8 @@ export default function MediaPage() {
               <button
                 onClick={() => setViewMode("grid")}
                 title="Grid view"
-                className={`p-2.5 rounded-full transition-all ${
-                  viewMode === "grid" ? "bg-gold text-brown" : "text-white/30 hover:text-white"
-                }`}
+                className={`p-2.5 rounded-full transition-all ${viewMode === "grid" ? "bg-gold text-brown" : "text-white/30 hover:text-white"
+                  }`}
               >
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
                   <rect x="0" y="0" width="6" height="6" rx="1" />
@@ -461,9 +460,8 @@ export default function MediaPage() {
               <button
                 onClick={() => setViewMode("list")}
                 title="List view"
-                className={`p-2.5 rounded-full transition-all ${
-                  viewMode === "list" ? "bg-gold text-brown" : "text-white/30 hover:text-white"
-                }`}
+                className={`p-2.5 rounded-full transition-all ${viewMode === "list" ? "bg-gold text-brown" : "text-white/30 hover:text-white"
+                  }`}
               >
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
                   <rect x="0" y="0" width="16" height="3" rx="1" />
@@ -537,7 +535,7 @@ export default function MediaPage() {
                     rel="noopener noreferrer"
                     className="mt-auto pt-3 flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-white/25 hover:text-gold/70 transition-colors"
                   >
-                    <svg width="10" height="10" viewBox="0 -7 48 48" fill="currentColor"><g transform="translate(-200.000000, -368.000000)"><path d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z"/></g></svg>
+                    <svg width="10" height="10" viewBox="0 -7 48 48" fill="currentColor"><g transform="translate(-200.000000, -368.000000)"><path d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z" /></g></svg>
                     Watch on YouTube
                   </a>
                 </div>
@@ -603,9 +601,8 @@ export default function MediaPage() {
               {filtered.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`break-inside-avoid mb-4 group relative rounded-2xl overflow-hidden cursor-pointer border border-white/5 hover:border-gold/30 transition-all duration-500 bg-white/3 no-download-wrapper ${
-                    item.wide ? "sm:col-span-2" : ""
-                  }`}
+                  className={`break-inside-avoid mb-4 group relative rounded-2xl overflow-hidden cursor-pointer border border-white/5 hover:border-gold/30 transition-all duration-500 bg-white/3 no-download-wrapper ${item.wide ? "sm:col-span-2" : ""
+                    }`}
                   onClick={() => openLightbox(index)}
                   onContextMenu={(e) => e.preventDefault()}
                   role="button"

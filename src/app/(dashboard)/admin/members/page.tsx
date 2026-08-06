@@ -9,12 +9,12 @@ type UserRole = Database["public"]["Enums"]["user_role"];
 import SvgIcon from "@/components/ui/SvgIcon";
 
 const roleColors: Record<UserRole, string> = {
-  super_admin:   "text-red-400 bg-red-400/10 border-red-400/20",
+  super_admin: "text-red-400 bg-red-400/10 border-red-400/20",
   chapter_admin: "text-orange-400 bg-orange-400/10 border-orange-400/20",
-  choir_member:  "text-gold bg-gold/10 border-gold/20",
-  band_member:   "text-blue-400 bg-blue-400/10 border-blue-400/20",
-  volunteer:     "text-emerald bg-emerald/10 border-emerald/20",
-  applicant:     "text-white/40 bg-white/5 border-white/10",
+  choir_member: "text-gold bg-gold/10 border-gold/20",
+  band_member: "text-blue-400 bg-blue-400/10 border-blue-400/20",
+  volunteer: "text-emerald bg-emerald/10 border-emerald/20",
+  applicant: "text-white/40 bg-white/5 border-white/10",
 };
 
 const promotableRoles: UserRole[] = ["choir_member", "band_member", "volunteer", "chapter_admin", "applicant"];
@@ -109,9 +109,8 @@ export default function AdminMembersPage() {
             <button
               key={role}
               onClick={() => setFilterRole(role)}
-              className={`px-3 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                filterRole === role ? "bg-gold text-brown" : "bg-white/5 text-white/40 hover:text-white"
-              }`}
+              className={`px-3 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${filterRole === role ? "bg-gold text-brown" : "bg-white/5 text-white/40 hover:text-white"
+                }`}
             >
               {role === "all" ? "All" : role.replace("_", " ")}
             </button>
@@ -122,7 +121,7 @@ export default function AdminMembersPage() {
       {/* Table */}
       {loading ? (
         <div className="animate-pulse space-y-2">
-          {[1,2,3,4,5].map(i => <div key={i} className="h-16 bg-white/5 rounded-xl" />)}
+          {[1, 2, 3, 4, 5].map(i => <div key={i} className="h-16 bg-white/5 rounded-xl" />)}
         </div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-24 space-y-3">
@@ -163,7 +162,7 @@ export default function AdminMembersPage() {
                   {member.role.replace("_", " ")}
                 </span>
 
-                {/* Role change — only for others, only if current user outranks */}
+                {/* Role change - only for others, only if current user outranks */}
                 {member.id !== profile?.id && profile?.role === "super_admin" && (
                   <select
                     value={member.role}

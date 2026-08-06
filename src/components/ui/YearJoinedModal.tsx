@@ -17,7 +17,7 @@ const YEAR_OPTIONS = Array.from(
 /**
  * YearJoinedModal
  *
- * Non-dismissible post-auth modal — fires once for any signed-in user
+ * Non-dismissible post-auth modal - fires once for any signed-in user
  * whose profiles.year_joined is still NULL. Required step before accessing
  * any tiered content. Mount once at layout root; it self-gates via
  * useOnboardingStatus.
@@ -68,7 +68,7 @@ export default function YearJoinedModal() {
     setSubmitting(false);
 
     if (updateError) {
-      setError("Couldn't save that — try again in a moment.");
+      setError("Couldn't save that - try again in a moment.");
       return;
     }
 
@@ -79,7 +79,7 @@ export default function YearJoinedModal() {
     <div
       ref={modalRef}
       className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/85 backdrop-blur-xl"
-    // No onClick handler — this modal cannot be dismissed by backdrop click
+    // No onClick handler - this modal cannot be dismissed by backdrop click
     >
       <div
         ref={contentRef}
@@ -135,7 +135,7 @@ export default function YearJoinedModal() {
         </button>
 
         <p className="text-foreground/30 text-[10px] uppercase tracking-widest leading-relaxed">
-          Heads up — this can only be corrected by an admin once set.{" "}
+          Heads up - this can only be corrected by an admin once set.{" "}
           <br />
           Pick carefully.
         </p>

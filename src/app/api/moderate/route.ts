@@ -58,22 +58,22 @@ function runLocalModeration(text: string): ModerationResult {
         }
     }
 
-    // Length heuristic — very short or extremely long may indicate bot
+    // Length heuristic - very short or extremely long may indicate bot
     if (text.trim().length < 10) reasons.push("too_short");
     if (text.trim().length > 5000) reasons.push("excessive_length");
 
     const isFlagged = reasons.length > 0;
     const confidence = reasons.includes("malicious_injection") ? "high"
         : reasons.length >= 2 ? "medium"
-        : reasons.length === 1 ? "low"
-        : "low";
+            : reasons.length === 1 ? "low"
+                : "low";
 
     return { isFlagged, reasons, confidence };
 }
 
 // ─── Optional AI moderation layer ────────────────────────────────────────────
 // Only called for borderline cases (low confidence from local scan).
-// Uses a single cheap AI call — returns true if content should be flagged.
+// Uses a single cheap AI call - returns true if content should be flagged.
 async function runAIModeration(text: string): Promise<boolean> {
     const cfToken = process.env.CLOUDFLARE_API_TOKEN;
     const cfAccountId = process.env.CLOUDFLARE_ACCOUNT_ID;
@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        // Step 3: If flagged, mark in the database — only the `is_flagged` and `flag_reasons` columns
+        // Step 3: If flagged, mark in the database - only the `is_flagged` and `flag_reasons` columns
         if (finalFlagged) {
             const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
             const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -177,7 +177,7 @@ export async function POST(req: NextRequest) {
         });
     } catch (err) {
         console.error("[AFLEWO Moderator] Error:", err);
-        // Return 200 always — never expose internal errors
+        // Return 200 always - never expose internal errors
         return NextResponse.json({ status: "reviewed", flagged: false }, { status: 200 });
     }
 }

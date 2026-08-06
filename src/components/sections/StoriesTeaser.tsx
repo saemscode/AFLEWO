@@ -43,7 +43,7 @@ const stories: Story[] = [
         chapter: "Mombasa",
     },
     {
-        content: "Being part of the 1,000-voice choir was life-changing. The unity, the power, the presence — it's indescribable.",
+        content: "Being part of the 1,000-voice choir was life-changing. The unity, the power, the presence - it's indescribable.",
         name: "Nakuru Choir Member",
         role: "Volunteer",
         stat: "1,000 Voices",
@@ -127,7 +127,7 @@ export default function StoriesTeaser() {
                                 <span className="text-gold">GLORY</span>
                             </h2>
                             <p className="text-white/40 font-medium text-[13px] leading-relaxed max-w-xs italic">
-                                "Behind every worship night is a story of transformation — from hidden prayers to continental echoes."
+                                "Behind every worship night is a story of transformation - from hidden prayers to continental echoes."
                             </p>
                         </div>
 

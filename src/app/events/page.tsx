@@ -12,7 +12,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { type Session } from "@supabase/supabase-js";
 
-// ─── Spring presets (Apple Design — critically damped) ─────────────────────────
+// ─── Spring presets (Apple Design - critically damped) ─────────────────────────
 const SPRING = { type: "spring", stiffness: 360, damping: 36, mass: 0.85 } as const;
 const SPRING_SLOW = { type: "spring", stiffness: 260, damping: 32, mass: 1.0 } as const;
 const SPRING_SHEET = { type: "spring", stiffness: 400, damping: 40, mass: 0.9 } as const;
@@ -30,26 +30,26 @@ const CHAPTER_FLAGS: Record<string, string> = {
     Tanzania: "🇹🇿", Rwanda: "🇷🇼", Kampala: "🇺🇬",
 };
 
-// Chapter initials colours for avatar clusters on calendar
+// Chapter initials colours for avatar clusters on calendar (site default gold theme)
 const CHAPTER_COLOUR: Record<string, string> = {
-    Nairobi: "#D4AF37", Mombasa: "#22d3ee", Nakuru: "#f97316",
-    Eldoret: "#a855f7", Nyeri: "#22c55e", Meru: "#84cc16",
-    Tanzania: "#10b981", Rwanda: "#3b82f6", Kampala: "#eab308",
-    Machakos: "#f43f5e", Kisumu: "#60a5fa",
+    Nairobi: "#D4AF37", Mombasa: "#D4AF37", Nakuru: "#D4AF37",
+    Eldoret: "#D4AF37", Nyeri: "#D4AF37", Meru: "#D4AF37",
+    Tanzania: "#D4AF37", Rwanda: "#D4AF37", Kampala: "#D4AF37",
+    Machakos: "#D4AF37", Kisumu: "#D4AF37",
 };
 
 // Type pill colour tokens
 function getTypeStyle(type: string) {
     switch (type) {
-        case "Audition":      return { pill: "bg-purple-500/12 text-purple-300 border-purple-500/20", dot: "bg-purple-400", badge: "bg-purple-500/20 text-purple-200" };
-        case "Rehearsal":     return { pill: "bg-blue-500/12 text-blue-300 border-blue-500/20", dot: "bg-blue-400", badge: "bg-blue-500/20 text-blue-200" };
-        case "Mission":       return { pill: "bg-emerald-500/12 text-emerald-300 border-emerald-500/20", dot: "bg-emerald-400", badge: "bg-emerald-500/20 text-emerald-200" };
+        case "Audition": return { pill: "bg-purple-500/12 text-purple-300 border-purple-500/20", dot: "bg-purple-400", badge: "bg-purple-500/20 text-purple-200" };
+        case "Rehearsal": return { pill: "bg-blue-500/12 text-blue-300 border-blue-500/20", dot: "bg-blue-400", badge: "bg-blue-500/20 text-blue-200" };
+        case "Mission": return { pill: "bg-emerald-500/12 text-emerald-300 border-emerald-500/20", dot: "bg-emerald-400", badge: "bg-emerald-500/20 text-emerald-200" };
         case "Commissioning": return { pill: "bg-yellow-500/12 text-yellow-300 border-yellow-500/20", dot: "bg-yellow-400", badge: "bg-yellow-500/20 text-yellow-200" };
-        case "Training":      return { pill: "bg-orange-500/12 text-orange-300 border-orange-500/20", dot: "bg-orange-400", badge: "bg-orange-500/20 text-orange-200" };
-        case "Event":         return { pill: "bg-pink-500/12 text-pink-300 border-pink-500/20", dot: "bg-pink-400", badge: "bg-pink-500/20 text-pink-200" };
-        case "Main Event":    return { pill: "bg-gold/12 text-gold border-gold/20", dot: "bg-gold", badge: "bg-gold/20 text-yellow-200" };
-        case "Live Stream":   return { pill: "bg-red-500/12 text-red-300 border-red-500/20", dot: "bg-red-400", badge: "bg-red-500/20 text-red-200" };
-        default:              return { pill: "bg-white/5 text-white/40 border-white/10", dot: "bg-white/30", badge: "bg-white/8 text-white/40" };
+        case "Training": return { pill: "bg-orange-500/12 text-orange-300 border-orange-500/20", dot: "bg-orange-400", badge: "bg-orange-500/20 text-orange-200" };
+        case "Event": return { pill: "bg-pink-500/12 text-pink-300 border-pink-500/20", dot: "bg-pink-400", badge: "bg-pink-500/20 text-pink-200" };
+        case "Main Event": return { pill: "bg-gold/12 text-gold border-gold/20", dot: "bg-gold", badge: "bg-gold/20 text-yellow-200" };
+        case "Live Stream": return { pill: "bg-red-500/12 text-red-300 border-red-500/20", dot: "bg-red-400", badge: "bg-red-500/20 text-red-200" };
+        default: return { pill: "bg-white/5 text-white/40 border-white/10", dot: "bg-white/30", badge: "bg-white/8 text-white/40" };
     }
 }
 
@@ -59,40 +59,66 @@ function getChapterSlug(name: string): string {
 
 // Format a date as "21 DEC" for the floating stub on cards
 function formatDateStub(dateStr: string): string {
-    if (!dateStr || dateStr === "TBD" || dateStr === "Every Night") return dateStr ?? "—";
+    if (!dateStr || dateStr === "TBD" || dateStr === "Every Night") return dateStr ?? "-";
     const parts = dateStr.replace(",", "").split(" ");
     if (parts.length >= 2) return `${parts[1]} ${parts[0].toUpperCase()}`;
     return dateStr;
 }
 
-// ─── Attendee Avatar Cluster ──────────────────────────────────────────────────
-// Shows chapter initials stacked for each event on a calendar day
-function AvatarCluster({ dayEvents }: { dayEvents: AFLEWOEvent[] }) {
-    const visible = dayEvents.slice(0, 3);
-    const overflow = dayEvents.length - 3;
+// ─── Responsive Cascading Button ──────────────────────────────────────────────
+interface CascadingButtonProps {
+    onClick?: (e: React.MouseEvent) => void;
+    icon: string;
+    text: string;
+    title: string;
+    href?: string;
+    target?: string;
+}
+
+function CascadingButton({ onClick, icon, text, title, href, target }: CascadingButtonProps) {
+    const content = (
+        <span className="flex items-center justify-center gap-1.5 min-h-[16px]">
+            {/* Desktop: icon + text */}
+            <span className="hidden md:flex items-center gap-1.5 font-black">
+                <SvgIcon name={icon} size={11} className="text-gold" />
+                <span>{text}</span>
+            </span>
+            {/* Tablet: text alone */}
+            <span className="hidden sm:inline md:hidden font-bold">
+                {text}
+            </span>
+            {/* Mobile: icon alone */}
+            <span className="inline sm:hidden">
+                <SvgIcon name={icon} size={11} className="text-gold" />
+            </span>
+        </span>
+    );
+
+    const className = "px-3 py-2 rounded-xl bg-white/4 hover:bg-gold/15 border border-white/4 hover:border-gold/20 text-white/50 hover:text-gold text-[8px] font-black uppercase tracking-wider transition-all flex items-center justify-center";
+
+    if (href) {
+        return (
+            <a
+                href={href}
+                target={target}
+                rel={target ? "noopener noreferrer" : undefined}
+                onClick={onClick}
+                className={className}
+                title={title}
+            >
+                {content}
+            </a>
+        );
+    }
+
     return (
-        <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 flex items-center justify-center" style={{ gap: "-2px" }}>
-            <div className="flex -space-x-1">
-                {visible.map((ev, idx) => (
-                    <div
-                        key={ev.id}
-                        title={`${ev.chapter} — ${ev.title}`}
-                        className="w-[10px] h-[10px] rounded-full border border-black/60 flex items-center justify-center text-[4px] font-black shrink-0"
-                        style={{
-                            background: CHAPTER_COLOUR[ev.chapter] ?? "#D4AF37",
-                            zIndex: visible.length - idx,
-                        }}
-                    >
-                        {ev.chapter[0]}
-                    </div>
-                ))}
-                {overflow > 0 && (
-                    <div className="w-[10px] h-[10px] rounded-full border border-black/60 bg-white/20 flex items-center justify-center text-[4px] font-black text-white/60" style={{ zIndex: 0 }}>
-                        +{overflow}
-                    </div>
-                )}
-            </div>
-        </div>
+        <button
+            onClick={onClick}
+            className={className}
+            title={title}
+        >
+            {content}
+        </button>
     );
 }
 
@@ -115,7 +141,8 @@ function PortraitEventCard({
     const chapterColour = CHAPTER_COLOUR[event.chapter] ?? "#D4AF37";
     const stub = formatDateStub(event.date);
 
-    const handleAddToCalendar = () => {
+    const handleAddToCalendar = (e: React.MouseEvent) => {
+        e.stopPropagation();
         if (!event.start || !event.end) return;
         const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("AFLEWO: " + event.title)}&dates=${event.start}/${event.end}&details=${encodeURIComponent(event.description ?? "")}&location=${encodeURIComponent(event.location)}`;
         window.open(url, "_blank", "noopener,noreferrer");
@@ -131,31 +158,43 @@ function PortraitEventCard({
             whileHover={past ? {} : { y: -5 }}
             onClick={() => onSelect(event)}
             className={`group relative rounded-[1.75rem] border overflow-hidden flex flex-col cursor-pointer transition-all ${
-                past ? "border-white/4 opacity-45" : selected ? "border-gold/50 shadow-[0_0_30px_rgba(212,175,55,0.18)]" : "border-white/6 hover:border-white/12"
+                past
+                    ? "border-white/4 opacity-45"
+                    : selected
+                    ? "border-gold/50 shadow-[0_0_30px_rgba(212,175,55,0.18)]"
+                    : "border-white/6 hover:border-white/12"
             }`}
-            style={{ background: "rgba(255,255,255,0.018)", backdropFilter: "blur(20px) saturate(160%)" }}
+            style={{ background: "rgba(255,255,255,0.018)", backdropFilter: "blur(20px)" }}
         >
             {/* Portrait image area */}
-            <div className="relative aspect-[3/4] w-full overflow-hidden">
-                {/* Coloured gradient stand-in (real photos would be from media_items per chapter) */}
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `linear-gradient(135deg, ${chapterColour}22 0%, #0A0706 100%)`,
-                    }}
-                />
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/40">
+                {event.imageUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                        src={event.imageUrl}
+                        alt={event.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                ) : (
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: `linear-gradient(135deg, ${chapterColour}22 0%, #0A0706 100%)`,
+                        }}
+                    />
+                )}
                 {/* Dark vignette at bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Floating date stub — top right */}
+                {/* Floating date stub - top right */}
                 <div className="absolute top-3 right-3 px-2.5 py-1.5 rounded-xl bg-white/90 backdrop-blur-sm shadow-lg">
                     <p className="text-[9px] font-black uppercase tracking-[0.2em] text-black/80 leading-none">{stub}</p>
                 </div>
 
-                {/* Chapter avatar cluster — top left */}
+                {/* Chapter flag/avatar - top left */}
                 <div
-                    className="absolute top-3 left-3 w-8 h-8 rounded-full border-2 border-black/40 flex items-center justify-center text-[10px] font-black shadow-lg"
-                    style={{ background: chapterColour }}
+                    className="absolute top-3 left-3 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-[10px] font-black shadow-lg"
+                    style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(12px)" }}
                     title={event.chapter}
                 >
                     {CHAPTER_FLAGS[event.chapter] ?? event.chapter[0]}
@@ -175,11 +214,6 @@ function PortraitEventCard({
                         <span className="text-[8px] font-black uppercase tracking-[0.18em] text-white">Live</span>
                     </div>
                 )}
-
-                {/* Gold line at top when selected */}
-                {selected && (
-                    <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold via-gold/70 to-transparent" />
-                )}
             </div>
 
             {/* Text content */}
@@ -196,33 +230,24 @@ function PortraitEventCard({
                     <span className="text-[9px] font-bold tracking-wide truncate">{event.location}</span>
                 </div>
 
-                {/* Action row */}
+                {/* Cascading actions row */}
                 <div className="mt-auto flex items-center gap-1.5 pt-2 border-t border-white/4">
                     {event.lat && event.lng && (
-                        <a
+                        <CascadingButton
                             href={`https://maps.google.com/?q=${event.lat},${event.lng}`}
                             target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="p-1.5 rounded-lg bg-white/4 hover:bg-gold/15 border border-white/4 hover:border-gold/20 text-white/30 hover:text-gold transition-all"
+                            icon="location"
+                            text="Map"
                             title="Open in Google Maps"
-                        >
-                            <SvgIcon name="location" size={11} />
-                        </a>
+                        />
                     )}
                     {event.start && !past && (
-                        <button
-                            onClick={(e) => { e.stopPropagation(); handleAddToCalendar(); }}
-                            className="p-1.5 rounded-lg bg-white/4 hover:bg-gold/15 border border-white/4 hover:border-gold/20 text-white/30 hover:text-gold transition-all"
+                        <CascadingButton
+                            onClick={handleAddToCalendar}
+                            icon="event"
+                            text="Calendar"
                             title="Add to Google Calendar"
-                        >
-                            <SvgIcon name="event" size={11} />
-                        </button>
-                    )}
-                    {event.visibility === "member" && (
-                        <div className="p-1.5 rounded-lg bg-white/4 border border-white/4 text-white/18" title="Members only">
-                            <SvgIcon name="lock" size={11} />
-                        </div>
+                        />
                     )}
                     <button
                         onClick={(e) => { e.stopPropagation(); onSelect(event); }}
@@ -237,8 +262,18 @@ function PortraitEventCard({
 }
 
 // ─── Horizontal Event Row Card (list view fallback) ───────────────────────────
-function EventRowCard({ event, past, selected, onSelect, delay = 0 }: {
-    event: AFLEWOEvent; past: boolean; selected: boolean; onSelect: (ev: AFLEWOEvent) => void; delay?: number;
+function EventRowCard({
+    event,
+    past,
+    selected,
+    onSelect,
+    delay = 0,
+}: {
+    event: AFLEWOEvent;
+    past: boolean;
+    selected: boolean;
+    onSelect: (ev: AFLEWOEvent) => void;
+    delay?: number;
 }) {
     const shouldReduceMotion = useReducedMotion();
     const s = getTypeStyle(event.type);
@@ -260,55 +295,81 @@ function EventRowCard({ event, past, selected, onSelect, delay = 0 }: {
             transition={shouldReduceMotion ? { duration: 0.15 } : { ...SPRING_SLOW, delay }}
             onClick={() => onSelect(event)}
             className={`group flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all ${
-                past ? "border-white/3 opacity-45" : selected ? "border-gold/35 bg-gold/5" : "border-white/5 hover:border-white/10 hover:bg-white/2"
+                past
+                    ? "border-white/3 opacity-45"
+                    : selected
+                    ? "border-gold/35 bg-gold/5"
+                    : "border-white/5 hover:border-white/10 hover:bg-white/2"
             }`}
             style={{ background: selected ? "rgba(212,175,55,0.04)" : "rgba(255,255,255,0.014)" }}
         >
-            {/* Date badge */}
-            <div
-                className="w-12 h-12 rounded-xl flex flex-col items-center justify-center text-center shrink-0 border"
-                style={{ background: `${chapterColour}18`, borderColor: `${chapterColour}30` }}
-            >
-                <span className="text-[15px] font-black leading-none" style={{ color: chapterColour }}>
-                    {event.date === "Every Night" ? "∞" : event.date === "TBD" ? "?" : event.date.split(" ")[1]?.replace(",", "") ?? "—"}
-                </span>
-                <span className="text-[7px] font-black uppercase tracking-wide" style={{ color: `${chapterColour}99` }}>
-                    {event.date === "Every Night" ? "NIGHTLY" : event.date === "TBD" ? "TBD" : event.date.split(" ")[0]}
-                </span>
-            </div>
+            {/* Optional dynamic image preview or Date badge */}
+            {event.imageUrl ? (
+                <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-white/10 relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={event.imageUrl} alt={event.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <span className="text-[10px] font-black text-white">{event.date === "Every Night" ? "∞" : event.date === "TBD" ? "?" : event.date.split(" ")[1]?.replace(",", "") ?? "-"}</span>
+                    </div>
+                </div>
+            ) : (
+                <div
+                    className="w-12 h-12 rounded-xl flex flex-col items-center justify-center text-center shrink-0 border"
+                    style={{ background: `${chapterColour}18`, borderColor: `${chapterColour}30` }}
+                >
+                    <span className="text-[15px] font-black leading-none text-gold">
+                        {event.date === "Every Night" ? "∞" : event.date === "TBD" ? "?" : event.date.split(" ")[1]?.replace(",", "") ?? "-"}
+                    </span>
+                    <span className="text-[7px] font-black uppercase tracking-wide text-gold/70">
+                        {event.date === "Every Night" ? "NIGHTLY" : event.date === "TBD" ? "TBD" : event.date.split(" ")[0]}
+                    </span>
+                </div>
+            )}
 
             {/* Info */}
             <div className="flex-1 min-w-0">
                 <p className="text-[8px] font-black uppercase tracking-[0.22em] text-gold/50">{event.chapter}</p>
-                <h4 className="text-[13px] font-black text-white group-hover:text-gold transition-colors leading-tight truncate mt-0.5">{event.title}</h4>
+                <h4 className="text-[13px] font-black text-white group-hover:text-gold transition-colors leading-tight truncate mt-0.5">
+                    {event.title}
+                </h4>
                 <div className="flex items-center gap-2 mt-1">
-                    <span className={`px-2 py-0.5 rounded-full text-[7px] font-black uppercase tracking-[0.15em] border ${s.pill}`}>{event.type}</span>
+                    <span className={`px-2 py-0.5 rounded-full text-[7px] font-black uppercase tracking-[0.15em] border ${s.pill}`}>
+                        {event.type}
+                    </span>
                     {event.isLive && (
                         <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500/15 border border-red-500/20 text-red-300 text-[7px] font-black uppercase tracking-[0.15em]">
-                            <span className="w-1 h-1 rounded-full bg-red-400 animate-pulse" />Live
+                            <span className="w-1 h-1 rounded-full bg-red-400 animate-pulse" />
+                            Live
                         </span>
                     )}
                 </div>
             </div>
 
-            {/* Actions */}
-            <div className="flex items-center gap-1 shrink-0">
-                {event.start && !past && (
-                    <button onClick={handleAddToCalendar} className="p-2 rounded-xl bg-white/4 hover:bg-gold/15 border border-white/4 hover:border-gold/20 text-white/30 hover:text-gold transition-all" title="Add to Calendar">
-                        <SvgIcon name="event" size={12} />
-                    </button>
-                )}
+            {/* Cascading responsive actions */}
+            <div className="flex items-center gap-1.5 shrink-0">
                 {event.lat && event.lng && (
-                    <a href={`https://maps.google.com/?q=${event.lat},${event.lng}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="p-2 rounded-xl bg-white/4 hover:bg-gold/15 border border-white/4 hover:border-gold/20 text-white/30 hover:text-gold transition-all" title="Open Map">
-                        <SvgIcon name="location" size={12} />
-                    </a>
+                    <CascadingButton
+                        href={`https://maps.google.com/?q=${event.lat},${event.lng}`}
+                        target="_blank"
+                        icon="location"
+                        text="Map"
+                        title="Open Map"
+                    />
+                )}
+                {event.start && !past && (
+                    <CascadingButton
+                        onClick={handleAddToCalendar}
+                        icon="event"
+                        text="Calendar"
+                        title="Add to Calendar"
+                    />
                 )}
             </div>
         </motion.div>
     );
 }
 
-// ─── Panel A — Calendar Widget ─────────────────────────────────────────────────
+// ─── Panel A - Calendar Widget ─────────────────────────────────────────────────
 function CalendarPanel({
     currentMonth, selectedDate,
     onMonthChange, onDaySelect,
@@ -371,12 +432,11 @@ function CalendarPanel({
                             whileTap={{ scale: 0.88 }}
                             transition={SPRING}
                             onClick={() => onDaySelect(isSelected ? null : date)}
-                            className={`relative h-9 md:h-10 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-start pt-1 ${
-                                isSelected ? "bg-gold text-brown shadow-[0_0_16px_rgba(212,175,55,0.4)]" :
-                                isToday ? "bg-white/10 text-white border border-white/20" :
-                                hasEvents ? "bg-white/4 hover:bg-white/8 text-white" :
-                                "text-white/30 hover:bg-white/4 hover:text-white/60"
-                            }`}
+                            className={`relative h-9 md:h-10 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-start pt-1 ${isSelected ? "bg-gold text-brown shadow-[0_0_16px_rgba(212,175,55,0.4)]" :
+                                    isToday ? "bg-white/10 text-white border border-white/20" :
+                                        hasEvents ? "bg-white/4 hover:bg-white/8 text-white" :
+                                            "text-white/30 hover:bg-white/4 hover:text-white/60"
+                                }`}
                             style={{ WebkitTapHighlightColor: "transparent" }}
                         >
                             <span className="leading-none">{i + 1}</span>
@@ -412,7 +472,7 @@ function CalendarPanel({
     );
 }
 
-// ─── Panel C — Sticky Details Sidebar ─────────────────────────────────────────
+// ─── Panel C - Sticky Details Sidebar ─────────────────────────────────────────
 type DetailTab = "schedule" | "about" | "hosts";
 
 function DetailPanel({ event, onClose, session }: { event: AFLEWOEvent | null; onClose?: () => void; session: Session | null }) {
@@ -456,7 +516,7 @@ function DetailPanel({ event, onClose, session }: { event: AFLEWOEvent | null; o
     // Schedule timeline entries derived from event data
     const scheduleItems = [
         event.time !== "TBD" && { time: event.time, label: "Doors Open / Registration" },
-        { time: "—", label: event.title },
+        { time: "-", label: event.title },
         event.date !== "TBD" && event.date !== "Every Night" && { time: "End", label: `${event.venueName ?? event.location}` },
     ].filter(Boolean) as { time: string; label: string }[];
 
@@ -547,9 +607,8 @@ function DetailPanel({ event, onClose, session }: { event: AFLEWOEvent | null; o
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`flex-1 py-2 rounded-lg text-[8px] font-black uppercase tracking-[0.18em] transition-all ${
-                                activeTab === tab ? "bg-gold text-brown shadow-sm" : "text-white/30 hover:text-white"
-                            }`}
+                            className={`flex-1 py-2 rounded-lg text-[8px] font-black uppercase tracking-[0.18em] transition-all ${activeTab === tab ? "bg-gold text-brown shadow-sm" : "text-white/30 hover:text-white"
+                                }`}
                         >
                             {tab === "schedule" ? "Schedule" : tab === "about" ? "About" : "Hosts"}
                         </button>
@@ -603,7 +662,7 @@ function DetailPanel({ event, onClose, session }: { event: AFLEWOEvent | null; o
                                 </div>
                                 <div>
                                     <p className="text-[12px] font-black text-white">AFLEWO {event.chapter}</p>
-                                    <p className="text-[9px] font-bold text-white/35 uppercase tracking-[0.15em]">{chapterData?.status ?? "Chapter"} · Est. {chapterData?.established ?? "—"}</p>
+                                    <p className="text-[9px] font-bold text-white/35 uppercase tracking-[0.15em]">{chapterData?.status ?? "Chapter"} · Est. {chapterData?.established ?? "-"}</p>
                                 </div>
                             </div>
                             {chapterData?.contactEmail && (
@@ -754,9 +813,8 @@ function DiscoveryRails({ onSelect, session, typeFilter, setTypeFilter }: {
                             whileTap={{ scale: 0.93 }}
                             transition={SPRING}
                             onClick={() => setTypeFilter(t)}
-                            className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.18em] border transition-all ${
-                                typeFilter === t ? "bg-gold text-brown border-gold shadow-[0_0_12px_rgba(212,175,55,0.3)]" : "border-white/8 text-white/35 hover:border-white/20 hover:text-white/70"
-                            }`}
+                            className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.18em] border transition-all ${typeFilter === t ? "bg-gold text-brown border-gold shadow-[0_0_12px_rgba(212,175,55,0.3)]" : "border-white/8 text-white/35 hover:border-white/20 hover:text-white/70"
+                                }`}
                         >
                             {t}
                         </motion.button>
@@ -799,7 +857,7 @@ function DiscoveryRails({ onSelect, session, typeFilter, setTypeFilter }: {
     );
 }
 
-// ─── Inner page (uses useSearchParams — requires Suspense) ─────────────────────
+// ─── Inner page (uses useSearchParams - requires Suspense) ─────────────────────
 function EventsInner() {
     const shouldReduceMotion = useReducedMotion();
     const searchParams = useSearchParams();
@@ -898,7 +956,7 @@ function EventsInner() {
                                 ABOUT <span className="text-gold">EVENTS.</span>
                             </h1>
                             <p className="text-white/35 max-w-md font-bold text-[10px] uppercase tracking-[0.2em] leading-relaxed pt-1">
-                                {upcoming.length} upcoming events across {new Set(events.map(e => e.chapter)).size} chapters — rehearsals, auditions, missions, and worship nights.
+                                {upcoming.length} upcoming events across {new Set(events.map(e => e.chapter)).size} chapters - rehearsals, auditions, missions, and worship nights.
                             </p>
                         </motion.div>
                         <motion.div
@@ -1009,7 +1067,7 @@ function EventsInner() {
                 <div className="max-container">
                     <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
 
-                        {/* ── PANEL A — Calendar + Discovery (Left) ── */}
+                        {/* ── PANEL A - Calendar + Discovery (Left) ── */}
                         <div className="xl:col-span-3 space-y-5">
                             <CalendarPanel
                                 currentMonth={currentMonth}
@@ -1033,7 +1091,7 @@ function EventsInner() {
                             </div>
                         </div>
 
-                        {/* ── PANEL B — Event Card Stream (Center) ── */}
+                        {/* ── PANEL B - Event Card Stream (Center) ── */}
                         <div className="xl:col-span-5 space-y-5">
                             {/* Section label */}
                             <div className="flex items-center gap-3">
@@ -1130,7 +1188,7 @@ function EventsInner() {
                             </AnimatePresence>
                         </div>
 
-                        {/* ── PANEL C — Sticky Detail (Right, desktop only) ── */}
+                        {/* ── PANEL C - Sticky Detail (Right, desktop only) ── */}
                         <div className="hidden xl:block xl:col-span-4">
                             <div className="sticky top-28">
                                 <AnimatePresence mode="wait">

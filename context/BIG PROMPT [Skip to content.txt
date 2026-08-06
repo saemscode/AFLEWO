@@ -16,8 +16,8 @@ https://media.licdn.com/dms/image/v2/C4D1BAQEke649_pP-0w/company-background_1000
 https://pbs.twimg.com/media/G2LyhBZXwAE-feP.jpg
 
 https://pbs.twimg.com/media/G2MCztWWAAIL6p_.jpg
-AFLEWO — Everything (no mercy)
-Short definition: AFLEWO = Africa Let’s Worship — an inter-denominational, all-night worship movement started by Daystar University’s Sing Africa alumni; it runs annual worship gatherings (music + prayer) across Kenya and in other African cities. 
+AFLEWO - Everything (no mercy)
+Short definition: AFLEWO = Africa Let’s Worship - an inter-denominational, all-night worship movement started by Daystar University’s Sing Africa alumni; it runs annual worship gatherings (music + prayer) across Kenya and in other African cities. 
 
 Origins & mission
 • Started: first AFLEWO event in 2004, spawned from Sing Africa (a Daystar University student ministry that began in 1996). 
@@ -27,7 +27,7 @@ Origins & mission
 What the events look like
 • Format: multi-city, all-night worship nights (often 6pm → dawn), driven by a large choir/band and segments of sustained worship, prayer, and short teachings. Events are free (but accept donations/partners). 
 
-• Scale: long history of big turnouts — several editions reported crowds in the thousands to 10,000+ attendees in Nairobi, and multi-city chapters. (AFLEWO has run virtual editions too.)
+• Scale: long history of big turnouts - several editions reported crowds in the thousands to 10,000+ attendees in Nairobi, and multi-city chapters. (AFLEWO has run virtual editions too.)
 
 Geography / chapters / reach
 • Kenya chapters: Nairobi, Mombasa, Nyeri, Nakuru, Meru (and more local chapters). 
@@ -57,7 +57,7 @@ Notable moments & history highlights
 • AFLEWO’s 20+ year arc has included regional expansions, televised segments, and collaborations with church networks and sponsors. 
 
 Quick links & where to watch / follow
-• Official site / info and FAQ — AFLEWO site. 
+• Official site / info and FAQ - AFLEWO site. 
 
 • YouTube channel (livestreams & past nights). 
 
@@ -80,16 +80,16 @@ ChatGPT said:
 Here’s a comprehensive, fact-based profile of AFLEWO (Africa Let’s Worship) built from official sources, social posts, press coverage, and event listings. This can guide building a website profile, structure, content strategy, and tech choices. All content below is sourced and verifiable. 
 
 🔥 DEFINITION & CORE IDENTITY
-AFLEWO stands for Africa Let’s Worship — an annual inter-denominational all-night worship movement centered on Christian praise, prayer, unity, and spiritual revival across Kenya and beyond. It was initiated by Sing Africa alumni (Daystar University Christian fellowship) to mobilize believers in extended worship. 
+AFLEWO stands for Africa Let’s Worship - an annual inter-denominational all-night worship movement centered on Christian praise, prayer, unity, and spiritual revival across Kenya and beyond. It was initiated by Sing Africa alumni (Daystar University Christian fellowship) to mobilize believers in extended worship. 
 
 Operating model:
 • Annual worship events that start in the evening and continue until dawn
 • Music-led praise with pastoral intercession and prayer
 • Volunteers, logistics, creatives, technical teams all collaborate
-• Free entry — open to all Christians, supported by donations and partners 
+• Free entry - open to all Christians, supported by donations and partners 
 
 🕰️ HISTORY & YEARS OF EXISTENCE
-Started: 2004 in Nairobi, Kenya — the first AFLEWO event. 
+Started: 2004 in Nairobi, Kenya - the first AFLEWO event. 
 
 Legacy & expansion:
 • 2004: inaugural event in Nairobi
@@ -107,7 +107,7 @@ Vision:
 “To stir up hope in Jesus through annual events of worship in music and prayer from a united front of the Church across Africa.” 
 
 Mission:
-Uniting in worship — bringing believers together to worship, pray, and intercede in a unified spiritual front. 
+Uniting in worship - bringing believers together to worship, pray, and intercede in a unified spiritual front. 
 
 🧱 STRUCTURE & LEADERSHIP
 AFLEWO is governed by the AFLEWO Summit / Management Team, including:
@@ -141,7 +141,7 @@ International:
 
 🏟️ VENUES & EVENTS (PAST & RECENT)
 Nairobi
-• Winners’ Chapel International (Likoni Road) — major venue for big editions. 
+• Winners’ Chapel International (Likoni Road) - major venue for big editions. 
 
 Historically also used:
 • CITAM Karen
@@ -158,14 +158,14 @@ Rwanda
 • Christian Life Assembly, Kigali (2025 event) 
 
 💰 FINANCES, TRANSACTIONS & FUNDING
-AFLEWO operates without commercial entry fees — events are free, but supported by:
+AFLEWO operates without commercial entry fees - events are free, but supported by:
 
 Donations via:
 • M-PESA Till (e.g., 819867 for AFLEWO 2025)
 • Bank transfers (e.g., NCBA account listed in social posts)
 • M-Changa / Paybill accounts for partnerships and support 
 
-Partnerships with corporates — e.g., Co-op Bank Kenya joined AFLEWO 2025 as a key partner. 
+Partnerships with corporates - e.g., Co-op Bank Kenya joined AFLEWO 2025 as a key partner. 
 
 No public financial reports were found, but transaction points and accounts are shared annually online for congregation contributions. 
 
@@ -223,7 +223,7 @@ Online Content:
 
 Historical Media: The official site once had documentary links for past editions. 
 
-No commercial recording albums — singing includes public domain songs and music from various artists; commercial recordings are handled by Sing Africa. 
+No commercial recording albums - singing includes public domain songs and music from various artists; commercial recordings are handled by Sing Africa. 
 
 📆 FREQUENCY OF EVENTS & DIGITAL EXPOSURE
 • Annual main worship event in each chapter. 
@@ -290,58 +290,58 @@ My next question was actually on tech stack based on AFLEWO's portifolio - if i 
 ChatGPT said:
 
 Thought for 12s
-Short answer — pick this stack (GO HAM summary)
+Short answer - pick this stack (GO HAM summary)
 Primary recommendation (best balance of speed, customisability, low-end device friendliness, and dev speed):
 Next.js + React + TypeScript frontend (SSG/SSR/ISR + Server Components) + Supabase (Postgres + Auth + Storage) for backend + Cloudflare R2 (or AWS S3 + CloudFront) for media + Cloudflare Images (or Cloudinary for advanced transforms) + Vercel or Cloudflare Pages/Workers for edge hosting + Stripe + M-Pesa integration for payments + AWS IVS primary live stream + YouTube simulcast backup for livestreaming.
 
 Below you get a full array of options (from conservative to maximal/edge-first) + why each fits AFLEWO, costs/notes, and an immediate performance checklist for low-end devices. GO HAM.
 
 Array of options (ranked, with one-line TL;DR + why for AFLEWO)
-Option A — Modern Edge / JAMstack (Recommended)
+Option A - Modern Edge / JAMstack (Recommended)
 Stack: Next.js (React + TypeScript) → Vercel or Cloudflare Pages/Workers; Supabase Postgres; Cloudflare R2 (media); Cloudflare Images; Stripe + M-Pesa; AWS IVS for pro livestream + YouTube backup.
 TL;DR: Ultra-modern, SEO-friendly, tiny JS shipped to device when using server components + edge caching; scales to big event traffic with CDN and R2 cost savings.
 
-Option B — Developer-friendly serverless (fast build, lower ops)
+Option B - Developer-friendly serverless (fast build, lower ops)
 Stack: Next.js + Vercel; Supabase; AWS S3 + CloudFront (if already AWS); Cloudinary for advanced media transforms; Stripe.
-TL;DR: Same developer DX as A with simpler media ecosystem (CloudFront + S3) — slightly more egress cost than R2 but proven.
+TL;DR: Same developer DX as A with simpler media ecosystem (CloudFront + S3) - slightly more egress cost than R2 but proven.
 
-Option C — Edge-first (maximum global performance, cost-efficient at scale)
+Option C - Edge-first (maximum global performance, cost-efficient at scale)
 Stack: Next.js (or SvelteKit) deployed to Cloudflare Pages + Workers, R2 for storage, Cloudflare Images, Supabase (or Postgres elsewhere).
 TL;DR: Best for very high global scale and lowest bandwidth bills (R2 zero egress). Slightly steeper ops/Workers knowledge.
 
-Option D — No-code / marketing first (fastest launch, limited scale)
+Option D - No-code / marketing first (fastest launch, limited scale)
 Stack: Webflow (design + CMS) + embed players (YouTube/Vimeo) + Stripe/PayPal via forms.
 TL;DR: Launch super fast (2–4 weeks) with beautiful templates, but limited for memberships, live streaming control, and large sermon libraries. 
 AFLEWO TECH STACK
 
 
-Option E — Traditional CMS (lowest skill barrier for non-tech editors)
+Option E - Traditional CMS (lowest skill barrier for non-tech editors)
 Stack: WordPress + managed hosting + plugins for events/donations + external stream embedding.
-TL;DR: Good if the client must manage content themselves and budget is restricted — but performance, security and scaling problems for big events. 
+TL;DR: Good if the client must manage content themselves and budget is restricted - but performance, security and scaling problems for big events. 
 AFLEWO TECH STACK
 
 
 Why I recommend Option A for AFLEWO (detailed)
-SEO & discoverability: AFLEWO needs searchable sermons, event pages and press — Next.js SSR/ISR gives best-in-class SEO and flexible static/dynamic rendering. 
+SEO & discoverability: AFLEWO needs searchable sermons, event pages and press - Next.js SSR/ISR gives best-in-class SEO and flexible static/dynamic rendering. 
 AFLEWO TECH STACK
 
 
 Speed on weak devices: Next.js Server Components + aggressive edge caching mean the client downloads far less JS; combine with responsive images (AVIF/WebP) and lazy loading to keep initial payload tiny.
 
-Media scale & cost control: Cloudflare R2 + Cloudflare Images/Azure/S3 patterns remove egress surprises — R2 has $0 egress which is huge for video-heavy orgs. Use Cloudflare Images (or Cloudinary if you want fancy transforms).
+Media scale & cost control: Cloudflare R2 + Cloudflare Images/Azure/S3 patterns remove egress surprises - R2 has $0 egress which is huge for video-heavy orgs. Use Cloudflare Images (or Cloudinary if you want fancy transforms).
 
 Live streaming reliability: For a branded, low-latency, high-quality stream use AWS IVS (professional, DVR, analytics); simulcast to YouTube/Facebook for reach/backup.
 
 Faster delivery & global scale: Host front-end on Vercel for easy Next.js integration or Cloudflare for maximum edge control; both are recommended in the doc.
 
 Services & provider choices (concrete picks & why)
-Frontend: Next.js + React + TypeScript — SSR/SSG/ISR, image optimization, server components. 
+Frontend: Next.js + React + TypeScript - SSR/SSG/ISR, image optimization, server components. 
 AFLEWO TECH STACK
 
 
 Host / Edge: Vercel for fastest Next.js DX; Cloudflare Pages + Workers if you prioritise global edge + bandwidth economics.
 
-DB / Auth / Storage: Supabase (managed Postgres + Auth + Storage) — integrates instantly, real-time too.
+DB / Auth / Storage: Supabase (managed Postgres + Auth + Storage) - integrates instantly, real-time too.
 
 Media storage & CDN: Cloudflare R2 (R2 + Workers + Images) for video/photo scale and $0 egress; fallback: S3 + CloudFront.
 
@@ -391,7 +391,7 @@ AFLEWO TECH STACK
 
 S3 + CloudFront egress: heavy bandwidth can cost hundreds monthly; Cloudflare R2 can cut that to near-zero (storage cost only). Example in doc: 500GB + 3TB bandwidth on S3 ≈ $266/month vs R2 ≈ $7.50.
 
-Vercel: great for Next.js; free/pro tiers but can get pricey with heavy bandwidth—Cloudflare may be cheaper at extreme scale.
+Vercel: great for Next.js; free/pro tiers but can get pricey with heavy bandwidth-Cloudflare may be cheaper at extreme scale.
 
 Implementation priorities / minimal MVP plan (fastest path to value)
 Core public site: Next.js SSG pages for history, mission, events calendar, donate page, media gallery. 
@@ -427,14 +427,14 @@ AFLEWO TECH STACK
 Non-tech editors + low budget	WordPress (watch out for security/scale). 
 AFLEWO TECH STACK
 
-Final — decisive recommendation (one liner)
+Final - decisive recommendation (one liner)
 Build AFLEWO on Next.js + TypeScript, deploy to Vercel (or Cloudflare Pages if you prioritise zero-egress R2 economics), use Supabase for Postgres/Auth/Storage, serve media from Cloudflare R2 + Cloudflare Images, and run livestreams via AWS IVS with YouTube simulcast for reach. This gives the best balance of modern design freedom, low client load (so small devices win), event-day scale, and straightforward dev ops.
 
 Next step (pick a number)
-1 — Full, annotated architecture diagram + infra IaC (Terraform) for the stack above.
-2 — 8-week sprint plan with milestones, team roles, and cost estimate.
-3 — Component list & UI library recommendations (wireframes and Tailwind + design tokens).
-4 — Migration plan for members + media + SEO with exact scripts and commands.
+1 - Full, annotated architecture diagram + infra IaC (Terraform) for the stack above.
+2 - 8-week sprint plan with milestones, team roles, and cost estimate.
+3 - Component list & UI library recommendations (wireframes and Tailwind + design tokens).
+4 - Migration plan for members + media + SEO with exact scripts and commands.
 
 Reply with the option number you want me to expand into full deliverables and I’ll produce it immediately.
 
@@ -443,10 +443,10 @@ Sources
 You said:
 Next.js + React + Typescript, Cloudflare Pages, Supabase + Postgres/Auth/Storage, Cloudflare R2 + Cloudflare Images + YouTube + Simulcast using OBS. - Tell me more about these as a stack for a complete website + payment integration suitable for such a production site [MPesa Daraja API integration + Mchanga + Paybill integration & flawless, airtight backend verification procedures] + any other item I may have left out that is relevant to a website built for production - all before I go about with answering [Next step (pick a number). Compare also vs [Next.js + React + Typescript, Vercel, Supabase + Postgres/Auth/Storage, Cloudflare R2 + Cloudflare Images + YouTube + Simulcast using OBS] in FULL DETAIL! GO HAM!!!!
 
-1 — Full, annotated architecture diagram + infra IaC (Terraform) for the stack above.
-2 — 8-week sprint plan with milestones, team roles, and cost estimate.
-3 — Component list & UI library recommendations (wireframes and Tailwind + design tokens).
-4 — Migration plan for members + media + SEO with exact scripts and commands.] this! DON'T HOLD BACK - TELL ME EVERYTHING! GO HAAAMMM!!!! Payment Gateway context : [Truehost
+1 - Full, annotated architecture diagram + infra IaC (Terraform) for the stack above.
+2 - 8-week sprint plan with milestones, team roles, and cost estimate.
+3 - Component list & UI library recommendations (wireframes and Tailwind + design tokens).
+4 - Migration plan for members + media + SEO with exact scripts and commands.] this! DON'T HOLD BACK - TELL ME EVERYTHING! GO HAAAMMM!!!! Payment Gateway context : [Truehost
 English
 Pricing 
 Hosting
@@ -961,11 +961,11 @@ We protect your data
 Copyright © 2026 Truehost. All Rights Reserved.]- give me the very best for my context]
 ChatGPT said:
 Alright. Buckle up.
-I’ll do this in layers, so you get complete technical clarity, production-grade payment design, and a clean head-to-head comparison between Cloudflare Pages vs Vercel — all grounded in Kenya realities, AFLEWO’s use-case, and event-scale worship traffic.
+I’ll do this in layers, so you get complete technical clarity, production-grade payment design, and a clean head-to-head comparison between Cloudflare Pages vs Vercel - all grounded in Kenya realities, AFLEWO’s use-case, and event-scale worship traffic.
 
 No fluff. No sales talk. Pure engineering + architecture thinking.
 
-1. YOUR CHOSEN STACK — WHAT IT REALLY MEANS IN PRODUCTION
+1. YOUR CHOSEN STACK - WHAT IT REALLY MEANS IN PRODUCTION
 Core Stack (You proposed)
 Frontend
 
@@ -1156,7 +1156,7 @@ Maximum reach
 
 Zero vendor lock-in
 
-7. PAYMENTS — THIS IS THE MOST IMPORTANT PART
+7. PAYMENTS - THIS IS THE MOST IMPORTANT PART
 You asked for airtight, flawless backend verification.
 Here is how this MUST be done.
 
@@ -1288,7 +1288,7 @@ Lower fees
 
 Higher donor confidence
 
-8. BACKEND VERIFICATION — HOW TO MAKE IT “AIRTIGHT”
+8. BACKEND VERIFICATION - HOW TO MAKE IT “AIRTIGHT”
 Use Cloudflare Workers for ALL of this
 Why Workers?
 Stateless
@@ -1346,7 +1346,7 @@ Payment endpoints protected
 
 Bot abuse prevention
 
-10. CLOUDFLARE PAGES VS VERCEL — FULL COMPARISON
+10. CLOUDFLARE PAGES VS VERCEL - FULL COMPARISON
 Area	Cloudflare Pages	Vercel
 Edge coverage	🌍 Massive	🌍 Large
 Bandwidth cost	✅ Free / cheap	❌ Expensive
@@ -1432,20 +1432,20 @@ You are architecting a platform.
 
 When you’re ready, you can now safely pick ANY of these without surprises:
 
-1 — Architecture diagram + Terraform
-2 — 8-week sprint plan
-3 — Component system + design tokens
-4 — Migration plan (media, members, SEO)
+1 - Architecture diagram + Terraform
+2 - 8-week sprint plan
+3 - Component system + design tokens
+4 - Migration plan (media, members, SEO)
 
 Say the number.
 
-And yes — you’re thinking at the right level.
+And yes - you’re thinking at the right level.
 
 You said:
 1+ 3 . ALso adding these for context [ [Alright. You’ve already *picked* a very strong, production-grade stack. I’ll do this in four layers, **no fluff**, no marketing talk:
 
 1. **Deep dive of the chosen stack (how it actually works in production)**
-2. **Payments: MPesa Daraja + M-Changa + Paybill — airtight verification**
+2. **Payments: MPesa Daraja + M-Changa + Paybill - airtight verification**
 3. **Everything else you *must* include for a real production site**
 4. **FULL comparison: Cloudflare Pages vs Vercel for THIS exact AFLEWO use-case**
 
@@ -1453,7 +1453,7 @@ I’ll assume this is **mission-critical**, public-facing, traffic-spiky (event 
 
 ---
 
-## 1. THE STACK — DEEP, PRACTICAL, PRODUCTION-LEVEL
+## 1. THE STACK - DEEP, PRACTICAL, PRODUCTION-LEVEL
 
 ### 1.1 Frontend: **Next.js + React + TypeScript**
 
@@ -1616,7 +1616,7 @@ For AFLEWO, this is the *correct* choice.
 
 ---
 
-## 2. PAYMENTS — MPESA + M-CHANGA + PAYBILL (NO NONSENSE)
+## 2. PAYMENTS - MPESA + M-CHANGA + PAYBILL (NO NONSENSE)
 
 This is where many systems die. Let’s do it properly.
 
@@ -1754,7 +1754,7 @@ initiated → pending → verified → reconciled
 
 ---
 
-## 4. CLOUDFARE PAGES vs VERCEL — FULL COMPARISON
+## 4. CLOUDFARE PAGES vs VERCEL - FULL COMPARISON
 
 ### 4.1 Performance
 
@@ -1837,9 +1837,9 @@ This is:
 When you’re ready, **now** it actually makes sense to answer the next step question.
 
 If you reply with **1, 2, 3, or 4**, I’ll go **implementation-level deep** (schemas, Workers code structure, folder trees, exact flows).
-] [# Deep technical dossier — **Next.js + React + TypeScript | Cloudflare Pages | Supabase | R2 + Cloudflare Images | YouTube (OBS simulcast)** + **M-Pesa (Daraja) / Paybill / M-Changa**
+] [# Deep technical dossier - **Next.js + React + TypeScript | Cloudflare Pages | Supabase | R2 + Cloudflare Images | YouTube (OBS simulcast)** + **M-Pesa (Daraja) / Paybill / M-Changa**
 
-No holding back — full stack design, payment flows, airtight backend verification, infra & ops concerns, code + DB examples, testing, monitoring, and production checklist. I used your AFLEWO tech-pack as source material for specifics and recommendations.
+No holding back - full stack design, payment flows, airtight backend verification, infra & ops concerns, code + DB examples, testing, monitoring, and production checklist. I used your AFLEWO tech-pack as source material for specifics and recommendations.
 
 ---
 
@@ -1848,7 +1848,7 @@ No holding back — full stack design, payment flows, airtight backend verificat
 * **Frontend:** Next.js (React + TypeScript) deployed to **Cloudflare Pages** (edge CDN + SSR support where needed). Pages serve pre-rendered pages + edge functions for lightweight personalization. 
 * **Auth / App DB / Storage:** **Supabase** (Postgres for relational data, Supabase Auth for users, Supabase Storage for small private assets / uploads). Use Supabase primarily for user accounts, events, metadata, and small media.
 * **Large media:** **Cloudflare R2** as origin object store (S3-compatible) + **Cloudflare Images** for image ops (AVIF/WebP, responsive variants). Serve video VOD from R2 via Cloudflare or use YouTube embeds for archived streams to avoid bandwidth cost and discovery loss.
-* **Live streaming:** **OBS → YouTube Live (simulcast)**. For white-label branded low-latency streams you could add AWS IVS (optional) — but your requested stack (YouTube + OBS) is simplest, free, and reliable for reach. Simulcast flows can be handled with Restream or a custom RTMP relay.
+* **Live streaming:** **OBS → YouTube Live (simulcast)**. For white-label branded low-latency streams you could add AWS IVS (optional) - but your requested stack (YouTube + OBS) is simplest, free, and reliable for reach. Simulcast flows can be handled with Restream or a custom RTMP relay.
 * **Server/Jobs:** Minimal server layer (Node.js + Fastify or serverless functions) for secure payment endpoints, webhook handling, background workers (media transcode, thumbnail gen) running on a small container platform / Fargate / Fly.io. Use job queue (BullMQ + Redis/Upstash) for async processing. 
 * **CDN & Edge:** Cloudflare in front for WAF, rate-limit, and global caching (Pages + Workers + R2). 
 * **CI/CD / Infra:** GitHub Actions → Cloudflare Pages; Terraform for infra (DNS, Cloudflare, Supabase infra config if needed). 
@@ -1861,7 +1861,7 @@ Diagram (quick mental): Frontend (Cloudflare Pages) ↔ Edge functions ↔ Supab
 
 * **Low device footprint:** Next.js Server Components + edge rendering => minimal JS to clients. Images served by Cloudflare Images (AVIF/WebP) and lazy loading.
 * **Media economics:** R2 zero-egress model saves thousands if your VOD or event replays are heavy. 
-* **Auth + data speed:** Supabase gives Postgres + Auth + Storage in one managed product — fast to implement and tightly integrates with Next.js. 
+* **Auth + data speed:** Supabase gives Postgres + Auth + Storage in one managed product - fast to implement and tightly integrates with Next.js. 
 * **Simplicity for streaming:** OBS → YouTube is simple, familiar to event teams and low cost. Use Restream or custom simulcast if you need multi-destination reliability.
 
 ---
@@ -1953,7 +1953,7 @@ app.post('/webhooks/mpesa/confirmation', async (req, res) => {
 });
 
 
-### C. Quick 200 to provider — async verification & processing
+### C. Quick 200 to provider - async verification & processing
 
 * **Respond fast** to provider (within 2–5 seconds with success code). Do heavy work (email, notification, ledger posting) asynchronously via job queue (BullMQ). This prevents timeouts and retries. 
 
@@ -1976,10 +1976,10 @@ app.post('/webhooks/mpesa/confirmation', async (req, res) => {
 
 * **Endpoints needed on your backend:**
 
-  * POST /payments/mpesa/stk-initiate — initiate STK push (server → Daraja).
-  * POST /webhooks/mpesa/validation — validation endpoint Safaricom calls (must quickly accept/reject).
-  * POST /webhooks/mpesa/confirmation — confirmation endpoint Safaricom calls once payment completed.
-  * GET /payments/status/:tx — human/API query of payment status.
+  * POST /payments/mpesa/stk-initiate - initiate STK push (server → Daraja).
+  * POST /webhooks/mpesa/validation - validation endpoint Safaricom calls (must quickly accept/reject).
+  * POST /webhooks/mpesa/confirmation - confirmation endpoint Safaricom calls once payment completed.
+  * GET /payments/status/:tx - human/API query of payment status.
 * **Security & Ops:**
 
   * Use **basic auth + IP whitelist** for webhook endpoints if provider does not sign.
@@ -2162,25 +2162,25 @@ Store only service role keys server-side (never in client).
 
 ---
 
-If you want the next deliverable now, pick one (I’ll produce it immediately in this reply — no delays):
+If you want the next deliverable now, pick one (I’ll produce it immediately in this reply - no delays):
 
-1 — Full, annotated architecture diagram + runnable Terraform IaC (Cloudflare Pages + R2 + Supabase wiring + DNS).
-2 — 8-week sprint plan with milestones, team roles, and cost estimate for the stack above.
-3 — Component list + UI library recommendations (Tailwind design tokens + wireframes + Next.js component boilerplate).
-4 — Migration plan for members + media + SEO with exact scripts, SQL and CLI commands.
+1 - Full, annotated architecture diagram + runnable Terraform IaC (Cloudflare Pages + R2 + Supabase wiring + DNS).
+2 - 8-week sprint plan with milestones, team roles, and cost estimate for the stack above.
+3 - Component list + UI library recommendations (Tailwind design tokens + wireframes + Next.js component boilerplate).
+4 - Migration plan for members + media + SEO with exact scripts, SQL and CLI commands.
 
 Choose **1 / 2 / 3 / 4** and I’ll drop the full deliverable in the next message. 
 ] ]
 ChatGPT said:
 
 Thought for 7s
-Nice — full power mode engaged. Below you get (A) a clear, annotated architecture diagram + runnable Terraform IaC (templates + notes) for your chosen stack (Cloudflare Pages + R2 + Workers + Supabase), and (B) a complete component & UI system deliverable (Tailwind design tokens, wireframes, component list, and Next.js + TypeScript boilerplate). I include practical production notes, secrets to set, DB schemas, worker/webhook examples, and CI/CD snippets. Use these as a direct blueprint you can hand to engineers.
+Nice - full power mode engaged. Below you get (A) a clear, annotated architecture diagram + runnable Terraform IaC (templates + notes) for your chosen stack (Cloudflare Pages + R2 + Workers + Supabase), and (B) a complete component & UI system deliverable (Tailwind design tokens, wireframes, component list, and Next.js + TypeScript boilerplate). I include practical production notes, secrets to set, DB schemas, worker/webhook examples, and CI/CD snippets. Use these as a direct blueprint you can hand to engineers.
 
-A — ARCHITECTURE + RUNTIME FLOW (annotated)
+A - ARCHITECTURE + RUNTIME FLOW (annotated)
 ASCII / textual diagram (read top → down). This is the single-source mental model.
 
 Users (mobile/desktop - low-end devices) 
-   ├─> Edge CDN (Cloudflare Pages) — static & SSR (Next.js App Router)
+   ├─> Edge CDN (Cloudflare Pages) - static & SSR (Next.js App Router)
    │      ├─ Static pages (SSG/ISR)
    │      ├─ Edge Functions (personalization, light APIs)
    │      └─ Page-level caching (Cloudflare)
@@ -2244,7 +2244,7 @@ Cloudflare DNS entry (A/CAA/CNAME) for the AFLEWO domain
 
 (Optional) Cloudflare Pages build hooks secret
 
-(Notes) Supabase provisioning is usually done via supabase cloud UI — but Terraform provider snippets included (or create resources manually)
+(Notes) Supabase provisioning is usually done via supabase cloud UI - but Terraform provider snippets included (or create resources manually)
 
 A.3 Terraform (example templates)
 Important: fill in your Cloudflare account details, zone id, account id, GitHub repo details, and set secrets via your CI provider (GitHub Actions secrets).
@@ -2498,7 +2498,7 @@ CREATE TABLE events (
   slug text UNIQUE,
   created_at timestamptz DEFAULT now()
 );
-B — COMPONENT LIST + UI LIBRARY, THEME & BOILERPLATE (Next.js + TypeScript + Tailwind)
+B - COMPONENT LIST + UI LIBRARY, THEME & BOILERPLATE (Next.js + TypeScript + Tailwind)
 You asked for component list + UI library recommendations (wireframes + Tailwind + design tokens). Here’s a production-ready system.
 
 B.1 Design system / tokens
@@ -2620,7 +2620,7 @@ Hero: large title + "Donate" CTA + next event countdown
 
 Media grid: large thumbnails (Cloudflare Images) with tags and timestamps
 
-Donate page: simple stepper — amount, donor details, method selector (M-Pesa, card, M-Changa) — then backend initiation
+Donate page: simple stepper - amount, donor details, method selector (M-Pesa, card, M-Changa) - then backend initiation
 
 Admin: filterable list of payments + raw webhook view + manual reconcile
 
@@ -2757,7 +2757,7 @@ export default function DonateForm() {
     </form>
   );
 }
-B.7 API endpoint example (Next.js Edge function) — app/api/payments/initiate/route.ts
+B.7 API endpoint example (Next.js Edge function) - app/api/payments/initiate/route.ts
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseClient';
 import { getDarajaToken, initiateStkPush } from '@/lib/mpesa';
@@ -2810,7 +2810,7 @@ Manual acceptance test: test STK push with real Safaricom sandbox or test number
 
 Security test: run automated scan & manual penetration test on webhooks
 
-C — DEPLOYMENT & OPERATIONS CHECKLIST (execute before go-live)
+C - DEPLOYMENT & OPERATIONS CHECKLIST (execute before go-live)
 Configure Cloudflare account & zone; enable WAF and rate-limiting.
 
 Provision R2 & Workers KV; store Daraja consumer secret and Supabase service role in CI secrets.
@@ -2827,14 +2827,14 @@ Run runbook rehearsal for "stream down" and "payment failures".
 
 Configure monitoring (Sentry + Cloudflare analytics + Supabase logs) and alerting (Slack/Email).
 
-D — Extra production considerations (you asked for everything)
+D - Extra production considerations (you asked for everything)
 Data retention & privacy: store donor PII securely, rotate keys quarterly, publish privacy & donation policy.
 
 Receipts: automated receipts via SendGrid + save invoice pdfs in R2/Supabase storage.
 
 Offline/Edge UX: include "Save page for offline" (Service Worker) for sermon notes and transcripts.
 
-Accessibility: ensure WCAG AA—important for public faith org.
+Accessibility: ensure WCAG AA-important for public faith org.
 
 International donors: Stripe integration for cards and support for USD/EUR; map currency conversions in backend.
 
@@ -2864,7 +2864,7 @@ npm i -D @cloudflare/next-on-pages
 npm i -g wrangler
 wrangler login
 wrangler dev workers/mpesa-webhook/index.ts --local
-FINAL — What I delivered in this turn
+FINAL - What I delivered in this turn
 Annotated architecture diagram + precise Terraform templates to provision Cloudflare Pages + R2 + Workers + KV + DNS resources.
 
 Cloudflare Worker webhook example skeleton for MPESA raw webhook ingestion.
@@ -2879,7 +2879,7 @@ Production checklist, security, testing and monitoring guidance.
 
 If you want I’ll now:
 
-Expand Terraform to produce a fully runnable example with wrangler.toml and a complete Worker implementation for Daraja (including token refresh + STK push) — ready to drop into your repo, including secure environment variable names and step-by-step deploy commands.
+Expand Terraform to produce a fully runnable example with wrangler.toml and a complete Worker implementation for Daraja (including token refresh + STK push) - ready to drop into your repo, including secure environment variable names and step-by-step deploy commands.
 
 Or, produce a UI component library (actual code files for Header, Footer, EventCard, DonateForm, AdminPaymentsTable) ready to paste into your repo.
 
@@ -2890,24 +2890,24 @@ additional runnable artifacts (full Worker STK code or full set of component fil
 ChatGPT said:
 
 Thought for a few seconds
-Nice — full power mode: you’ll get two runnable artifact sets plus deployment paths and everything needed to run either the Cloudflare Pages + Workers stack (R2, KV, Workers webhook + STK) and the Vercel variant (Next.js serverless API routes + S3/CloudFront or Cloudflare R2). I’ll also include a small Vite admin SPA option you can use for reconciliation UI if you prefer separating the admin UI.
+Nice - full power mode: you’ll get two runnable artifact sets plus deployment paths and everything needed to run either the Cloudflare Pages + Workers stack (R2, KV, Workers webhook + STK) and the Vercel variant (Next.js serverless API routes + S3/CloudFront or Cloudflare R2). I’ll also include a small Vite admin SPA option you can use for reconciliation UI if you prefer separating the admin UI.
 
 Files are ready-to-copy into your repo. Replace environment secrets before deploying. I include testing and deploy commands for each piece.
 
 Quick map of what’s below
-Cloudflare Worker — full STK + webhook ingestion (TypeScript). Runnable via Wrangler.
+Cloudflare Worker - full STK + webhook ingestion (TypeScript). Runnable via Wrangler.
 
-Next.js app (App Router) core files — Donate form, supabase client, payments API (Edge function for Cloudflare, serverless for Vercel), AdminPaymentsTable, other small components. Ready for deployment to Cloudflare Pages or Vercel (two api variants).
+Next.js app (App Router) core files - Donate form, supabase client, payments API (Edge function for Cloudflare, serverless for Vercel), AdminPaymentsTable, other small components. Ready for deployment to Cloudflare Pages or Vercel (two api variants).
 
-Vercel-specific serverless API code (STK initiation + webhook handlers) — Node/TypeScript using vercel serverless.
+Vercel-specific serverless API code (STK initiation + webhook handlers) - Node/TypeScript using vercel serverless.
 
-Small Vite React admin SPA (optional) — quick reconciliation UI.
+Small Vite React admin SPA (optional) - quick reconciliation UI.
 
 Deployment & test steps, env var lists, SQL migration scripts, post-deploy testing cURL examples.
 
 Notes: security, idempotency, observability, recommended packages.
 
-IMPORTANT — before you run anything
+IMPORTANT - before you run anything
 Create and securely store these secrets (names used in code):
 
 CLOUDFLARE_KV_NAMESPACE (for Worker tests) / CLOUD_KV_NAMESPACE
@@ -2927,7 +2927,7 @@ SENDGRID_API_KEY (optional)
 SENTRY_DSN (optional)
 Never commit secrets to git.
 
-1) Cloudflare Worker — Full STK + webhook ingestion (TypeScript)
+1) Cloudflare Worker - Full STK + webhook ingestion (TypeScript)
 Place under workers/mpesa/ in repo. Uses Cloudflare KV for token caching and idempotency keys; writes raw webhook payloads to Supabase via REST.
 
 workers/mpesa/wrangler.toml
@@ -3170,7 +3170,7 @@ Deploy with Wrangler:
 
 wrangler login
 wrangler publish --env production
-2) Next.js app — core runnable files
+2) Next.js app - core runnable files
 These are minimal but production-ready pieces. Use App Router.
 
 Project layout:
@@ -3280,7 +3280,7 @@ export default function DonatePage() {
     </main>
   )
 }
-web/app/api/payments/initiate/route.ts — Vercel serverless / Next.js server API (Node)
+web/app/api/payments/initiate/route.ts - Vercel serverless / Next.js server API (Node)
 
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseClient';
@@ -3387,7 +3387,7 @@ Use Upstash/BullMQ or serverless queue (Supabase Edge Functions, or a small Fly.
 
 S3 + CloudFront vs R2
 
-S3 + CloudFront: widely used on Vercel, but egress costs apply — for heavy video use, compare costs. Cloudflare R2 remains cost-effective.
+S3 + CloudFront: widely used on Vercel, but egress costs apply - for heavy video use, compare costs. Cloudflare R2 remains cost-effective.
 
 If using R2 with Vercel, configure R2 credentials in Vercel variables and use S3-compatible SDK.
 
@@ -3542,9 +3542,9 @@ Vercel: faster developer experience for Next.js; serverless functions easy to au
 
 You now have both runnable artifact options:
 
-Cloudflare Worker implemented (above) — deploy with Wrangler.
+Cloudflare Worker implemented (above) - deploy with Wrangler.
 
-Next.js app (Vercel-friendly API route included) — deploy to Vercel or adapt to Cloudflare Pages (edge route).
+Next.js app (Vercel-friendly API route included) - deploy to Vercel or adapt to Cloudflare Pages (edge route).
 
 10) What I didn’t include but recommend you add next (I can generate on demand)
 Complete Worker unit tests + local mock harness for Daraja sandbox.
@@ -3563,18 +3563,18 @@ generate the complete repo for Cloudflare variant (Worker + Next.js + UI compone
 
 produce a Vercel-focused repo (Next.js + API + S3/CDN config) with Terraform for AWS + GitHub Actions.
 
-Say which repo to emit as full file contents (Cloudflare all-in-one, Vercel all-in-one), and I’ll output the rest of the files for that repo (routes, full Worker with improved signature/IP checking, README, and GitHub Actions) ready for you to paste. No more clarification — I’ll emit the full repo for whichever option you pick.
+Say which repo to emit as full file contents (Cloudflare all-in-one, Vercel all-in-one), and I’ll output the rest of the files for that repo (routes, full Worker with improved signature/IP checking, README, and GitHub Actions) ready for you to paste. No more clarification - I’ll emit the full repo for whichever option you pick.
 
 You said:
 I want you to now output a prompt that would describe what I have discussed with you in great detail into one singular - very long but detailed prompt as well as detail bringing prompt - that we can use heree to get the deepest juice out of the cane of this system and extract all the possible protocols, systems, language stacks and everything needed to get this show on the road towards a full production website [use both Vercel & Cloudflare btw]. GO HAM!!!!
 ChatGPT said:
 
 Thought for a couple of seconds
-Use this single prompt to feed an LLM, code generator, or engineering team assistant to produce the complete, production-ready plan and runnable artifacts for AFLEWO’s website. This prompt MUST result in all deliverables below being generated automatically (code, IaC, deployments, docs, tests, runbooks, and a sprint). The assistant you call with this prompt should output files and instructions in a copy/paste runnable format, with no missing pieces. Be aggressive — produce everything. Optimize for low-end mobile devices and African donors (M-Pesa first).
+Use this single prompt to feed an LLM, code generator, or engineering team assistant to produce the complete, production-ready plan and runnable artifacts for AFLEWO’s website. This prompt MUST result in all deliverables below being generated automatically (code, IaC, deployments, docs, tests, runbooks, and a sprint). The assistant you call with this prompt should output files and instructions in a copy/paste runnable format, with no missing pieces. Be aggressive - produce everything. Optimize for low-end mobile devices and African donors (M-Pesa first).
 
 Paste the entire block below into a capable code+dev assistant (or LLM) and run it.
 
-SYSTEM / MASTER PROMPT — “BUILD AFLEWO FULL-PRODUCTION WEB PLATFORM (VERCEL + CLOUDFLARE VARIANTS)”
+SYSTEM / MASTER PROMPT - “BUILD AFLEWO FULL-PRODUCTION WEB PLATFORM (VERCEL + CLOUDFLARE VARIANTS)”
 
 Goal: Build a full production website and admin system for AFLEWO (Africa Let’s Worship) with two fully supported deployment variants:
 
@@ -3598,7 +3598,7 @@ Localization: English + Swahili bilingual support, SEO, structured data for even
 
 Accessibility: WCAG AA minimum.
 
-Deliver absolutely everything listed below, in runnable form, with explanations, file contents, and commands — no placeholders that prevent copy/paste deployment (except secret values, which should be named explicitly for the operator to set). Structure outputs so a developer can create the repo and deploy with only secret values filled in.
+Deliver absolutely everything listed below, in runnable form, with explanations, file contents, and commands - no placeholders that prevent copy/paste deployment (except secret values, which should be named explicitly for the operator to set). Structure outputs so a developer can create the repo and deploy with only secret values filled in.
 
 REQUIRED OUTPUTS (produce each item in full)
 A. Architecture & Diagrams
@@ -3610,7 +3610,7 @@ A short explanation (1–2 paragraphs) of why each variant matters and when to p
 B. Full runnable repository scaffolds (two variants)
 For each variant produce a full file tree and the exact contents for all files. Files must be ready to paste into a repo:
 
-web/ — Next.js (App Router) + TypeScript site:
+web/ - Next.js (App Router) + TypeScript site:
 
 package.json, tsconfig.json, next.config.js, postcss.config.js, tailwind.config.js, tailwind.css, .eslintrc, .prettierrc.
 
@@ -3620,9 +3620,9 @@ Components: components/Header.tsx, Footer.tsx, DonateForm.tsx (client), DonateMo
 
 lib/ helpers: supabaseClient.ts, mpesa.ts (server helpers), payments.ts, media.ts.
 
-app/api/payments/initiate/route.ts (serverless / edge implementation) — two versions: one optimized for Cloudflare Workers (Edge function) and one for Vercel (serverless Node).
+app/api/payments/initiate/route.ts (serverless / edge implementation) - two versions: one optimized for Cloudflare Workers (Edge function) and one for Vercel (serverless Node).
 
-app/api/webhooks/mpesa/route.ts (webhook endpoint) — Cloudflare Worker friendly version and Vercel variant.
+app/api/webhooks/mpesa/route.ts (webhook endpoint) - Cloudflare Worker friendly version and Vercel variant.
 
 app/api/webhooks/stripe/route.ts (stripe webhook handler).
 
@@ -3632,7 +3632,7 @@ Unit tests (Jest/Testing Library) for payment initiation logic (mock Daraja).
 
 README with deploy steps for both variants.
 
-workers/mpesa/ — full Cloudflare Worker TypeScript code:
+workers/mpesa/ - full Cloudflare Worker TypeScript code:
 
 wrangler.toml with KV namespace placeholders and variables.
 
@@ -3656,7 +3656,7 @@ package.json for building Worker (esbuild/tsc).
 
 Local testing instructions with wrangler dev and cURL examples to simulate callbacks.
 
-vercel/ — Vercel serverless API implementations:
+vercel/ - Vercel serverless API implementations:
 
 api/payments/initiate.ts (serverless Node endpoint).
 
@@ -3666,7 +3666,7 @@ vercel.json config and GitHub Actions snippet to deploy to Vercel.
 
 Notes about execution time limits and best practices.
 
-admin/ — Vite React admin SPA scaffold:
+admin/ - Vite React admin SPA scaffold:
 
 Simple reconciliation UI to import bank/M-Pesa CSV, auto-match by provider_tx_id or reference, show exceptions, allow manual reconcile with audit notes.
 
@@ -3872,7 +3872,7 @@ SENDGRID_API_KEY, SENTRY_DSN
 
 Database behavior:
 
-payments.provider_tx_id unique — use ON CONFLICT handling for idempotency.
+payments.provider_tx_id unique - use ON CONFLICT handling for idempotency.
 
 Raw webhooks stored verbatim in raw_webhooks.
 
@@ -3941,7 +3941,7 @@ When producing code, include runnable npm/yarn commands, build commands, and exa
 
 Use zero marketing language. Be direct and exact.
 
-Keep the code pragmatic and secure — prefer clarity over cleverness.
+Keep the code pragmatic and secure - prefer clarity over cleverness.
 
 Where external provider configuration is required (Daraja keys, Paybill shortcode), state exactly where to place those values and which API endpoints to register them with (e.g., Daraja callback URL: https://<domain>/api/webhooks/mpesa).
 
@@ -3970,7 +3970,7 @@ CONTEXT:
 [[Alright. You’ve already *picked* a very strong, production-grade stack. I’ll do this in four layers, **no fluff**, no marketing talk:
 
 1. **Deep dive of the chosen stack (how it actually works in production)**
-2. **Payments: MPesa Daraja + M-Changa + Paybill — airtight verification**
+2. **Payments: MPesa Daraja + M-Changa + Paybill - airtight verification**
 3. **Everything else you *must* include for a real production site**
 4. **FULL comparison: Cloudflare Pages vs Vercel for THIS exact AFLEWO use-case**
 
@@ -3978,7 +3978,7 @@ I’ll assume this is **mission-critical**, public-facing, traffic-spiky (event 
 
 ---
 
-## 1. THE STACK — DEEP, PRACTICAL, PRODUCTION-LEVEL
+## 1. THE STACK - DEEP, PRACTICAL, PRODUCTION-LEVEL
 
 ### 1.1 Frontend: **Next.js + React + TypeScript**
 
@@ -4141,7 +4141,7 @@ For AFLEWO, this is the *correct* choice.
 
 ---
 
-## 2. PAYMENTS — MPESA + M-CHANGA + PAYBILL (NO NONSENSE)
+## 2. PAYMENTS - MPESA + M-CHANGA + PAYBILL (NO NONSENSE)
 
 This is where many systems die. Let’s do it properly.
 
@@ -4280,7 +4280,7 @@ initiated → pending → verified → reconciled
 
 ---
 
-## 4. CLOUDFARE PAGES vs VERCEL — FULL COMPARISON
+## 4. CLOUDFARE PAGES vs VERCEL - FULL COMPARISON
 
 ### 4.1 Performance
 
@@ -4363,9 +4363,9 @@ This is:
 When you’re ready, **now** it actually makes sense to answer the next step question.
 
 If you reply with **1, 2, 3, or 4**, I’ll go **implementation-level deep** (schemas, Workers code structure, folder trees, exact flows).
-] [# Deep technical dossier — **Next.js + React + TypeScript | Cloudflare Pages | Supabase | R2 + Cloudflare Images | YouTube (OBS simulcast)** + **M-Pesa (Daraja) / Paybill / M-Changa**
+] [# Deep technical dossier - **Next.js + React + TypeScript | Cloudflare Pages | Supabase | R2 + Cloudflare Images | YouTube (OBS simulcast)** + **M-Pesa (Daraja) / Paybill / M-Changa**
 
-No holding back — full stack design, payment flows, airtight backend verification, infra & ops concerns, code + DB examples, testing, monitoring, and production checklist. I used your AFLEWO tech-pack as source material for specifics and recommendations.
+No holding back - full stack design, payment flows, airtight backend verification, infra & ops concerns, code + DB examples, testing, monitoring, and production checklist. I used your AFLEWO tech-pack as source material for specifics and recommendations.
 
 ---
 
@@ -4374,7 +4374,7 @@ No holding back — full stack design, payment flows, airtight backend verificat
 * **Frontend:** Next.js (React + TypeScript) deployed to **Cloudflare Pages** (edge CDN + SSR support where needed). Pages serve pre-rendered pages + edge functions for lightweight personalization. 
 * **Auth / App DB / Storage:** **Supabase** (Postgres for relational data, Supabase Auth for users, Supabase Storage for small private assets / uploads). Use Supabase primarily for user accounts, events, metadata, and small media.
 * **Large media:** **Cloudflare R2** as origin object store (S3-compatible) + **Cloudflare Images** for image ops (AVIF/WebP, responsive variants). Serve video VOD from R2 via Cloudflare or use YouTube embeds for archived streams to avoid bandwidth cost and discovery loss.
-* **Live streaming:** **OBS → YouTube Live (simulcast)**. For white-label branded low-latency streams you could add AWS IVS (optional) — but your requested stack (YouTube + OBS) is simplest, free, and reliable for reach. Simulcast flows can be handled with Restream or a custom RTMP relay.
+* **Live streaming:** **OBS → YouTube Live (simulcast)**. For white-label branded low-latency streams you could add AWS IVS (optional) - but your requested stack (YouTube + OBS) is simplest, free, and reliable for reach. Simulcast flows can be handled with Restream or a custom RTMP relay.
 * **Server/Jobs:** Minimal server layer (Node.js + Fastify or serverless functions) for secure payment endpoints, webhook handling, background workers (media transcode, thumbnail gen) running on a small container platform / Fargate / Fly.io. Use job queue (BullMQ + Redis/Upstash) for async processing. 
 * **CDN & Edge:** Cloudflare in front for WAF, rate-limit, and global caching (Pages + Workers + R2). 
 * **CI/CD / Infra:** GitHub Actions → Cloudflare Pages; Terraform for infra (DNS, Cloudflare, Supabase infra config if needed). 
@@ -4387,7 +4387,7 @@ Diagram (quick mental): Frontend (Cloudflare Pages) ↔ Edge functions ↔ Supab
 
 * **Low device footprint:** Next.js Server Components + edge rendering => minimal JS to clients. Images served by Cloudflare Images (AVIF/WebP) and lazy loading.
 * **Media economics:** R2 zero-egress model saves thousands if your VOD or event replays are heavy. 
-* **Auth + data speed:** Supabase gives Postgres + Auth + Storage in one managed product — fast to implement and tightly integrates with Next.js. 
+* **Auth + data speed:** Supabase gives Postgres + Auth + Storage in one managed product - fast to implement and tightly integrates with Next.js. 
 * **Simplicity for streaming:** OBS → YouTube is simple, familiar to event teams and low cost. Use Restream or custom simulcast if you need multi-destination reliability.
 
 ---
@@ -4479,7 +4479,7 @@ app.post('/webhooks/mpesa/confirmation', async (req, res) => {
 });
 ```
 
-### C. Quick 200 to provider — async verification & processing
+### C. Quick 200 to provider - async verification & processing
 
 * **Respond fast** to provider (within 2–5 seconds with success code). Do heavy work (email, notification, ledger posting) asynchronously via job queue (BullMQ). This prevents timeouts and retries. 
 
@@ -4502,10 +4502,10 @@ app.post('/webhooks/mpesa/confirmation', async (req, res) => {
 
 * **Endpoints needed on your backend:**
 
-  * `POST /payments/mpesa/stk-initiate` — initiate STK push (server → Daraja).
-  * `POST /webhooks/mpesa/validation` — validation endpoint Safaricom calls (must quickly accept/reject).
-  * `POST /webhooks/mpesa/confirmation` — confirmation endpoint Safaricom calls once payment completed.
-  * `GET /payments/status/:tx` — human/API query of payment status.
+  * `POST /payments/mpesa/stk-initiate` - initiate STK push (server → Daraja).
+  * `POST /webhooks/mpesa/validation` - validation endpoint Safaricom calls (must quickly accept/reject).
+  * `POST /webhooks/mpesa/confirmation` - confirmation endpoint Safaricom calls once payment completed.
+  * `GET /payments/status/:tx` - human/API query of payment status.
 * **Security & Ops:**
 
   * Use **basic auth + IP whitelist** for webhook endpoints if provider does not sign.
@@ -4689,12 +4689,12 @@ Store only service role keys server-side (never in client).
 
 ---
 
-If you want the next deliverable now, pick one (I’ll produce it immediately in this reply — no delays):
+If you want the next deliverable now, pick one (I’ll produce it immediately in this reply - no delays):
 
-1 — Full, annotated architecture diagram + runnable Terraform IaC (Cloudflare Pages + R2 + Supabase wiring + DNS).
-2 — 8-week sprint plan with milestones, team roles, and cost estimate for the stack above.
-3 — Component list + UI library recommendations (Tailwind design tokens + wireframes + Next.js component boilerplate).
-4 — Migration plan for members + media + SEO with exact scripts, SQL and CLI commands.
+1 - Full, annotated architecture diagram + runnable Terraform IaC (Cloudflare Pages + R2 + Supabase wiring + DNS).
+2 - 8-week sprint plan with milestones, team roles, and cost estimate for the stack above.
+3 - Component list + UI library recommendations (Tailwind design tokens + wireframes + Next.js component boilerplate).
+4 - Migration plan for members + media + SEO with exact scripts, SQL and CLI commands.
 
 Choose **1 / 2 / 3 / 4** and I’ll drop the full deliverable in the next message. 
 ]]

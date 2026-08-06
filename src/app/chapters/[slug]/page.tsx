@@ -9,9 +9,9 @@ import SvgIcon from "@/components/ui/SvgIcon";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
-// ─── Spring presets (Apple WWDC 2018 — Designing Fluid Interfaces) ─────────────
+// ─── Spring presets (Apple WWDC 2018 - Designing Fluid Interfaces) ─────────────
 // Critically damped = no overshoot. response ≈ 0.35s → stiffness/damping mapped.
-const SPRING_DEFAULT  = { type: "spring", stiffness: 380, damping: 38, mass: 0.9 } as const;
+const SPRING_DEFAULT = { type: "spring", stiffness: 380, damping: 38, mass: 0.9 } as const;
 const SPRING_ENTRANCE = { type: "spring", stiffness: 260, damping: 32, mass: 1.0 } as const;
 
 // ─── Register Modal ────────────────────────────────────────────────────────────
@@ -34,7 +34,7 @@ function RegisterModal({ chapterName, eventName, onClose }: { chapterName: strin
         e.preventDefault();
         setSubmitting(true);
         await new Promise((r) => setTimeout(r, 1000));
-        const subject = encodeURIComponent(`AFLEWO ${chapterName} Registration — ${eventName}`);
+        const subject = encodeURIComponent(`AFLEWO ${chapterName} Registration - ${eventName}`);
         const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nChapter: ${chapterName}\nEvent: ${eventName}`);
         window.location.href = `mailto:${chapterName.toLowerCase()}@aflewo.org?subject=${subject}&body=${body}`;
         setSubmitting(false);
@@ -54,7 +54,7 @@ function RegisterModal({ chapterName, eventName, onClose }: { chapterName: strin
                 {/* Scrim */}
                 <div className="absolute inset-0 bg-black/75 backdrop-blur-2xl" />
 
-                {/* Sheet — enters from bottom on mobile (Apple sheet pattern), centered on desktop */}
+                {/* Sheet - enters from bottom on mobile (Apple sheet pattern), centered on desktop */}
                 <motion.div
                     className="relative z-10 w-full max-w-md mx-4 mb-4 sm:mb-0 rounded-3xl overflow-hidden border border-white/10"
                     style={{ background: "rgba(12,10,8,0.92)", backdropFilter: "blur(40px) saturate(180%)" }}
@@ -64,7 +64,7 @@ function RegisterModal({ chapterName, eventName, onClose }: { chapterName: strin
                     transition={shouldReduceMotion ? { duration: 0.15 } : SPRING_ENTRANCE}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    {/* Gold top rule — material light-catch edge */}
+                    {/* Gold top rule - material light-catch edge */}
                     <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
                     <div className="p-8 space-y-7">
@@ -217,7 +217,7 @@ export default function ChapterPage() {
                 )}
             </AnimatePresence>
 
-            {/* ── HERO — Image preserved as-is per instruction ─────────────────── */}
+            {/* ── HERO - Image preserved as-is per instruction ─────────────────── */}
             <section className="relative h-[65vh] min-h-[480px] flex items-end overflow-hidden">
                 <Image
                     src={chapter.venueImage || "/archival-1.jpg"}
@@ -232,7 +232,7 @@ export default function ChapterPage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-background/30 via-transparent to-transparent" />
 
                 <div className="relative z-10 w-full px-6 pb-12 max-container">
-                    {/* Back nav — responds on press */}
+                    {/* Back nav - responds on press */}
                     <motion.div
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -268,7 +268,7 @@ export default function ChapterPage() {
                             )}
                         </div>
 
-                        {/* Display headline — tight tracking, large scale */}
+                        {/* Display headline - tight tracking, large scale */}
                         <h1 className="text-[clamp(3rem,12vw,7rem)] font-black leading-[0.88] tracking-tighter text-white">
                             AFLEWO<br />
                             <span className="text-gold">{chapter.name.toUpperCase()}</span>
@@ -392,7 +392,7 @@ export default function ChapterPage() {
                             </div>
                         </motion.div>
 
-                        {/* Prophetic identity card — the signature element */}
+                        {/* Prophetic identity card - the signature element */}
                         <motion.div
                             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 16 }}
                             animate={{ opacity: 1, x: 0 }}

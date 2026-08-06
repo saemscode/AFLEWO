@@ -15,7 +15,7 @@ interface CheckInResult {
   checked_in_at?: string;
 }
 
-// Offline queue — stores pending check-ins when network is unavailable
+// Offline queue - stores pending check-ins when network is unavailable
 interface OfflineCheckIn {
   query: string;
   eventId: string;
@@ -235,7 +235,7 @@ export default function AdminAttendancePage() {
           <option value="">Select event...</option>
           {events.map((ev) => (
             <option key={ev.id} value={ev.id}>
-              {ev.title} — {new Date(ev.starts_at).toLocaleDateString("en-KE", { month: "short", day: "numeric" })}
+              {ev.title} - {new Date(ev.starts_at).toLocaleDateString("en-KE", { month: "short", day: "numeric" })}
             </option>
           ))}
         </select>
@@ -266,13 +266,12 @@ export default function AdminAttendancePage() {
 
         {/* Result */}
         {result && (
-          <div className={`flex items-center gap-3 p-4 rounded-xl border text-sm font-bold ${
-            result.success
+          <div className={`flex items-center gap-3 p-4 rounded-xl border text-sm font-bold ${result.success
               ? "bg-emerald/10 border-emerald/20 text-emerald"
               : result.error?.includes("Already")
-              ? "bg-yellow-400/10 border-yellow-400/20 text-yellow-400"
-              : "bg-red-500/10 border-red-500/20 text-red-400"
-          }`}>
+                ? "bg-yellow-400/10 border-yellow-400/20 text-yellow-400"
+                : "bg-red-500/10 border-red-500/20 text-red-400"
+            }`}>
             <SvgIcon
               name={result.success ? "check_circle" : result.error?.includes("Already") ? "info" : "error_circle"}
               size={20}
@@ -293,7 +292,7 @@ export default function AdminAttendancePage() {
               <div key={reg.id} className="glass-card rounded-xl px-4 py-3 flex items-center justify-between gap-4">
                 <div>
                   <p className="text-sm font-black">{reg.full_name}</p>
-                  <p className="text-[10px] text-white/30">{reg.phone_number || reg.email || "—"}</p>
+                  <p className="text-[10px] text-white/30">{reg.phone_number || reg.email || "-"}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-[10px] text-gold font-black">{reg.ticket_ref}</p>

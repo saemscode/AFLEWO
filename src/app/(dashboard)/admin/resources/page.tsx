@@ -9,19 +9,19 @@ type ResourceType = Database["public"]["Enums"]["resource_type"];
 import SvgIcon from "@/components/ui/SvgIcon";
 
 const resourceTypes: { value: ResourceType; label: string }[] = [
-  { value: "lyrics_pdf",          label: "Lyrics PDF" },
-  { value: "chord_chart_pdf",     label: "Chord Chart PDF" },
-  { value: "vocal_stem_audio",    label: "Vocal Stem (Audio)" },
+  { value: "lyrics_pdf", label: "Lyrics PDF" },
+  { value: "chord_chart_pdf", label: "Chord Chart PDF" },
+  { value: "vocal_stem_audio", label: "Vocal Stem (Audio)" },
   { value: "backing_track_audio", label: "Backing Track (Audio)" },
-  { value: "rehearsal_video",     label: "Rehearsal Video" },
-  { value: "announcement",        label: "Announcement" },
-  { value: "other",               label: "Other" },
+  { value: "rehearsal_video", label: "Rehearsal Video" },
+  { value: "announcement", label: "Announcement" },
+  { value: "other", label: "Other" },
 ];
 
 const allowedRoles = [
-  { value: "applicant",    label: "All members (incl. Applicants)" },
+  { value: "applicant", label: "All members (incl. Applicants)" },
   { value: "choir_member", label: "Choir & Band Members only" },
-  { value: "chapter_admin",label: "Admins only" },
+  { value: "chapter_admin", label: "Admins only" },
 ];
 
 async function uploadResourceDirectToR2(file: File): Promise<{ url: string; bytes: number; mimeType: string }> {
@@ -45,9 +45,9 @@ async function uploadResourceDirectToR2(file: File): Promise<{ url: string; byte
 
 async function uploadMediaViaPipeline(file: File, onStatus: (status: string) => void): Promise<{ url: string; publicId: string; bytes: number; mimeType: string }> {
   onStatus("Processing at Cloudinary Edge...");
-  
+
   const uploadPreset = file.type.startsWith('image/') ? 'ml_image' : 'ml_default';
-  
+
   const sigRes = await fetch("/api/upload-signature", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -234,7 +234,7 @@ export default function AdminResourcesPage() {
                 value={form.title}
                 onChange={(e) => setForm(p => ({ ...p, title: e.target.value }))}
                 className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 px-4 text-sm text-white placeholder-white/20 outline-none focus:border-gold/50 transition-colors"
-                placeholder="e.g. Soprano Part — Amazing Grace"
+                placeholder="e.g. Soprano Part - Amazing Grace"
               />
             </div>
             <div className="space-y-1.5">
@@ -336,7 +336,7 @@ export default function AdminResourcesPage() {
         </h2>
         {loading ? (
           <div className="animate-pulse space-y-2">
-            {[1,2,3].map(i => <div key={i} className="h-16 bg-white/5 rounded-xl" />)}
+            {[1, 2, 3].map(i => <div key={i} className="h-16 bg-white/5 rounded-xl" />)}
           </div>
         ) : resources.length === 0 ? (
           <p className="text-white/20 text-sm text-center py-12">No resources uploaded yet.</p>
@@ -359,11 +359,10 @@ export default function AdminResourcesPage() {
                   </a>
                   <button
                     onClick={() => toggleActive(resource)}
-                    className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border transition-all ${
-                      resource.is_active
+                    className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border transition-all ${resource.is_active
                         ? "text-emerald border-emerald/30 hover:bg-emerald/10"
                         : "text-white/30 border-white/10 hover:bg-white/5"
-                    }`}
+                      }`}
                   >
                     {resource.is_active ? "Active" : "Hidden"}
                   </button>

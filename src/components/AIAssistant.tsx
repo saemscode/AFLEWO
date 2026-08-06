@@ -563,7 +563,7 @@ export default function AIAssistant({ onNavigate }: { onNavigate?: (url?: string
     const [activeSystemMessage, setActiveSystemMessage] = useState<string | null>(null);
     const [showSignInPill, setShowSignInPill] = useState(false);
     const [fabIsIdle, setFabIsIdle] = useState(false);
-    // Voice is muted by default — users must opt-in to enable TTS
+    // Voice is muted by default - users must opt-in to enable TTS
     const [isMuted, setIsMuted] = useState(true);
     const [isHeroVisible, setIsHeroVisible] = useState(true);
     const [chatWallpaper, setChatWallpaper] = useState<string | null>(null);
@@ -623,7 +623,7 @@ export default function AIAssistant({ onNavigate }: { onNavigate?: (url?: string
         return () => clearTimeout(timer);
     }, [isOpen]);
 
-    // Activity-based FAB opacity fade — mirrors Nav FAB behaviour
+    // Activity-based FAB opacity fade - mirrors Nav FAB behaviour
     useEffect(() => {
         if (isOpen) {
             setFabIsIdle(false);
@@ -643,7 +643,7 @@ export default function AIAssistant({ onNavigate }: { onNavigate?: (url?: string
         };
     }, [isOpen]);
 
-    // Hide FAB when hero section is visible — mirrors Nav FAB behaviour exactly
+    // Hide FAB when hero section is visible - mirrors Nav FAB behaviour exactly
     useEffect(() => {
         const heroEl = document.getElementById("hero") || document.querySelector("[data-hero]");
         if (!heroEl) { setIsHeroVisible(false); return; }
@@ -756,7 +756,7 @@ export default function AIAssistant({ onNavigate }: { onNavigate?: (url?: string
                 saveManifest(data.offlineManifest);
             }
 
-            // Dispatch island state from AI trigger (atomic — one state at a time)
+            // Dispatch island state from AI trigger (atomic - one state at a time)
             if (data.islandTrigger) {
                 const trigger = data.islandTrigger;
                 if (trigger.mode === "map" && trigger.payload) {
@@ -771,7 +771,7 @@ export default function AIAssistant({ onNavigate }: { onNavigate?: (url?: string
                 }
             }
 
-            // Parse suggestedActions from AI response — these are deep-link action chips
+            // Parse suggestedActions from AI response - these are deep-link action chips
             if (Array.isArray(data.suggestedActions) && data.suggestedActions.length > 0) {
                 setSuggestedActions(data.suggestedActions);
             } else {
@@ -781,7 +781,7 @@ export default function AIAssistant({ onNavigate }: { onNavigate?: (url?: string
             const assistantMsg: Message = {
                 id: `a-${Date.now()}`,
                 role: "assistant",
-                content: data.message || "I'm here — could you ask that again?",
+                content: data.message || "I'm here - could you ask that again?",
                 timestamp: new Date(),
             };
 
@@ -1014,7 +1014,7 @@ export default function AIAssistant({ onNavigate }: { onNavigate?: (url?: string
                             flexDirection: "column",
                         }}
                     >
-                        {/* Header is always first — island is always BELOW it, never overlapping voice controls */}
+                        {/* Header is always first - island is always BELOW it, never overlapping voice controls */}
 
                         {/* -------------------- Panel Header -------------------- */}
                         <div className="flex items-center justify-between px-5 py-4 border-b border-white/8 flex-shrink-0">
@@ -1554,7 +1554,7 @@ function getContextualSuggestions(text: string) {
         },
     };
 
-    // Score each topic against the reply text — highest score wins
+    // Score each topic against the reply text - highest score wins
     let bestTopic: string | null = null;
     let bestScore = 0;
 

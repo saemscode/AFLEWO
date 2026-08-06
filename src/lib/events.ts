@@ -21,6 +21,8 @@ export interface AFLEWOEvent {
     startTime?: string;
     /** Visibility scoping for role-based access */
     visibility?: "public" | "member";
+    /** Dynamic event card display image */
+    imageUrl?: string;
 }
 
 export const events: AFLEWOEvent[] = [

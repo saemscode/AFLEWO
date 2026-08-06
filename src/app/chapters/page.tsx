@@ -30,7 +30,7 @@ function getUpcomingEventsForChapter(chapterName: string) {
             return (da?.getTime() ?? 0) - (db?.getTime() ?? 0);
         })
         .slice(0, 2);
-    }
+}
 
 function getTypeColor(type: string) {
     switch (type) {
@@ -47,7 +47,7 @@ function ChapterCard({ chapter, index }: { chapter: typeof chapters[0]; index: n
     const shouldReduceMotion = useReducedMotion();
     const upcomingChapterEvents = getUpcomingEventsForChapter(chapter.name);
     const [hovered, setHovered] = useState(false);
-    
+
     const isHero = chapter.size === "hero";
     const isFeatured = chapter.size === "featured";
 
@@ -68,7 +68,7 @@ function ChapterCard({ chapter, index }: { chapter: typeof chapters[0]; index: n
             {/* Background Image / Material */}
             {chapter.venueImage ? (
                 <div className="absolute inset-0">
-                    <motion.div 
+                    <motion.div
                         className="w-full h-full"
                         animate={{ scale: hovered ? 1.05 : 1 }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -190,7 +190,7 @@ function StatsBar() {
     ];
 
     return (
-        <div 
+        <div
             className="flex items-center overflow-x-auto hide-scrollbar rounded-3xl mt-8 border border-white/6"
             style={{ background: "rgba(255,255,255,0.02)", backdropFilter: "blur(20px)" }}
         >
@@ -231,7 +231,7 @@ export default function ChaptersPage() {
 
                 <div className="max-container relative z-10">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
-                        <motion.div 
+                        <motion.div
                             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={stagger(0)}
@@ -245,12 +245,12 @@ export default function ChaptersPage() {
                                 <span className="text-gold">CHAPTERS.</span>
                             </h1>
                             <p className="text-white/40 max-w-md font-bold text-xs uppercase tracking-[0.2em] leading-relaxed pt-2">
-                                {chapters.length} active chapters across East & Central Africa — united in worship since 2004.
+                                {chapters.length} active chapters across East & Central Africa - united in worship since 2004.
                             </p>
                         </motion.div>
 
                         {/* Nav quick-links */}
-                        <motion.div 
+                        <motion.div
                             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={stagger(1)}
@@ -260,9 +260,9 @@ export default function ChaptersPage() {
                                 { href: "/events", icon: "event", label: "Full Event Calendar" },
                                 { href: "/media", icon: "photo_library", label: "Media Archive" },
                             ].map(link => (
-                                <Link 
+                                <Link
                                     key={link.href}
-                                    href={link.href} 
+                                    href={link.href}
                                     className="flex items-center gap-3 px-6 py-3.5 rounded-2xl border border-white/6 hover:border-gold/30 hover:bg-white/5 transition-colors text-[10px] font-black uppercase tracking-[0.2em] text-white/50 hover:text-gold group"
                                     style={{ background: "rgba(255,255,255,0.02)", backdropFilter: "blur(12px)" }}
                                 >
@@ -271,8 +271,8 @@ export default function ChaptersPage() {
                                     <SvgIcon name="arrow_forward" size={14} className="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                                 </Link>
                             ))}
-                            <Link 
-                                href="/join" 
+                            <Link
+                                href="/join"
                                 className="flex items-center gap-3 px-6 py-3.5 bg-gold text-brown rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:brightness-110 active:scale-95 transition-all group shadow-[0_0_20px_rgba(212,175,55,0.15)]"
                             >
                                 <SvgIcon name="group_add" size={16} />
@@ -287,7 +287,7 @@ export default function ChaptersPage() {
                     </motion.div>
 
                     {/* Filters + Search */}
-                    <motion.div 
+                    <motion.div
                         initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={stagger(3)}
@@ -299,11 +299,10 @@ export default function ChaptersPage() {
                                 <button
                                     key={f}
                                     onClick={() => setCountryFilter(f)}
-                                    className={`px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all whitespace-nowrap ${
-                                        countryFilter === f
-                                        ? "bg-gold text-brown shadow-glow"
-                                        : "text-white/40 hover:text-white hover:bg-white/5"
-                                    }`}
+                                    className={`px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all whitespace-nowrap ${countryFilter === f
+                                            ? "bg-gold text-brown shadow-glow"
+                                            : "text-white/40 hover:text-white hover:bg-white/5"
+                                        }`}
                                 >
                                     {f}
                                 </button>
@@ -323,9 +322,9 @@ export default function ChaptersPage() {
                         </div>
                     </motion.div>
 
-                    <motion.p 
-                        initial={{ opacity: 0 }} 
-                        animate={{ opacity: 1 }} 
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         transition={stagger(4)}
                         className="mt-4 text-[9px] font-black uppercase tracking-[0.3em] text-white/25"
                     >
@@ -339,7 +338,7 @@ export default function ChaptersPage() {
                 <div className="max-container">
                     <AnimatePresence mode="wait">
                         {filtered.length === 0 ? (
-                            <motion.div 
+                            <motion.div
                                 key="empty"
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -353,7 +352,7 @@ export default function ChaptersPage() {
                                 <p className="text-white/30 font-black uppercase tracking-[0.2em] text-xs">No chapters found</p>
                             </motion.div>
                         ) : (
-                            <motion.div 
+                            <motion.div
                                 key="grid"
                                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                             >
@@ -370,9 +369,9 @@ export default function ChaptersPage() {
             <section className="px-6 py-20 border-t border-white/5 relative overflow-hidden">
                 {/* Subtle bottom glow */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gold/5 blur-[120px] pointer-events-none rounded-t-[100%]" />
-                
+
                 <div className="max-container relative z-10">
-                    <div 
+                    <div
                         className="rounded-[2.5rem] border border-gold/15 p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12"
                         style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.01) 100%)", backdropFilter: "blur(20px)" }}
                     >

@@ -1,7 +1,7 @@
 /* @ts-nocheck
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&family=Marcellus&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -132,25 +132,53 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
+  h1 {
+    font-family: 'League Spartan', system-ui, sans-serif;
+    @apply font-bold tracking-tight;
+  }
+
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: 'Inter', system-ui, sans-serif;
-    @apply font-black tracking-tighter;
+    font-family: 'Marcellus', Georgia, serif;
+    @apply font-normal tracking-tight;
+  }
+
+  nav {
+    font-family: 'Marcellus', Georgia, serif;
+  }
+
+  button {
+    font-family: 'League Spartan', system-ui, sans-serif;
+    @apply font-semibold;
   }
 }
 
-/* Elegant serif for spiritual/reflective content - Now using Inter for consistency */
+/* Serif class — Marcellus for spiritual/reflective/cinematic content */
 .font-serif-spiritual {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Marcellus', Georgia, serif;
+}
+
+/* Hero / impact headline class — League Spartan */
+.font-display {
+  font-family: 'League Spartan', system-ui, sans-serif;
+}
+
+/* Navigation class — Marcellus, for non-<nav> elements used as nav */
+.font-nav {
+  font-family: 'Marcellus', Georgia, serif;
+}
+
+/* Button class — League Spartan, for non-<button> elements styled as buttons */
+.font-button {
+  font-family: 'League Spartan', system-ui, sans-serif;
 }
 
 @layer components {
@@ -279,7 +307,7 @@
     border-color: hsl(42 92% 56% / 0.5);
   }
 
-  /* Individual option hover — best-effort, overridden by OS on native selects */
+  /* Individual option hover - best-effort, overridden by OS on native selects */
   select option:hover,
   select option:focus,
   select option:checked {
@@ -289,7 +317,7 @@
 
   /* ── Image download prevention ─────────────────────────────────────────────
      Applies friction-level drag/right-click blocking on gallery images.
-     Does NOT prevent screenshots or devtools — that requires server-side
+     Does NOT prevent screenshots or devtools - that requires server-side
      watermarking (applied in the Lightbox watermark overlay).             */
   .no-download {
     user-select: none;
@@ -896,7 +924,7 @@
   margin-right: 4px;
 }
 
-/* press-scale — tactile button click feel */
+/* press-scale - tactile button click feel */
 .press-scale {
   transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
 }
@@ -905,7 +933,7 @@
   transform: scale(0.95) !important;
 }
 
-/* hide-scrollbar — used in EventHub filters */
+/* hide-scrollbar - used in EventHub filters */
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -916,7 +944,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   Hero Title — prevent gradient text clipping
+   Hero Title - prevent gradient text clipping
    at trailing letters (S, P, R, etc.)
    ───────────────────────────────────────────── */
 .hero-title {
@@ -937,7 +965,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   Staggered menu — ensure it overlays correctly
+   Staggered menu - ensure it overlays correctly
    on desktop (lg: 1280px+)
    ───────────────────────────────────────────── */
 .fixed-wrapper {
@@ -950,7 +978,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   AI Assistant — chat textarea auto-resize feel
+   AI Assistant - chat textarea auto-resize feel
    ───────────────────────────────────────────── */
 .ai-chat-input {
   field-sizing: content;
@@ -959,4 +987,4 @@
 /* shadow-glow utility referenced in Navbar */
 .shadow-glow {
   box-shadow: var(--shadow-glow, 0 0 40px -10px hsla(42, 92%, 56%, 0.3));
-}
+}

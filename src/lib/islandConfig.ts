@@ -5,11 +5,11 @@ export interface IslandTierConfig {
     collapsedMaxWidth: number;
     /** Max width of the pill when fully expanded inline */
     expandedMaxWidth: number | string;
-    /** GlassSurface blur radius — scaled down on mobile to protect GPU budget */
+    /** GlassSurface blur radius - scaled down on mobile to protect GPU budget */
     blur: number;
     /** Height of the embedded map iframe in the expanded card */
     mapHeight: number;
-    /** Whether the < > chevrons hide until hover (desktop only — no hover on touch) */
+    /** Whether the < > chevrons hide until hover (desktop only - no hover on touch) */
     chevronRequiresHover: boolean;
 }
 
@@ -17,7 +17,7 @@ export const ISLAND_CONFIG: Record<DeviceTier, IslandTierConfig> = {
     mobile: {
         collapsedMaxWidth: 300,
         expandedMaxWidth: "calc(100vw - 32px)", // perfectly edge-to-edge with 16px padding
-        blur: 8,                 // lighter blur — real GPU cost mitigation on mobile
+        blur: 8,                 // lighter blur - real GPU cost mitigation on mobile
         mapHeight: 150,
         chevronRequiresHover: false,
     },

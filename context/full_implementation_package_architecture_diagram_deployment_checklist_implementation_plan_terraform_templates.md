@@ -1,4 +1,4 @@
-# Full Implementation Package — Architecture Diagram, Deployment Checklist, Implementation Plan & Terraform Templates
+# Full Implementation Package - Architecture Diagram, Deployment Checklist, Implementation Plan & Terraform Templates
 
 ---
 
@@ -58,7 +58,7 @@ flowchart LR
 ```
 
 **Diagram notes**
-- Edge CDN is the first layer—serve static assets and cached SSR/SSG pages. WAF filters attacks.
+- Edge CDN is the first layer-serve static assets and cached SSR/SSG pages. WAF filters attacks.
 - Frontend is React + TypeScript (Next.js preferred for SSR/ISR). Deploy to Vercel or Cloudflare Pages.
 - Object store holds originals; image CDN handles transforms and caching.
 - API layer is a mix of edge functions for low-latency personalization and microservices for heavy tasks.
@@ -540,5 +540,5 @@ module.exports = {
 
 ---
 
-*Document generated: Full Implementation Package — Architecture Diagram, Deployment Checklist, Implementation Plan & Terraform Templates*
+*Document generated: Full Implementation Package - Architecture Diagram, Deployment Checklist, Implementation Plan & Terraform Templates*
 

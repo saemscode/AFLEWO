@@ -29,7 +29,7 @@ function CallbackInner() {
 
       const { user } = sessionData.session;
 
-      // Step 2: Safety-net upsert — ensures the profiles row exists.
+      // Step 2: Safety-net upsert - ensures the profiles row exists.
       // The DB trigger handles this in the normal path. This fires if the trigger
       // was absent, slow, or failed silently. ignoreDuplicates = true means if
       // the profile already exists, this is a guaranteed no-op.

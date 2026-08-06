@@ -42,7 +42,7 @@ export type QrModalState =
  * useQrModalState
  *
  * Fetches the server-resolved QR modal state for a given resource.
- * Never computes state client-side from cached tier info — tier and resource
+ * Never computes state client-side from cached tier info - tier and resource
  * state can both change between page load and modal open.
  *
  * Call fetchState() when the modal opens (or when the user clicks "Regenerate").

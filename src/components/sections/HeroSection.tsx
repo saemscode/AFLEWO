@@ -225,14 +225,14 @@ export default function HeroSection() {
                 <p className="text-white/40 text-[11px] uppercase tracking-widest font-bold">{currentItem.startTime}</p>
             )}
 
-            {/* Embedded map — only rendered if we have coordinates */}
+            {/* Embedded map - only rendered if we have coordinates */}
             {hasMap && (
                 <iframe
                     src={`https://www.google.com/maps?q=${currentItem.lat},${currentItem.lng}&z=15&output=embed`}
                     className="w-full rounded-xl border border-white/10"
                     style={{ height: config.mapHeight }}
                     loading="lazy"
-                    title={`Map — ${currentItem.title}`}
+                    title={`Map - ${currentItem.title}`}
                 />
             )}
 
@@ -295,10 +295,10 @@ export default function HeroSection() {
                             )}
                         </AnimatePresence>
 
-                        {/* Absolute Overlay Layer — anchors from the top, expands downwards */}
+                        {/* Absolute Overlay Layer - anchors from the top, expands downwards */}
                         <div className="absolute top-0 inset-x-0 flex justify-center items-start gap-3">
 
-                            {/* Left chevron — hidden when expanded or when hover-gated on desktop */}
+                            {/* Left chevron - hidden when expanded or when hover-gated on desktop */}
                             {showChevrons && !isExpanded && dynamicItems.length > 1 && (
                                 <button
                                     onClick={prevEvent}
@@ -321,7 +321,7 @@ export default function HeroSection() {
                                     width: "100%",
                                 }}
                             >
-                                {/* Framer layout also animates border-radius — wrap in motion.div to apply */}
+                                {/* Framer layout also animates border-radius - wrap in motion.div to apply */}
                                 <motion.div
                                     layout={!prefersReducedMotion}
                                     style={{ borderRadius: "inherit" }}

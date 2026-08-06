@@ -62,25 +62,22 @@ export function AboutSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span
-            className={`inline-block text-gold font-semibold text-sm uppercase tracking-widest mb-4 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`inline-block text-gold font-semibold text-sm uppercase tracking-widest mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
           >
             Our Story
           </span>
           <h2
-            className={`text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-cream mb-6 transition-all duration-700 delay-100 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-cream mb-6 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
           >
             Uniting Africa
             <br />
             <span className="text-gradient-gold">In Worship</span>
           </h2>
           <div
-            className={`section-divider mx-auto transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-            }`}
+            className={`section-divider mx-auto transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+              }`}
           />
         </div>
 
@@ -88,9 +85,8 @@ export function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
           {/* Image Side */}
           <div
-            className={`relative transition-all duration-1000 delay-300 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
-            }`}
+            className={`relative transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+              }`}
           >
             <div className="relative rounded-3xl overflow-hidden shadow-elevated">
               <img
@@ -109,22 +105,21 @@ export function AboutSection() {
 
           {/* Text Side */}
           <div
-            className={`transition-all duration-1000 delay-500 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
-            }`}
+            className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+              }`}
           >
             <h3 className="text-2xl md:text-3xl font-serif font-bold text-cream mb-6">
               From Daystar University to All of Africa
             </h3>
             <p className="text-cream/70 text-lg leading-relaxed mb-6">
-              AFLEWO — <span className="text-gold font-semibold">Africa Let's Worship</span> — 
-              began in 2004, born from the heart of Sing Africa, a student ministry at 
-              Daystar University. What started as a vision to unite believers in worship 
+              AFLEWO - <span className="text-gold font-semibold">Africa Let's Worship</span> -
+              began in 2004, born from the heart of Sing Africa, a student ministry at
+              Daystar University. What started as a vision to unite believers in worship
               has grown into a continent-wide movement.
             </p>
             <p className="text-cream/70 text-lg leading-relaxed mb-8">
-              Today, AFLEWO hosts annual all-night worship gatherings across Kenya and 
-              East Africa — from Nairobi to Mombasa, Kigali to Dar-es-Salaam — bringing 
+              Today, AFLEWO hosts annual all-night worship gatherings across Kenya and
+              East Africa - from Nairobi to Mombasa, Kigali to Dar-es-Salaam - bringing
               thousands together in prayer, music, and spiritual renewal.
             </p>
 
@@ -135,7 +130,7 @@ export function AboutSection() {
                 Our Vision
               </h4>
               <blockquote className="text-cream/90 italic font-serif text-lg">
-                "To stir up hope in Jesus through annual events of worship in music 
+                "To stir up hope in Jesus through annual events of worship in music
                 and prayer from a united front of the Church across Africa."
               </blockquote>
             </div>
@@ -144,9 +139,8 @@ export function AboutSection() {
 
         {/* Stats Row */}
         <div
-          className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 transition-all duration-1000 delay-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
+          className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
         >
           {stats.map((stat, index) => (
             <div
@@ -168,9 +162,8 @@ export function AboutSection() {
           {values.map((value, index) => (
             <div
               key={value.title}
-              className={`card-glow rounded-2xl p-8 text-center transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
+              className={`card-glow rounded-2xl p-8 text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
               style={{ transitionDelay: `${900 + index * 100}ms` }}
             >
               <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6">

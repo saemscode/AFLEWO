@@ -27,7 +27,7 @@ const SITE_ROUTES = [
 
 // ─── AFLEWO Site Knowledge Base ───────────────────────────────────────────────
 const FALLBACK_SITE_MAP_CONTEXT = `
-AFLEWO (Africa Let's Worship) — Site Knowledge Base
+AFLEWO (Africa Let's Worship) - Site Knowledge Base
 
 IDENTITY:
 - Full name: Africa Let's Worship (AFLEWO)
@@ -38,36 +38,36 @@ IDENTITY:
 - The 7 Pillars: Hope, Unity, Music, Prayer, Word, Leadership, Excellence
 
 CHAPTERS (8 total):
-- Nairobi, Kenya — flagship chapter, main annual event at Winners' Chapel International
-- Eldoret, Kenya — regional hub, auditions held annually
-- Nakuru, Kenya — Deliverance Church base, active rehearsals
-- Mombasa, Kenya — Founded 2009 at Elim Evangelistic Church P.E.F.A. in Makupa, now draws over 5,000 people annually. Zoom-based nightly prayer circle.
-- Nyeri, Kenya — Mt. Kenya region, PCEA Nyamachaki
-- Meru, Kenya — active community, founded in 2012 (first event at Gikumene High School)
-- Tanzania — CCC Upanga Church, Dar es Salaam
-- Rwanda — Christian Life Assembly, Kigali (reconciliation focus)
+- Nairobi, Kenya - flagship chapter, main annual event at Winners' Chapel International
+- Eldoret, Kenya - regional hub, auditions held annually
+- Nakuru, Kenya - Deliverance Church base, active rehearsals
+- Mombasa, Kenya - Founded 2009 at Elim Evangelistic Church P.E.F.A. in Makupa, now draws over 5,000 people annually. Zoom-based nightly prayer circle.
+- Nyeri, Kenya - Mt. Kenya region, PCEA Nyamachaki
+- Meru, Kenya - active community, founded in 2012 (first event at Gikumene High School)
+- Tanzania - CCC Upanga Church, Dar es Salaam
+- Rwanda - Christian Life Assembly, Kigali (reconciliation focus)
 
 SITE PAGES & PATHS:
 ${SITE_ROUTES.map(r => `- ${r.name}: ${r.path} (${r.description})`).join("\n")}
 
 NAVIGATION SECTIONS (home page scroll):
-- #hero — landing video section, main headline
-- #about — vision and history
-- #chapters — all 8 chapters
-- #events — event calendar
-- #media — archive preview
-- #stories — echo testimonies
-- #join — connect / join CTA
+- #hero - landing video section, main headline
+- #about - vision and history
+- #chapters - all 8 chapters
+- #events - event calendar
+- #media - archive preview
+- #stories - echo testimonies
+- #join - connect / join CTA
 
 EVENTS (2026 season):
-- Eldoret Auditions: Feb 15, 2026 — choir, band, media, ushering, security, dance
-- Nakuru Rehearsals: Mar 02, 2026 — registered members only
+- Eldoret Auditions: Feb 15, 2026 - choir, band, media, ushering, security, dance
+- Nakuru Rehearsals: Mar 02, 2026 - registered members only
 - JCC Bamburi Centre: Nightly on Zoom at 09:00 PM
-- Nairobi Pre-Launch: Apr 10, 2026 — Winners' Chapel International
-- Tanzania Worship Night: Mar 21, 2026 — CCC Upanga, Dar es Salaam
-- Rwanda Commemoration: Apr 07, 2026 — healing and reconciliation service, Kigali
-- Nyeri Regional Gathering: May 15, 2026 — PCEA Nyamachaki
-- Main Nairobi Event: Oct 02, 2026 — flagship all-night worship, Winners' Chapel International, Nairobi. Expected attendance: 15,000+.
+- Nairobi Pre-Launch: Apr 10, 2026 - Winners' Chapel International
+- Tanzania Worship Night: Mar 21, 2026 - CCC Upanga, Dar es Salaam
+- Rwanda Commemoration: Apr 07, 2026 - healing and reconciliation service, Kigali
+- Nyeri Regional Gathering: May 15, 2026 - PCEA Nyamachaki
+- Main Nairobi Event: Oct 02, 2026 - flagship all-night worship, Winners' Chapel International, Nairobi. Expected attendance: 15,000+.
 
 DONATIONS & FINANCIAL SUPPORT:
 - Official Paybill: M-Changa Paybill [891300 (tap to copy)](#copy:891300), Account: [AFLEWONBI (tap to copy)](#copy:AFLEWONBI)
@@ -98,7 +98,7 @@ NAVIGATION COMMANDS (you can navigate for the user):
 
 RESPONSE GUIDELINES:
 - Only answer from information in this knowledge base or retrieved context.
-- If unsure or topic is outside AFLEWO, say: "I don't have that information — please contact us via our social channels or visit aflewo.org."
+- If unsure or topic is outside AFLEWO, say: "I don't have that information - please contact us via our social channels or visit aflewo.org."
 - Keep answers warm, faith-grounded, and concise.
 - For joining/registration: always direct to /join.
 - For event details: give date, location, and brief description.
@@ -109,11 +109,11 @@ RESPONSE GUIDELINES:
 
 function getSiteMapContext() {
     try {
-        const eventsContext = events.map(e => `- ${e.title}: ${e.date} at ${e.time} — ${e.location} (${e.description})`).join("\n");
+        const eventsContext = events.map(e => `- ${e.title}: ${e.date} at ${e.time} - ${e.location} (${e.description})`).join("\n");
         const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
         return `
-AFLEWO (Africa Let's Worship) — Site Knowledge Base
+AFLEWO (Africa Let's Worship) - Site Knowledge Base
 
 CURRENT DATE: ${currentDate}
 
@@ -126,26 +126,26 @@ IDENTITY:
 - The 7 Pillars: Hope, Unity, Music, Prayer, Word, Leadership, Excellence
 
 CHAPTERS (8 total):
-- Nairobi, Kenya — flagship chapter, main annual event at Winners' Chapel International (-1.2840, 36.8231)
-- Nakuru, Kenya — Founded 2013 (initially a 1,000-voice choir), Deliverance Church base, active rehearsals (-0.3031, 36.0800)
-- Nyeri, Kenya — Founded 2010 at PCEA Nyamachaki, now draws over 2,000 people. Mt. Kenya region. (-0.4167, 36.9500)
-- Meru, Kenya — Founded 2012 (first event at Gikumene High School), active community.
-- Mombasa, Kenya — Founded 2009 at Elim Evangelistic Church P.E.F.A. in Makupa, now draws over 5,000 people annually. Zoom-based nightly prayer circle. (-4.0418, 39.6570)
-- Eldoret, Kenya — Regional hub, highly active community with 12,000+ followers. (0.5176, 35.2828)
-- Tanzania — CCC Upanga Church, Dar es Salaam (-6.8090, 39.2802)
-- Rwanda — Christian Life Assembly, Kigali (-1.9478, 30.1054) (reconciliation focus)
+- Nairobi, Kenya - flagship chapter, main annual event at Winners' Chapel International (-1.2840, 36.8231)
+- Nakuru, Kenya - Founded 2013 (initially a 1,000-voice choir), Deliverance Church base, active rehearsals (-0.3031, 36.0800)
+- Nyeri, Kenya - Founded 2010 at PCEA Nyamachaki, now draws over 2,000 people. Mt. Kenya region. (-0.4167, 36.9500)
+- Meru, Kenya - Founded 2012 (first event at Gikumene High School), active community.
+- Mombasa, Kenya - Founded 2009 at Elim Evangelistic Church P.E.F.A. in Makupa, now draws over 5,000 people annually. Zoom-based nightly prayer circle. (-4.0418, 39.6570)
+- Eldoret, Kenya - Regional hub, highly active community with 12,000+ followers. (0.5176, 35.2828)
+- Tanzania - CCC Upanga Church, Dar es Salaam (-6.8090, 39.2802)
+- Rwanda - Christian Life Assembly, Kigali (-1.9478, 30.1054) (reconciliation focus)
 
 SITE PAGES & PATHS:
 ${SITE_ROUTES.map(r => `- ${r.name}: ${r.path} (${r.description})`).join("\n")}
 
 NAVIGATION SECTIONS (home page scroll):
-- #hero — landing video section, main headline
-- #about — vision and history
-- #chapters — all 8 chapters
-- #events — event calendar
-- #media — archive preview
-- #stories — echo testimonies
-- #join — connect / join CTA
+- #hero - landing video section, main headline
+- #about - vision and history
+- #chapters - all 8 chapters
+- #events - event calendar
+- #media - archive preview
+- #stories - echo testimonies
+- #join - connect / join CTA
 
 EVENTS (Live DB synced):
 ${eventsContext}
@@ -179,7 +179,7 @@ NAVIGATION COMMANDS (you can navigate for the user):
 
 RESPONSE GUIDELINES:
 - Only answer from information in this knowledge base or retrieved context.
-- If unsure or topic is outside AFLEWO, say: "I don't have that information — please contact us via our social channels or visit aflewo.org."
+- If unsure or topic is outside AFLEWO, say: "I don't have that information - please contact us via our social channels or visit aflewo.org."
 - Keep answers warm, faith-grounded, and concise.
 - NEVER use the phrase "Good luck". If you must wish someone well, say "God bless you" or offer Christian-grounded encouragement instead.
 - NEVER use phrases like "our united African worship movement!". Just refer to the organization simply as "AFLEWO" or "Africa Let's Worship".
@@ -242,7 +242,7 @@ function sanitizeResponse(text: string): string {
         if (w.length < 3) continue; // skip tiny particles
         wordFreq[w] = (wordFreq[w] || 0) + 1;
         if (wordFreq[w] > 6) {
-            console.error(`[AFLEWO AI] 🚨 Degeneration detected — word "${w}" repeated ${wordFreq[w]} times. Suppressing.`);
+            console.error(`[AFLEWO AI] 🚨 Degeneration detected - word "${w}" repeated ${wordFreq[w]} times. Suppressing.`);
             return DEGENERATION_FALLBACK;
         }
     }
@@ -256,7 +256,7 @@ function sanitizeResponse(text: string): string {
     }
 
     // 4. Detect token flooding: extremely high density of short (2-5 char) capitalised tokens
-    // e.g. "soap FR titan Arn EG soap BIO" — hallucinated vocab fragments
+    // e.g. "soap FR titan Arn EG soap BIO" - hallucinated vocab fragments
     const shortCapsTokens = words.filter(w => w.length <= 5 && /^[A-Z]{2,}$/.test(w));
     const capsRatio = shortCapsTokens.length / Math.max(words.length, 1);
     if (words.length > 15 && capsRatio > 0.2) {
@@ -382,13 +382,13 @@ async function queryVectorizeSandbox(query: string): Promise<string> {
 
         return retrieved;
     } catch {
-        // Silent fail — sandbox unavailable, fallback to static context
+        // Silent fail - sandbox unavailable, fallback to static context
         return "";
     }
 }
 
 // ─── Legacy Supabase RAG (graceful fallback only) ─────────────────────────────
-// Only called if Vectorize returns nothing — kept for transition period.
+// Only called if Vectorize returns nothing - kept for transition period.
 async function retrieveRAGContext(query: string): Promise<string> {
     // First try the air-gapped Vectorize sandbox (preferred)
     const vectorizeResult = await queryVectorizeSandbox(query);
@@ -443,7 +443,7 @@ async function generateResponse(
     lowBandwidth?: boolean
 ): Promise<string> {
     const locationContext = currentPath
-        ? `\nUSER'S CURRENT LOCATION: The user is on "${currentPath}". Do NOT suggest navigating there — they are already there. Scroll to relevant sections instead.\n`
+        ? `\nUSER'S CURRENT LOCATION: The user is on "${currentPath}". Do NOT suggest navigating there - they are already there. Scroll to relevant sections instead.\n`
         : "";
 
     const bandwidthContext = lowBandwidth
@@ -454,7 +454,7 @@ async function generateResponse(
     // These rules are read by the model BEFORE it sees any AFLEWO data,
     // ensuring the constraint is set before the material that tempts over-sharing.
     const calibrationBlock = `
-CALIBRATION — READ THIS BEFORE ANYTHING ELSE:
+CALIBRATION - READ THIS BEFORE ANYTHING ELSE:
 
 Match response length to the question, not to available token space.
 
@@ -462,7 +462,7 @@ Match response length to the question, not to available token space.
 - A specific factual or logistics question gets a direct answer, two to three sentences, containing only what was asked.
 - A request for background, history, theology, or anything phrased as "tell me about" or "explain" gets a fuller answer drawing on the full context provided.
 - If a question is ambiguous between a short factual answer and a longer explanation, default to the short answer and note that more detail is available if wanted.
-- Never volunteer facts, dates, chapter names, or history the user did not ask about — even if they are directly relevant to something nearby in the conversation. Relevance is not the same as being asked.
+- Never volunteer facts, dates, chapter names, or history the user did not ask about - even if they are directly relevant to something nearby in the conversation. Relevance is not the same as being asked.
 - Do not pad a short answer with unsolicited context to seem more thorough. A complete short answer is the goal, not an incomplete long one.
 
 FEW-SHOT EXAMPLES (follow this behavior exactly):
@@ -474,7 +474,7 @@ User: when's rehearsal this week
 Assistant: Nakuru chapter rehearsal is on Saturdays. Let me know which chapter you need or if you want the full schedule.
 
 User: tell me about how AFLEWO started
-Assistant: Africa Let's Worship was founded in 2004 as a continental interdenominational movement with one mission — stirring up hope in Jesus through a united African voice. It now spans 7 chapters across Kenya, Tanzania, and Rwanda, all rooted in the tagline "One God. One People. One Africa." Would you like to know more about a specific chapter or event?
+Assistant: Africa Let's Worship was founded in 2004 as a continental interdenominational movement with one mission - stirring up hope in Jesus through a united African voice. It now spans 7 chapters across Kenya, Tanzania, and Rwanda, all rooted in the tagline "One God. One People. One Africa." Would you like to know more about a specific chapter or event?
 
 User: thanks
 Assistant: Of course! Anything else I can help with?
@@ -513,7 +513,7 @@ FORMATTING RULES:
 - NEVER speak or write raw GPS coordinates in the text of your response. Instead, simply say "See the map above to get directions and navigate there easily."
 - When mentioning the M-Changa Paybill number (891300) or account name (AFLEWONBI), ALWAYS format them as tappable copy links: [891300 (tap to copy)](#copy:891300) and [AFLEWONBI (tap to copy)](#copy:AFLEWONBI). Never write these as plain text.
 - When the user asks for their schedule or itinerary, append [SYNC_ITINERARY] at the very end.
-- These tags are stripped from the displayed text — they are never shown to the user.
+- These tags are stripped from the displayed text - they are never shown to the user.
 - Never answer outside the scope of AFLEWO unless it's a general Christian faith question.
 - ${lowBandwidth ? "MINIMAL MODE: One sentence maximum. Facts only." : ""}`;
 
@@ -525,7 +525,7 @@ FORMATTING RULES:
         ...messages.slice(-20),
     ];
 
-    // Fixed ceiling backstop: 400 tokens. Not a steering wheel — calibration prompt does that.
+    // Fixed ceiling backstop: 400 tokens. Not a steering wheel - calibration prompt does that.
     const MAX_TOKENS = 400;
 
     const providers = [
@@ -578,7 +578,7 @@ FORMATTING RULES:
                     const safe = sanitizeResponse(raw);
                     if (safe === DEGENERATION_FALLBACK) {
                         // Log and try next provider instead of returning garbage
-                        console.warn(`[AFLEWO AI] ${provider.name} response failed sanitization — falling through to next provider.`);
+                        console.warn(`[AFLEWO AI] ${provider.name} response failed sanitization - falling through to next provider.`);
                         continue;
                     }
                     console.log(`[AFLEWO AI] Served by ${provider.name} | LowBW: ${lowBandwidth}`);
@@ -643,10 +643,10 @@ function fallbackResponse(messages: Message[]): string {
         return "To join AFLEWO, you can register for auditions at our Join page. We hold auditions for Choir, Band, Media, Ushering, Security, and Dancing teams. [navigate_to: /join]";
     }
     if (lastMsg.includes("event") || lastMsg.includes("nairobi") || lastMsg.includes("when")) {
-        return "Our next major event is the Main Nairobi Event on October 2nd, 2026 — a flagship all-night worship experience at Winners' Chapel International. [scroll_to: events]";
+        return "Our next major event is the Main Nairobi Event on October 2nd, 2026 - a flagship all-night worship experience at Winners' Chapel International. [scroll_to: events]";
     }
     if (lastMsg.includes("chapter") || lastMsg.includes("location") || lastMsg.includes("where")) {
-        return "AFLEWO has 8 chapters across East Africa: Nairobi, Eldoret, Nakuru, Mombasa, Nyeri, and Meru in Kenya — plus Tanzania and Rwanda. [scroll_to: chapters]";
+        return "AFLEWO has 8 chapters across East Africa: Nairobi, Eldoret, Nakuru, Mombasa, Nyeri, and Meru in Kenya - plus Tanzania and Rwanda. [scroll_to: chapters]";
     }
     if (lastMsg.includes("about") || lastMsg.includes("mission") || lastMsg.includes("who")) {
         return "Africa Let's Worship (AFLEWO) is a continental interdenominational worship movement founded in 2004. Our mission: One God. One People. One Africa. [scroll_to: about]";
@@ -661,10 +661,10 @@ function fallbackResponse(messages: Message[]): string {
         return "Thank you for your heart to support! You can partner with AFLEWO through our Join page. [navigate_to: /join]";
     }
     if (lastMsg.includes("hello") || lastMsg.includes("hi") || lastMsg.includes("hey") || lastMsg.includes("good")) {
-        return "Habari! Welcome to AFLEWO — Africa Let's Worship. I'm here to help you explore our movement, find events, or help you join us. What can I do for you?";
+        return "Habari! Welcome to AFLEWO - Africa Let's Worship. I'm here to help you explore our movement, find events, or help you join us. What can I do for you?";
     }
 
-    return "I'm here to help with anything about AFLEWO — our events, chapters, how to join, our music archive, or our mission. What would you like to know?";
+    return "I'm here to help with anything about AFLEWO - our events, chapters, how to join, our music archive, or our mission. What would you like to know?";
 }
 
 // ─── API Route Handler ────────────────────────────────────────────────────────
@@ -716,7 +716,7 @@ export async function POST(req: NextRequest) {
     } catch (err) {
         console.error("[AFLEWO AI] Error:", err);
         return NextResponse.json(
-            { message: "I'm here to help — could you ask that again?", action: null, offlineManifest: null },
+            { message: "I'm here to help - could you ask that again?", action: null, offlineManifest: null },
             { status: 200 }
         );
     }

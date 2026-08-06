@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import SvgIcon from "@/components/ui/SvgIcon";
 
-// ─── Colour tokens — match EventHub + events/page ────────────────────────────
+// ─── Colour tokens - match EventHub + events/page ────────────────────────────
 const CHAPTER_COLOUR: Record<string, string> = {
     Nairobi: "#D4AF37", Mombasa: "#22d3ee", Nakuru: "#f97316",
     Eldoret: "#a855f7", Nyeri: "#22c55e", Meru: "#84cc16",
@@ -39,7 +39,7 @@ interface EventsListProps {
 }
 
 /**
- * EventsSection — reusable real-data card list component.
+ * EventsSection - reusable real-data card list component.
  *
  * Pulls events directly from @/lib/events (no fabricated data).
  * All visual tokens align with EventHub and events/page.
@@ -119,9 +119,8 @@ export default function EventsSection({
                             return (
                                 <div
                                     key={event.id}
-                                    className={`group relative rounded-[1.75rem] border overflow-hidden flex flex-col transition-all duration-300 ${
-                                        isPast ? "border-white/4 opacity-50" : "border-white/6 hover:border-white/12 hover:-translate-y-1"
-                                    }`}
+                                    className={`group relative rounded-[1.75rem] border overflow-hidden flex flex-col transition-all duration-300 ${isPast ? "border-white/4 opacity-50" : "border-white/6 hover:border-white/12 hover:-translate-y-1"
+                                        }`}
                                     style={{ background: "rgba(255,255,255,0.018)", backdropFilter: "blur(20px) saturate(160%)" }}
                                 >
                                     {/* Colour accent top stripe */}
@@ -163,7 +162,7 @@ export default function EventsSection({
                                         {/* Big date number */}
                                         <div className="text-center">
                                             <p className="text-[4rem] font-black leading-none" style={{ color: colour }}>
-                                                {event.date === "Every Night" ? "∞" : event.date === "TBD" ? "?" : event.date.split(" ")[1]?.replace(",", "") ?? "—"}
+                                                {event.date === "Every Night" ? "∞" : event.date === "TBD" ? "?" : event.date.split(" ")[1]?.replace(",", "") ?? "-"}
                                             </p>
                                             <p className="text-[12px] font-black uppercase tracking-[0.3em]" style={{ color: `${colour}80` }}>
                                                 {event.date === "Every Night" ? "Nightly" : event.date === "TBD" ? "TBD" : event.date.split(" ")[0]}

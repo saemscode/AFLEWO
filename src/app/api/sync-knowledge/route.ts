@@ -23,7 +23,7 @@ const ALLOWED_TABLES = [
     "aflewo_knowledge",   // existing table (fallback seed data)
 ] as const;
 
-// Columns to extract per table (hard-coded whitelist — no dynamic queries)
+// Columns to extract per table (hard-coded whitelist - no dynamic queries)
 const TABLE_COLUMNS: Record<string, string> = {
     event_schedules: "title,description,date,time,location,chapter",
     chapter_faqs: "question,answer,chapter",
@@ -84,7 +84,7 @@ async function upsertVectors(
 }
 
 export async function GET(req: NextRequest) {
-    // Secure this endpoint — only callable with the correct cron secret
+    // Secure this endpoint - only callable with the correct cron secret
     const authHeader = req.headers.get("authorization");
     const expectedSecret = process.env.CRON_SECRET;
 

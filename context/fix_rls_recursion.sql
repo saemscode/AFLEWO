@@ -13,7 +13,7 @@
 -- ============================================================
 
 
--- ── STEP 1: Helper function (bypasses RLS — no recursion) ──
+-- ── STEP 1: Helper function (bypasses RLS - no recursion) ──
 
 CREATE OR REPLACE FUNCTION public.get_my_role()
 RETURNS public.user_role
@@ -43,7 +43,7 @@ DROP POLICY IF EXISTS profiles_chapter_admin_read    ON public.profiles;
 DROP POLICY IF EXISTS profiles_self_read             ON public.profiles;
 DROP POLICY IF EXISTS profiles_self_update           ON public.profiles;
 
--- Self read (no recursion — uses auth.uid() = id directly)
+-- Self read (no recursion - uses auth.uid() = id directly)
 CREATE POLICY profiles_self_read ON public.profiles
   FOR SELECT USING (auth.uid() = id);
 

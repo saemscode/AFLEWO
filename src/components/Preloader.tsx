@@ -221,7 +221,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
                 if (audioRef.current) {
                     audioRef.current.currentTime = 0;
                     audioRef.current.play().catch(() => {
-                        // Silently ignore — browser blocked autoplay
+                        // Silently ignore - browser blocked autoplay
                     });
                 }
 

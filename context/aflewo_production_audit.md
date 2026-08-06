@@ -1,10 +1,10 @@
-# AFLEWO — Full-Stack Production Readiness Audit
-**Mode: EXPLAIN ONLY — NO EXECUTE**
+# AFLEWO - Full-Stack Production Readiness Audit
+**Mode: EXPLAIN ONLY - NO EXECUTE**
 **Date: July 2026 | Author: Antigravity AI**
 
 ---
 
-## Preface — Known Context
+## Preface - Known Context
 | Item | Detail |
 |---|---|
 | Frontend | Next.js (App Router), hosted on Vercel |
@@ -24,7 +24,7 @@
 
 | Layer | % Ready | Already Covered | Assumed-But-Unverified | Known Gap |
 |---|---|---|---|---|
-| **Frontend delivery & scaling** | 75% | Vercel edge network, Next.js App Router, image optimization | Vercel free-tier concurrency limits untested under load | No Vercel Pro yet — free tier circuit breakers will trip at 7k simultaneous users |
+| **Frontend delivery & scaling** | 75% | Vercel edge network, Next.js App Router, image optimization | Vercel free-tier concurrency limits untested under load | No Vercel Pro yet - free tier circuit breakers will trip at 7k simultaneous users |
 | **Database & backend logic** | 65% | Supabase Pro, PgBouncer connection pooling, RLS fixed this session | PgBouncer default pool size (~25) not verified for spike load | No read replicas; no Supabase compute pre-scaling plan for event nights |
 | **Auth & identity** | 70% | Supabase Auth (email + OAuth), RLS hierarchy fully implemented | Session token refresh under load untested | Passkey/WebAuthn not yet built; attendance_admin role not in DB schema yet |
 | **Media/storage pipeline** | 40% | gallery_images table built, Cloudinary referenced | R2 mirror sync not verified; no lifecycle/retention policy defined | No CDN delivery strategy for audio/video stems; no upload size limits enforced |
@@ -39,7 +39,7 @@
 
 ---
 
-## b) Full Inventory — Tools, Capacity & Items of Interest
+## b) Full Inventory - Tools, Capacity & Items of Interest
 
 ### Hosting & Compute
 - Vercel (frontend, serverless functions, API routes)
@@ -58,8 +58,8 @@
 
 ### Media/Asset Storage & Delivery
 - Supabase Storage (currently used for gallery_images)
-- Cloudinary (referenced in codebase — image transformation, optimization)
-- Cloudflare R2 (S3-compatible, zero egress fees — mentioned as mirror target)
+- Cloudinary (referenced in codebase - image transformation, optimization)
+- Cloudflare R2 (S3-compatible, zero egress fees - mentioned as mirror target)
 - Audio/video stems for choir resources (no CDN delivery strategy yet)
 
 ### CDN, Caching & DDoS Protection
@@ -72,7 +72,7 @@
 - Vercel SSL (automatic, Let's Encrypt behind Cloudflare)
 
 ### Email & SMS Delivery
-- Brevo (confirmed in previous session — transactional email for auth/notifications)
+- Brevo (confirmed in previous session - transactional email for auth/notifications)
 - SMS gap: No SMS provider configured (relevant for attendance OTP fallback)
 
 ### Payments & Donations
@@ -104,7 +104,7 @@
 - Supabase Auth rate limits (built-in, default thresholds)
 
 ### Compliance & Data Residency
-- Supabase hosted on AWS (region unconfirmed — likely us-east-1)
+- Supabase hosted on AWS (region unconfirmed - likely us-east-1)
 - Kenyan Data Protection Act 2019 applies to AFLEWO's user data
 - No privacy policy / consent flow confirmed beyond Terms & Privacy pages
 
@@ -178,7 +178,7 @@
 | **Postmark** | Transactional email specialist | $15/mo for 10k | Industry-best deliverability | Marketing email not supported | Low |
 | **Africa's Talking** | SMS + USSD + voice for African networks | Pay-per-use (~$0.03/SMS Kenya) | **Kenya-native carrier integration** | SMS only | Low |
 
-**Recommendation:** Keep Brevo for email. Add **Africa's Talking** for SMS OTP (attendance PIN fallback) — it has direct Safaricom/Airtel integrations.
+**Recommendation:** Keep Brevo for email. Add **Africa's Talking** for SMS OTP (attendance PIN fallback) - it has direct Safaricom/Airtel integrations.
 
 ---
 
@@ -192,7 +192,7 @@
 | **Vercel Analytics** | Basic traffic analytics, built-in | Free on Pro plan | Zero config, already in codebase | No error tracking, no alerting | High |
 | **Cloudflare Analytics** | Traffic, threats, cache hit rate | Free with $5 plan | Already available right now, zero cost | No app-level error tracking | None |
 
-**Recommendation:** Add **Sentry** (free tier covers AFLEWO's volume) + **BetterStack** for uptime pings. Activate Cloudflare Analytics immediately — it's already paid for.
+**Recommendation:** Add **Sentry** (free tier covers AFLEWO's volume) + **BetterStack** for uptime pings. Activate Cloudflare Analytics immediately - it's already paid for.
 
 ---
 
@@ -235,8 +235,8 @@
 **Which actions create the most load:**
 - QR attendance write: Very cheap (single INSERT)
 - Profile dashboard fetch: Medium (3–4 SELECT with JOINs)
-- PDF download from Supabase Storage: **Heavy** — this is where CDN caching on Cloudflare/R2 is critical
-- Real-time features (live chat, prayer wall): **Very Heavy** — WebSockets need Supabase Realtime quotas checked
+- PDF download from Supabase Storage: **Heavy** - this is where CDN caching on Cloudflare/R2 is critical
+- Real-time features (live chat, prayer wall): **Very Heavy** - WebSockets need Supabase Realtime quotas checked
 
 ### Questions needing your direct input:
 - [ ] Has there been a previous AFLEWO Night with digital systems? What were the actual attendance numbers?
@@ -259,9 +259,9 @@ From the codebase, there is a `gallery_images` Supabase table (built this sessio
 - **Takedown/compliance:** A member photo that needs to be removed legally.
 
 ### Open questions needing your input:
-- [ ] What is the canonical source of truth — Cloudinary or R2? (If they drift, which wins?)
+- [ ] What is the canonical source of truth - Cloudinary or R2? (If they drift, which wins?)
 - [ ] Is there a retention policy? (e.g., event photos archived after 12 months to R2 cold storage?)
-- [ ] Who has delete permission — super_admin only, or also chapter_admin for their chapter's content?
+- [ ] Who has delete permission - super_admin only, or also chapter_admin for their chapter's content?
 - [ ] Is there a soft-delete / 30-day rollback window before permanent deletion?
 
 **Recommendation:** R2 as source of truth. Cloudinary as a transformation layer only (fetch from R2, transform, cache on Cloudflare). Soft-delete all assets (mark `deleted_at` in `gallery_images`), hard delete after 30 days via a pg_cron job.
@@ -290,7 +290,7 @@ From the codebase, there is a `gallery_images` Supabase table (built this sessio
 ### 3–5 Years:
 At 10,000+ active members with multi-country chapters:
 - Supabase Read Replicas become necessary
-- A dedicated mobile app (React Native / Expo) becomes justified — specifically for offline QR code display and attendance
+- A dedicated mobile app (React Native / Expo) becomes justified - specifically for offline QR code display and attendance
 - Multi-region Supabase (currently only available on Enterprise) if chapters span East Africa
 - An ops/infra responsibility handed to a dedicated technical lead within AFLEWO
 
@@ -304,7 +304,7 @@ At 10,000+ active members with multi-country chapters:
 | Supabase Pro | $25 |
 | Supabase Compute Add-on | ~$9 |
 | Cloudflare Workers Paid | $5 |
-| Vercel (Free tier — **risk**) | $0 |
+| Vercel (Free tier - **risk**) | $0 |
 | **Total** | **~$39/mo** |
 
 ### Questions needing your input:
@@ -320,18 +320,18 @@ At 10,000+ active members with multi-country chapters:
 
 ### What I can infer:
 - AFLEWO is Kenya-based with multi-chapter national reach
-- Members include phone numbers, attendance records, audition submissions, full names — all personal data under the **Kenya Data Protection Act 2019**
+- Members include phone numbers, attendance records, audition submissions, full names - all personal data under the **Kenya Data Protection Act 2019**
 - Event venues in Kenya may have variable connectivity (urban: good; rural/church venues: potentially 3G only on Safaricom/Airtel)
 
 ### Compliance exposure:
 - A Data Protection Officer (DPO) may be required if processing data at scale
 - A Privacy Notice must explicitly state what data is collected, why, and for how long
 - Members must be able to request deletion of their data (right to erasure)
-- Supabase's default data region (us-east-1) may be a DPA concern — Supabase does not currently offer an African region
+- Supabase's default data region (us-east-1) may be a DPA concern - Supabase does not currently offer an African region
 
 ### Connectivity / Low-bandwidth strategy:
 - The AFLEWO site should work on 3G (≥1Mbps). Current Next.js bundle size should be audited.
-- PDFs and audio stems must be cached on Cloudflare edge — not fetched from Supabase Storage on every access
+- PDFs and audio stems must be cached on Cloudflare edge - not fetched from Supabase Storage on every access
 - The QR code for attendance should be displayable **offline** on the member's phone (generated and cached as a static image on login, not fetched live)
 
 ### Questions needing your input:
@@ -358,7 +358,7 @@ This is dangerous for a live event with 7,000 users. There is zero real-time vis
 
 ---
 
-## Summary — The 5 Things To Do Before The Next Event
+## Summary - The 5 Things To Do Before The Next Event
 
 | Priority | Action | Cost | Time to implement |
 |---|---|---|---|

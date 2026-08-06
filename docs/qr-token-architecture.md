@@ -1,4 +1,4 @@
-# AFLEWO — QR Token Architecture & Migration Guide
+# AFLEWO - QR Token Architecture & Migration Guide
 
 This document defines the underlying cryptographic design, database schema, non-negotiables, collision mechanics, and future system migration paths for the AFLEWO Access Tier and QR Token system.
 
@@ -9,7 +9,7 @@ This document defines the underlying cryptographic design, database schema, non-
 The AFLEWO QR System provides dynamic, fingerprintable, access-controlled QR codes for events, registrations, and resources across all AFLEWO chapters.
 
 ### Key Goals
-1. **Opaque Payload:** The QR code encodes *nothing* decodable client-side — only a 22-character random lookup key (`token`).
+1. **Opaque Payload:** The QR code encodes *nothing* decodable client-side - only a 22-character random lookup key (`token`).
 2. **Stable Identity Fingerprint:** Users are tracked in analytics via `identity_fp = HMAC-SHA256(QR_SERVER_SECRET, user_id)` (base32, 16 bytes). Raw `user_id` is **never** exposed in QR codes, scans, or analytics logs.
 3. **Instance Salting:** Regenerating a QR code for the same user and resource produces a brand new `token`, `issued_at`, and `expires_at`, while preserving the identical `identity_fp`.
 4. **Single Source of Truth:** Tier resolution is handled by a single PostgreSQL function (`public.resolve_access_tier(uid)`).

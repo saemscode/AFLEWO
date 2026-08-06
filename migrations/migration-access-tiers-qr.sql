@@ -1,5 +1,5 @@
 -- ============================================================
---  AFLEWO — ACCESS TIER + QR TOKEN RECONCILIATION MIGRATION
+--  AFLEWO - ACCESS TIER + QR TOKEN RECONCILIATION MIGRATION
 --  Brings the live schema up to the governing-ruleset spec.
 --  Additive only: no existing column is dropped or renamed,
 --  no existing row's visible behavior changes on apply.
@@ -8,7 +8,7 @@
 -- ============================================================
 
 -- ────────────────────────────────────────────────────────────
---  1. ACCESS TIER — derived enum, never stored as a column
+--  1. ACCESS TIER - derived enum, never stored as a column
 -- ────────────────────────────────────────────────────────────
 
 DO $$ BEGIN
@@ -24,8 +24,8 @@ EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 
 -- ────────────────────────────────────────────────────────────
---  2. SERVICE HISTORY — year-scoped membership record
---     Deliberately NOT named "alumni" — public.alumni already
+--  2. SERVICE HISTORY - year-scoped membership record
+--     Deliberately NOT named "alumni" - public.alumni already
 --     exists as a curated showcase table, unrelated to tiers.
 -- ────────────────────────────────────────────────────────────
 
@@ -63,7 +63,7 @@ CREATE INDEX IF NOT EXISTS idx_service_history_user_id ON public.service_history
 CREATE INDEX IF NOT EXISTS idx_service_history_year    ON public.service_history(year);
 
 -- ────────────────────────────────────────────────────────────
---  3. SYSTEM SETTINGS — current_service_year lives here,
+--  3. SYSTEM SETTINGS - current_service_year lives here,
 --     not hardcoded in a function body
 -- ────────────────────────────────────────────────────────────
 
@@ -96,7 +96,7 @@ VALUES ('current_service_year', '2026'::jsonb)
 ON CONFLICT (key) DO NOTHING;
 
 -- ────────────────────────────────────────────────────────────
---  4. resolve_access_tier() — SINGLE SOURCE OF TRUTH
+--  4. resolve_access_tier() - SINGLE SOURCE OF TRUTH
 --     Called by every RLS policy AND by the Next.js QR route.
 --     Never re-implement tier logic anywhere else.
 -- ────────────────────────────────────────────────────────────
@@ -156,7 +156,7 @@ END;
 $$;
 
 -- ────────────────────────────────────────────────────────────
---  5. VISIBILITY STATE MACHINE — added to chapter_events
+--  5. VISIBILITY STATE MACHINE - added to chapter_events
 --     and resources. Defaults keep all existing rows at their
 --     current visible behavior.
 -- ────────────────────────────────────────────────────────────
@@ -188,14 +188,14 @@ ALTER TABLE public.resources
 -- allowed_role stays authoritative until explicit migration to min_tier.
 
 -- ────────────────────────────────────────────────────────────
---  6. QR TOKENS — opaque lookup key + stable identity
+--  6. QR TOKENS - opaque lookup key + stable identity
 --     fingerprint. Schema designed to never be changed once
 --     real tokens exist in production.
 -- ────────────────────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS public.qr_tokens (
   -- The opaque lookup key: 22-char base62 random (~131 bits entropy).
-  -- This is all that goes in the QR code — nothing decodable.
+  -- This is all that goes in the QR code - nothing decodable.
   token          TEXT PRIMARY KEY,
 
   -- HMAC-SHA256(SERVER_SECRET, user_id), base32-encoded, truncated to 16 bytes.
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS public.qr_tokens (
   -- At 128-bit output space, collision risk is negligible at any realistic AFLEWO scale.
   identity_fp    TEXT NOT NULL,
 
-  -- Raw user_id — NEVER returned to the client or logged in analytics.
+  -- Raw user_id - NEVER returned to the client or logged in analytics.
   -- Only identity_fp crosses the qr_tokens boundary in query results.
   user_id        UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
 
@@ -244,7 +244,7 @@ CREATE POLICY "qr_tokens_admin_read"
   );
 
 -- Insert is handled by the server-side route using the service-role key,
--- which bypasses RLS — this is intentional and safe because the route
+-- which bypasses RLS - this is intentional and safe because the route
 -- re-checks tier via resolve_access_tier() immediately before any insert.
 
 CREATE INDEX IF NOT EXISTS idx_qr_tokens_user_id     ON public.qr_tokens(user_id);
@@ -253,7 +253,7 @@ CREATE INDEX IF NOT EXISTS idx_qr_tokens_resource    ON public.qr_tokens(resourc
 CREATE INDEX IF NOT EXISTS idx_qr_tokens_expires_at  ON public.qr_tokens(expires_at);
 
 -- ────────────────────────────────────────────────────────────
---  7. PER-CHAPTER ROLLOUT FLAG — lets each chapter migrate
+--  7. PER-CHAPTER ROLLOUT FLAG - lets each chapter migrate
 --     off its Google Form link individually, no hard cutover.
 -- ────────────────────────────────────────────────────────────
 
@@ -261,11 +261,11 @@ ALTER TABLE public.chapters
   ADD COLUMN IF NOT EXISTS qr_mode TEXT NOT NULL DEFAULT 'external'
   CONSTRAINT chapters_qr_mode_check CHECK (qr_mode IN ('external', 'internal'));
 
--- All existing chapters keep qr_mode = 'external' — their current forms.gle
+-- All existing chapters keep qr_mode = 'external' - their current forms.gle
 -- links remain active until an admin flips a chapter to 'internal'.
 
 -- ────────────────────────────────────────────────────────────
---  8. AFLEWO NIGHT Oct 2, 2026 — template only
+--  8. AFLEWO NIGHT Oct 2, 2026 - template only
 --     Real venue + times must be confirmed before inserting.
 --     Uncomment and fill in when confirmed.
 -- ────────────────────────────────────────────────────────────
@@ -276,7 +276,7 @@ ALTER TABLE public.chapters
 -- SELECT
 --   id,
 --   'AFLEWO Night 2026',
---   'Continental all-night worship event — One God. One People. One Africa.',
+--   'Continental all-night worship event - One God. One People. One Africa.',
 --   'main_event',
 --   'REPLACE_WITH_REAL_VENUE',
 --   '2026-10-02 TT:TT:00+03',

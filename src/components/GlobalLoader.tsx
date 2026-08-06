@@ -14,7 +14,7 @@ interface LottieLoaderProps {
 }
 
 /**
- * GlobalLoader — unified Lottie-powered loading component used across
+ * GlobalLoader - unified Lottie-powered loading component used across
  * the entire AFLEWO site. Replace any existing spinner/placeholder with this.
  */
 export default function GlobalLoader({ label, fullScreen = true, size = 180 }: LottieLoaderProps) {

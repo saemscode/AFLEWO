@@ -11,7 +11,7 @@ interface ProfileYearJoinedFieldProps {
  * ProfileYearJoinedField
  *
  * Read-only display component for the profile page. Shows the year the user
- * first joined AFLEWO. No inline edit — the write-once guard in the DB means
+ * first joined AFLEWO. No inline edit - the write-once guard in the DB means
  * a normal update call would fail after the first set. Corrections go through
  * an admin contact flow (wired via onOpenCorrectionRequest).
  */
@@ -29,7 +29,7 @@ export default function ProfileYearJoinedField({
       {yearJoined ? (
         <p className="text-2xl font-black">{yearJoined}</p>
       ) : (
-        <p className="text-sm font-bold text-red-400/80">Not set — required</p>
+        <p className="text-sm font-bold text-red-400/80">Not set - required</p>
       )}
 
       {yearJoined && onOpenCorrectionRequest && (

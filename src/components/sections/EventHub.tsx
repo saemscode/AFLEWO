@@ -44,7 +44,7 @@ const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
 import FlipClockCountdown from "@/components/ui/FlipClock";
 
-// ─── Attendee Avatar Cluster — shown on calendar day cells with events ─────────
+// ─── Attendee Avatar Cluster - shown on calendar day cells with events ─────────
 function DayAvatarCluster({ dayEvents, isSelected }: { dayEvents: AFLEWOEvent[]; isSelected: boolean }) {
     const visible = dayEvents.slice(0, 3);
     const overflow = dayEvents.length - 3;
@@ -60,7 +60,7 @@ function DayAvatarCluster({ dayEvents, isSelected }: { dayEvents: AFLEWOEvent[];
                 {visible.map((ev, idx) => (
                     <div
                         key={ev.id}
-                        title={`${ev.chapter} — ${ev.title}`}
+                        title={`${ev.chapter} - ${ev.title}`}
                         className="w-[9px] h-[9px] rounded-full border border-black/50 shrink-0"
                         style={{
                             background: CHAPTER_AVATAR_COLOUR[ev.chapter] ?? "#D4AF37",
@@ -284,7 +284,7 @@ export default function EventHub() {
                                 ))}
                             </div>
 
-                            {/* Days grid — upgraded with avatar clusters */}
+                            {/* Days grid - upgraded with avatar clusters */}
                             <div className="grid grid-cols-7 gap-1">
                                 {Array.from({ length: getFirstDay(currentMonth) }).map((_, i) => (
                                     <div key={`e-${i}`} className="h-10 md:h-12" />
@@ -301,12 +301,11 @@ export default function EventHub() {
                                             whileTap={{ scale: 0.88 }}
                                             transition={SPRING}
                                             onClick={() => setSelectedDate(isSelected ? null : date)}
-                                            className={`relative h-10 md:h-12 rounded-xl text-sm font-bold transition-all flex flex-col items-center justify-start pt-1.5 ${
-                                                isSelected ? "bg-gold text-brown shadow-glow" :
-                                                isToday ? "bg-white/10 text-white border border-white/20" :
-                                                hasEvents ? "bg-white/5 hover:bg-white/10 text-white" :
-                                                "text-white/30 hover:bg-white/5 hover:text-white/60"
-                                            }`}
+                                            className={`relative h-10 md:h-12 rounded-xl text-sm font-bold transition-all flex flex-col items-center justify-start pt-1.5 ${isSelected ? "bg-gold text-brown shadow-glow" :
+                                                    isToday ? "bg-white/10 text-white border border-white/20" :
+                                                        hasEvents ? "bg-white/5 hover:bg-white/10 text-white" :
+                                                            "text-white/30 hover:bg-white/5 hover:text-white/60"
+                                                }`}
                                             style={{ WebkitTapHighlightColor: "transparent" }}
                                         >
                                             <span className="text-[12px] leading-none">{i + 1}</span>
@@ -340,7 +339,7 @@ export default function EventHub() {
                             className="rounded-2xl border border-white/6 px-5 py-4"
                             style={{ background: "rgba(255,255,255,0.014)", backdropFilter: "blur(16px)" }}
                         >
-                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-white/25 mb-3">Legend — Chapter Colours</p>
+                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-white/25 mb-3">Legend - Chapter Colours</p>
                             <div className="flex flex-wrap gap-2">
                                 {Object.entries(CHAPTER_AVATAR_COLOUR).slice(0, 8).map(([chapter, colour]) => (
                                     <div key={chapter} className="flex items-center gap-1.5">
@@ -382,11 +381,10 @@ export default function EventHub() {
                                                 whileTap={{ scale: 0.93 }}
                                                 transition={SPRING}
                                                 onClick={() => toggleFilter(c)}
-                                                className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border transition-all flex items-center gap-1.5 ${
-                                                    activeFilters.includes(c)
+                                                className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border transition-all flex items-center gap-1.5 ${activeFilters.includes(c)
                                                         ? `${chapterColors[c]} shadow-sm`
                                                         : "border-white/8 text-white/40 hover:border-white/20 hover:text-white/70"
-                                                }`}
+                                                    }`}
                                             >
                                                 {activeFilters.includes(c) && <SvgIcon name="check" size={10} />}
                                                 {/* Chapter avatar colour dot */}

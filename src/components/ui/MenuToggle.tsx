@@ -5,9 +5,9 @@ import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import animationData from "../../../public/menu-close-lottie.json";
 
 /**
- * MenuToggle — Lottie-driven hamburger ↔ close icon
+ * MenuToggle - Lottie-driven hamburger ↔ close icon
  *
- * Animation map (Q8QSoa57gH.json — 240 frames @ 60fps):
+ * Animation map (Q8QSoa57gH.json - 240 frames @ 60fps):
  *   Frame   0  → Menu (3 bars)
  *   Frame  60  → X (cross, fully formed)
  *   Frame 168  → Menu again (end of reverse sequence)
@@ -22,19 +22,19 @@ interface MenuToggleProps {
 }
 
 const FRAME_MENU = 0;
-const FRAME_X    = 60;
+const FRAME_X = 60;
 
 export default function MenuToggle({ isOpen, onToggle }: MenuToggleProps) {
-    const lottieRef  = useRef<LottieRefCurrentProps>(null);
-    const readyRef   = useRef(false);
-    const prevRef    = useRef<boolean | null>(null);
+    const lottieRef = useRef<LottieRefCurrentProps>(null);
+    const readyRef = useRef(false);
+    const prevRef = useRef<boolean | null>(null);
 
     // Once Lottie DOM is ready, snap to Menu state silently
     const handleReady = () => {
         lottieRef.current?.setSpeed(2.5);
         lottieRef.current?.goToAndStop(FRAME_MENU, true);
-        readyRef.current  = true;
-        prevRef.current   = false;
+        readyRef.current = true;
+        prevRef.current = false;
     };
 
     useEffect(() => {
@@ -68,7 +68,7 @@ export default function MenuToggle({ isOpen, onToggle }: MenuToggleProps) {
             aria-label={isOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={isOpen}
             onClick={onToggle}
-            // No background/border here — wrapper in Navbar provides that
+            // No background/border here - wrapper in Navbar provides that
             className="flex items-center justify-center focus:outline-none"
             style={{ WebkitTapHighlightColor: "transparent" }}
         >

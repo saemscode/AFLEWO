@@ -42,7 +42,7 @@ export async function POST(request: Request) {
 
     // Map track title to audition_category enum value
     const categoryMap: Record<string, string> = {
-      'Music & Choir': 'choir_soprano',      // Default — user refines in portal
+      'Music & Choir': 'choir_soprano',      // Default - user refines in portal
       'Production & Media': 'production_camera',
       'Hospitality & Logistics': 'volunteer_ushering',
       'Partners & Sponsors': 'volunteer_hospitality',
@@ -102,7 +102,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: `Application received for ${track} — ${chapter} chapter.`,
+      message: `Application received for ${track} - ${chapter} chapter.`,
       authenticated: !!userId,
     });
 

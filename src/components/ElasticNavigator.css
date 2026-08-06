@@ -1,6 +1,6 @@
-/* ElasticNavigator.css — Free-floating right-edge wheel nav, no container */
+/* ElasticNavigator.css - Free-floating right-edge wheel nav, no container */
 
-/* FAB trigger button — no background panel behind it, purely the circular button */
+/* FAB trigger button - no background panel behind it, purely the circular button */
 .fab-container {
   z-index: 100;
 }

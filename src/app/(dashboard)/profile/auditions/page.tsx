@@ -11,30 +11,30 @@ import SvgIcon from "@/components/ui/SvgIcon";
 
 // ─── Category display metadata ─────────────────────────────────
 const categoryMeta: Record<AuditionCategory, { label: string; section: string; icon: string }> = {
-  choir_soprano:          { label: "Soprano",          section: "🎤 Choir",      icon: "voice_selection" },
-  choir_alto:             { label: "Alto",              section: "🎤 Choir",      icon: "voice_selection" },
-  choir_tenor:            { label: "Tenor",             section: "🎤 Choir",      icon: "voice_selection" },
-  choir_bass:             { label: "Bass",              section: "🎤 Choir",      icon: "voice_selection" },
-  band_keys:              { label: "Keys / Piano",      section: "🎸 Band",       icon: "piano" },
-  band_guitar:            { label: "Guitar",            section: "🎸 Band",       icon: "queue_music" },
-  band_drums:             { label: "Drums",             section: "🎸 Band",       icon: "queue_music" },
-  band_bass:              { label: "Bass Guitar",       section: "🎸 Band",       icon: "queue_music" },
-  band_strings:           { label: "Strings",           section: "🎸 Band",       icon: "queue_music" },
-  band_wind:              { label: "Wind Instruments",  section: "🎸 Band",       icon: "queue_music" },
-  production_camera:      { label: "Camera",            section: "🎬 Production", icon: "videocam" },
-  production_sound:       { label: "Sound Engineer",    section: "🎬 Production", icon: "tune" },
-  production_livestream:  { label: "Livestream Desk",   section: "🎬 Production", icon: "live_tv" },
-  volunteer_ushering:     { label: "Ushering",          section: "🤝 Volunteer",  icon: "hail" },
-  volunteer_security:     { label: "Security",          section: "🤝 Volunteer",  icon: "security" },
-  volunteer_hospitality:  { label: "Hospitality",       section: "🤝 Volunteer",  icon: "favorite" },
-  dance:                  { label: "Dance",             section: "💃 Dance",      icon: "self_improvement" },
+  choir_soprano: { label: "Soprano", section: "🎤 Choir", icon: "voice_selection" },
+  choir_alto: { label: "Alto", section: "🎤 Choir", icon: "voice_selection" },
+  choir_tenor: { label: "Tenor", section: "🎤 Choir", icon: "voice_selection" },
+  choir_bass: { label: "Bass", section: "🎤 Choir", icon: "voice_selection" },
+  band_keys: { label: "Keys / Piano", section: "🎸 Band", icon: "piano" },
+  band_guitar: { label: "Guitar", section: "🎸 Band", icon: "queue_music" },
+  band_drums: { label: "Drums", section: "🎸 Band", icon: "queue_music" },
+  band_bass: { label: "Bass Guitar", section: "🎸 Band", icon: "queue_music" },
+  band_strings: { label: "Strings", section: "🎸 Band", icon: "queue_music" },
+  band_wind: { label: "Wind Instruments", section: "🎸 Band", icon: "queue_music" },
+  production_camera: { label: "Camera", section: "🎬 Production", icon: "videocam" },
+  production_sound: { label: "Sound Engineer", section: "🎬 Production", icon: "tune" },
+  production_livestream: { label: "Livestream Desk", section: "🎬 Production", icon: "live_tv" },
+  volunteer_ushering: { label: "Ushering", section: "🤝 Volunteer", icon: "hail" },
+  volunteer_security: { label: "Security", section: "🤝 Volunteer", icon: "security" },
+  volunteer_hospitality: { label: "Hospitality", section: "🤝 Volunteer", icon: "favorite" },
+  dance: { label: "Dance", section: "💃 Dance", icon: "self_improvement" },
 };
 
 const statusMeta = {
-  pending:     { label: "Under Review",  color: "text-yellow-400 bg-yellow-400/10 border-yellow-400/20" },
-  shortlisted: { label: "Shortlisted",   color: "text-orange-400 bg-orange-400/10 border-orange-400/20" },
-  accepted:    { label: "Accepted!",     color: "text-emerald bg-emerald/10 border-emerald/20" },
-  rejected:    { label: "Not Selected",  color: "text-red-400 bg-red-400/10 border-red-400/20" },
+  pending: { label: "Under Review", color: "text-yellow-400 bg-yellow-400/10 border-yellow-400/20" },
+  shortlisted: { label: "Shortlisted", color: "text-orange-400 bg-orange-400/10 border-orange-400/20" },
+  accepted: { label: "Accepted!", color: "text-emerald bg-emerald/10 border-emerald/20" },
+  rejected: { label: "Not Selected", color: "text-red-400 bg-red-400/10 border-red-400/20" },
 };
 
 // ─── Cloudinary direct upload ─────────────────────────────────
@@ -285,7 +285,7 @@ export default function AuditionsPage() {
           {/* Audio upload */}
           <div className="space-y-2">
             <label className="text-[10px] font-black uppercase tracking-widest text-gold">
-              Audio Sample (MP3, M4A, WAV — max 20MB)
+              Audio Sample (MP3, M4A, WAV - max 20MB)
             </label>
             <div
               className="border-2 border-dashed border-white/10 rounded-xl p-8 text-center cursor-pointer hover:border-gold/30 transition-colors"

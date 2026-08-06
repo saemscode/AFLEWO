@@ -20,28 +20,28 @@ interface DashboardData {
 }
 
 const roleLabels: Record<string, { label: string; color: string; dot: string }> = {
-  super_admin:   { label: "Super Admin",    color: "text-red-400 bg-red-400/10 border-red-400/20",           dot: "bg-red-400" },
-  chapter_admin: { label: "Chapter Admin",  color: "text-orange-400 bg-orange-400/10 border-orange-400/20",  dot: "bg-orange-400" },
-  choir_member:  { label: "Choir Member",   color: "text-gold bg-gold/10 border-gold/20",                   dot: "bg-gold" },
-  band_member:   { label: "Band Member",    color: "text-blue-400 bg-blue-400/10 border-blue-400/20",        dot: "bg-blue-400" },
-  volunteer:     { label: "Volunteer",      color: "text-emerald bg-emerald/10 border-emerald/20",           dot: "bg-emerald-400" },
-  applicant:     { label: "Applicant",      color: "text-white/50 bg-white/5 border-white/10",               dot: "bg-white/30" },
+  super_admin: { label: "Super Admin", color: "text-red-400 bg-red-400/10 border-red-400/20", dot: "bg-red-400" },
+  chapter_admin: { label: "Chapter Admin", color: "text-orange-400 bg-orange-400/10 border-orange-400/20", dot: "bg-orange-400" },
+  choir_member: { label: "Choir Member", color: "text-gold bg-gold/10 border-gold/20", dot: "bg-gold" },
+  band_member: { label: "Band Member", color: "text-blue-400 bg-blue-400/10 border-blue-400/20", dot: "bg-blue-400" },
+  volunteer: { label: "Volunteer", color: "text-emerald bg-emerald/10 border-emerald/20", dot: "bg-emerald-400" },
+  applicant: { label: "Applicant", color: "text-white/50 bg-white/5 border-white/10", dot: "bg-white/30" },
 };
 
 const auditionStatusMeta: Record<string, { label: string; icon: any; color: string }> = {
-  pending:     { label: "Under Review",   icon: "hourglass", color: "text-yellow-400" },
-  shortlisted: { label: "Shortlisted",    icon: "star",      color: "text-orange-400" },
-  accepted:    { label: "Accepted",       icon: "check_circle", color: "text-emerald" },
-  rejected:    { label: "Not Selected",   icon: "close",     color: "text-red-400" },
+  pending: { label: "Under Review", icon: "hourglass", color: "text-yellow-400" },
+  shortlisted: { label: "Shortlisted", icon: "star", color: "text-orange-400" },
+  accepted: { label: "Accepted", icon: "check_circle", color: "text-emerald" },
+  rejected: { label: "Not Selected", icon: "close", color: "text-red-400" },
 };
 
 const eventTypeLabel: Record<string, string> = {
-  main_event:   "Main Event",
-  rehearsal:    "Rehearsal",
-  audition:     "Audition",
-  prayer_circle:"JCC Bamburi Centre",
-  outreach:     "Outreach",
-  other:        "Other",
+  main_event: "Main Event",
+  rehearsal: "Rehearsal",
+  audition: "Audition",
+  prayer_circle: "JCC Bamburi Centre",
+  outreach: "Outreach",
+  other: "Other",
 };
 
 export default function PortalHomePage() {
@@ -87,12 +87,12 @@ export default function PortalHomePage() {
         // Upcoming events for this chapter
         profile.chapter_id
           ? supabase
-              .from("chapter_events")
-              .select("*")
-              .eq("chapter_id", profile.chapter_id)
-              .gte("starts_at", new Date().toISOString())
-              .order("starts_at", { ascending: true })
-              .limit(3)
+            .from("chapter_events")
+            .select("*")
+            .eq("chapter_id", profile.chapter_id)
+            .gte("starts_at", new Date().toISOString())
+            .order("starts_at", { ascending: true })
+            .limit(3)
           : Promise.resolve({ data: [], error: null }),
 
         // Recent resources (accessible to this role)
@@ -106,18 +106,18 @@ export default function PortalHomePage() {
         // Attendance stats
         profile.chapter_id
           ? supabase
-              .from("attendance")
-              .select("status")
-              .eq("user_id", profile.id)
+            .from("attendance")
+            .select("status")
+            .eq("user_id", profile.id)
           : Promise.resolve({ data: [], error: null }),
 
         // Chapter name
         profile.chapter_id
           ? supabase
-              .from("chapters")
-              .select("name")
-              .eq("id", profile.chapter_id)
-              .single()
+            .from("chapters")
+            .select("name")
+            .eq("id", profile.chapter_id)
+            .single()
           : Promise.resolve({ data: null, error: null }),
       ]);
 
@@ -265,7 +265,7 @@ export default function PortalHomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           <p className="text-[10px] text-white/30 uppercase tracking-widest font-black relative z-10">Attendance</p>
           <p className="text-3xl font-black text-gold relative z-10">
-            {data.attendanceRate !== null ? `${data.attendanceRate}%` : "—"}
+            {data.attendanceRate !== null ? `${data.attendanceRate}%` : "-"}
           </p>
           {data.attendanceRate !== null && (
             <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden relative z-10">

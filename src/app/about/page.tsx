@@ -11,10 +11,10 @@ import SvgIcon from "@/components/ui/SvgIcon";
 gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
-    { title: "Unity", desc: "Bringing the diverse church of Africa into a single, cohesive voice of worship — across denominations, nations, and languages.", icon: "groups" },
+    { title: "Unity", desc: "Bringing the diverse church of Africa into a single, cohesive voice of worship - across denominations, nations, and languages.", icon: "groups" },
     { title: "Hope", desc: "Stirring up the expectation of God's goodness across the 'prophetic house' of Africa through music and intercession.", icon: "auto_awesome" },
-    { title: "Excellence", desc: "Presenting our worship with the highest standard of musical and logistical skill — because what we offer God deserves our best.", icon: "verified" },
-    { title: "Intercession", desc: "Standing in the gap for nations like DR Congo, Nigeria, and South Sudan — praying them into their prophetic destiny.", icon: "favorite" },
+    { title: "Excellence", desc: "Presenting our worship with the highest standard of musical and logistical skill - because what we offer God deserves our best.", icon: "verified" },
+    { title: "Intercession", desc: "Standing in the gap for nations like DR Congo, Nigeria, and South Sudan - praying them into their prophetic destiny.", icon: "favorite" },
 ];
 
 const timeline = [
@@ -99,7 +99,7 @@ const leadership = [
         name: "[Name Pending]",
         role: "Founding Production Director",
         tenure: "2004 – [Year]",
-        desc: "Oversaw the technical production infrastructure for the first AFLEWO gatherings — sound, lighting, and live stream. Established the production excellence standard that defines every AFLEWO event.",
+        desc: "Oversaw the technical production infrastructure for the first AFLEWO gatherings - sound, lighting, and live stream. Established the production excellence standard that defines every AFLEWO event.",
         image: "/mission-1.jpg",
         confirmed: false,
     },
@@ -124,7 +124,7 @@ function AlumniUpdateModal({ onClose }: { onClose: () => void }) {
         e.preventDefault();
         setSubmitting(true);
         await new Promise((r) => setTimeout(r, 1200));
-        const subject = encodeURIComponent(`AFLEWO Alumni Registration — ${form.name}`);
+        const subject = encodeURIComponent(`AFLEWO Alumni Registration - ${form.name}`);
         const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nChapter: ${form.chapter}\nYears of Service: ${form.years}\nRole: ${form.role}`);
         window.location.href = `mailto:alumni@aflewo.org?subject=${subject}&body=${body}`;
         setSubmitting(false);
@@ -198,10 +198,10 @@ function AlumniUpdateModal({ onClose }: { onClose: () => void }) {
         </div>
     );
 }
-
 export default function AboutPage() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [showAlumniModal, setShowAlumniModal] = useState(false);
+    const [imageError, setImageError] = useState<Record<number, boolean>>({});
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -215,7 +215,7 @@ export default function AboutPage() {
                 x: (i) => (i % 2 === 0 ? -60 : 60), opacity: 0, stagger: 0.15, duration: 1, ease: "power3.out",
             });
             gsap.from(".leader-card", {
-                scrollTrigger: { trigger: ".leadership-grid", start: "top 95%", once: true },
+                scrollTrigger: { trigger: ".leadership-grid", start: "top 85%", once: true },
                 y: 40, opacity: 0, stagger: 0.12, duration: 0.9, ease: "power3.out",
             });
         }, containerRef);
@@ -237,7 +237,7 @@ export default function AboutPage() {
                             <span className="text-gold">BEHIND THE ALTAR.</span>
                         </h1>
                         <p className="text-2xl text-foreground/60 font-medium leading-relaxed italic">
-                            AFLEWO — Africa Let&apos;s Worship — is a movement birthed from the heart of Daystar University alumni,
+                            AFLEWO - Africa Let&apos;s Worship - is a movement birthed from the heart of Daystar University alumni,
                             committed to raising an annual altar of worship and prayer for the nations of Africa since 2004.
                         </p>
                     </div>
@@ -280,7 +280,7 @@ export default function AboutPage() {
                             <h2 className="text-4xl font-black tracking-tight text-white">A PROPHETIC <span className="text-gold">HOUSE.</span></h2>
                             <p className="text-white/60 font-medium leading-loose text-lg">
                                 To see all of Africa seeing itself through the eyes of its Maker. We achieve this through corporate worship,
-                                establishing local chapters that maintain the pulse of intercession in every major African city — a prophetic house
+                                establishing local chapters that maintain the pulse of intercession in every major African city - a prophetic house
                                 that never closes its doors.
                             </p>
                         </div>
@@ -315,7 +315,7 @@ export default function AboutPage() {
                         <h2 className="text-5xl font-black tracking-tighter">A HISTORY OF <span className="text-gold">ALTARS.</span></h2>
                     </div>
                     <div className="relative">
-                        {/* Centre line — desktop only */}
+                        {/* Centre line - desktop only */}
                         <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gold/20 -translate-x-1/2" />
                         <div className="space-y-16">
                             {timeline.map((item, i) => (
@@ -348,33 +348,38 @@ export default function AboutPage() {
                     </div>
                     <div className="leadership-grid grid grid-cols-1 md:grid-cols-3 gap-8">
                         {leadership.map((leader, i) => (
-                            <div key={i} className={`leader-card glass-card-elevated p-8 rounded-2xl group transition-all space-y-6 relative overflow-hidden ${
-                                leader.confirmed
+                            <div key={i} className={`leader-card glass-card-elevated p-8 rounded-2xl group transition-all space-y-6 relative overflow-hidden ${leader.confirmed
                                     ? "border border-white/5 hover:border-gold/30"
                                     : "border border-dashed border-white/10 hover:border-gold/20"
-                            }`}>
+                                }`}>
                                 {!leader.confirmed && (
                                     <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-gold/10 border border-gold/20">
                                         <span className="text-[8px] font-black uppercase tracking-widest text-gold/60">Details Pending</span>
                                     </div>
                                 )}
                                 {/* Leader portrait */}
-                                <div className={`w-20 h-20 rounded-full border-2 border-gold/30 group-hover:border-gold transition-colors overflow-hidden relative bg-gradient-to-br from-gold/20 to-gold/5 flex-shrink-0 ${
-                                    !leader.confirmed ? "opacity-40" : ""
-                                }`}>
-                                    <Image
-                                        src={leader.image}
-                                        alt={leader.name}
-                                        fill
-                                        sizes="80px"
-                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                                    />
+                                <div className={`w-20 h-20 rounded-full border-2 border-gold/30 group-hover:border-gold transition-colors overflow-hidden relative bg-gradient-to-br from-gold/20 to-gold/5 flex-shrink-0 ${!leader.confirmed ? "opacity-40" : ""
+                                    }`}>
+                                    {!imageError[i] ? (
+                                        <Image
+                                            src={leader.image}
+                                            alt={leader.name}
+                                            fill
+                                            sizes="80px"
+                                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                            onError={() => setImageError(prev => ({ ...prev, [i]: true }))}
+                                        />
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center bg-brown/60">
+                                            <span className="text-gold font-black text-2xl uppercase select-none pointer-events-none">{leader.name.charAt(0)}</span>
+                                        </div>
+                                    )}
                                     {!leader.confirmed && (
                                         <div className="absolute inset-0 flex items-center justify-center bg-background/60">
                                             <SvgIcon name="user" size={32} className="text-gold/40" />
                                         </div>
                                     )}
-                                    {leader.confirmed && (
+                                    {leader.confirmed && !imageError[i] && (
                                         <span className="absolute inset-0 flex items-center justify-center text-gold font-black text-3xl select-none pointer-events-none" aria-hidden="true" style={{ mixBlendMode: "overlay", opacity: 0.4 }}>
                                             {leader.name.charAt(0)}
                                         </span>
@@ -398,7 +403,7 @@ export default function AboutPage() {
                     <div className="flex-1 space-y-8">
                         <h2 className="text-5xl font-black tracking-tighter">THE SING AFRICA <br /><span className="text-gold">LEGACY.</span></h2>
                         <p className="text-foreground/60 text-lg font-medium leading-relaxed">
-                            Birthed in October 2003, the alumni of Sing Africa — Daystar University&apos;s flagship choir — sought to create
+                            Birthed in October 2003, the alumni of Sing Africa - Daystar University&apos;s flagship choir - sought to create
                             a united front for the church. Under the leadership of Timothy Kaberia and Ruguru,
                             the phrase &quot;Africa Let&apos;s Worship&quot; became their anthem. Twenty-two years later, that phrase has mobilised
                             over 7,000 alumni and touched four nations.
