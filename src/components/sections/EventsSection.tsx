@@ -215,7 +215,7 @@ export default function EventsSection({
                                                     style={{ borderColor: `${colour}30`, background: `${colour}10`, color: colour }}
                                                     title="Open in Google Maps"
                                                 >
-                                                    <SvgIcon name="location" size={13} />
+                                                    <SvgIcon name="location_on" size={13} />
                                                 </a>
                                             )}
                                         </div>

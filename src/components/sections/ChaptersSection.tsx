@@ -617,7 +617,7 @@ export default function ChaptersSection() {
                     {/* Left block: chip + title */}
                     <div className="max-w-2xl space-y-6 max-[400px]:mx-auto">
                         <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-gold text-[10px] font-black uppercase tracking-[0.2em] max-[400px]:mx-auto">
-                            <SvgIcon name="location" size={12} /> AFLEWO Chapters
+                            <SvgIcon name="location_on" size={12} /> AFLEWO Chapters
                         </div>
                         <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] max-[400px]:mx-auto">
                             OUR <br /><span className="text-gold">CHAPTERS</span>
@@ -693,7 +693,7 @@ export default function ChaptersSection() {
                                         <span>Since {chapter.established}</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-white/50">
-                                        <SvgIcon name="location" size={14} className="text-gold" />
+                                        <SvgIcon name="location_on" size={14} className="text-gold" />
                                         <span className="truncate">{chapter.venue.split(",")[0]}</span>
                                     </div>
                                     {chapter.capacity && (

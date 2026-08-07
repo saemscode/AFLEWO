@@ -17,50 +17,45 @@ interface MediaItem {
     year: string;
     image: string;
     layout: "hero" | "square";   // explicit layout variants
-    type: "photo" | "video" | "documentary";
-    views?: string;
+    type: "video" | "documentary" | "gallery";
     chapter?: string;
 }
 
 const mediaItems: MediaItem[] = [
     {
-        title: "The Altar of 15,000",
-        category: "Main Event",
+        title: "20 Years of AFLEWO",
+        category: "Media",
         year: "2024",
         image: "/archival-1.jpg",
         layout: "hero",
-        type: "video",
-        views: "25K",
+        type: "gallery",
         chapter: "Nairobi"
     },
     {
         title: "Night of Worship",
-        category: "Coastal Revival",
+        category: "Media",
         year: "2016",
         image: "/archival-2.jpg",
         layout: "square",
-        type: "photo",
-        views: "8K",
+        type: "gallery",
         chapter: "Mombasa"
     },
     {
         title: "A Decade of Grace",
-        category: "Documentary",
+        category: "Media",
         year: "2014",
         image: "/mission-1.jpg",
         layout: "square",
         type: "documentary",
-        views: "50K",
         chapter: "Continental"
     },
     {
         title: "Coast Revival",
-        category: "Historical",
+        category: "Media",
         year: "2009",
         image: "/archival-2.jpg",
         layout: "hero",
-        type: "photo",
-        views: "5K",
+        type: "gallery",
         chapter: "Mombasa"
     }
 ];
@@ -159,11 +154,6 @@ function MediaCard({ item, index }: { item: MediaItem; index: number }) {
                                 </span>
                             )}
                         </div>
-                        {item.views && (
-                            <span className="flex items-center gap-1 text-[10px] font-black tracking-widest text-white/50 bg-black/40 px-2 py-1 rounded-full border border-white/5" style={{ backdropFilter: "blur(8px)" }}>
-                                <SvgIcon name="visibility" size={10} /> {item.views}
-                            </span>
-                        )}
                     </div>
 
                     {/* Bottom Row: Text & Action */}

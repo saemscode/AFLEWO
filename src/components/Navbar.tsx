@@ -17,7 +17,6 @@ const links = [
     { name: "Events", href: "/events" },
     { name: "Media", href: "/media" },
     { name: "Testify", href: "/testify" },
-    { name: "Join", href: "/join" },
 ];
 
 const socialItems = [
@@ -189,7 +188,7 @@ export default function Navbar() {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`relative px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.18em] transition-colors duration-200 ${isActive
+                                    className={`relative px-4 py-2 rounded-full text-[10px] font-normal font-nav uppercase tracking-[0.18em] transition-colors duration-200 ${isActive
                                         ? "text-gold"
                                         : "text-white/60 hover:text-white"
                                         }`}
@@ -248,7 +247,7 @@ export default function Navbar() {
                             key={link.name}
                             href={link.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className={`text-3xl font-black uppercase tracking-[0.25em] transition-all duration-200 hover:scale-105 ${isActive ? "text-gold scale-105" : "text-white/60 hover:text-gold"
+                            className={`text-3xl font-normal font-nav uppercase tracking-[0.25em] transition-all duration-200 hover:scale-105 ${isActive ? "text-gold scale-105" : "text-white/60 hover:text-gold"
                                 }`}
                         >
                             {link.name}
@@ -259,7 +258,7 @@ export default function Navbar() {
                 <Link
                     href="/join"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="press-scale mt-4 bg-white text-brown px-14 py-5 rounded-full font-black text-xs uppercase tracking-[0.2em] shadow-glow hover:bg-gold transition-all duration-300"
+                    className="press-scale mt-4 bg-white text-brown px-14 py-5 rounded-full font-normal font-nav text-xs uppercase tracking-[0.2em] shadow-glow hover:bg-gold transition-all duration-300"
                 >
                     Connect Now
                 </Link>
