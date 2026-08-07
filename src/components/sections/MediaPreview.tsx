@@ -16,7 +16,7 @@ interface MediaItem {
     category: string;
     year: string;
     image: string;
-    size: "large" | "medium" | "small";
+    layout: "hero" | "square";   // explicit layout variants
     type: "photo" | "video" | "documentary";
     views?: string;
     chapter?: string;
@@ -28,7 +28,7 @@ const mediaItems: MediaItem[] = [
         category: "Main Event",
         year: "2024",
         image: "/archival-1.jpg",
-        size: "large",
+        layout: "hero",
         type: "video",
         views: "25K",
         chapter: "Nairobi"
@@ -38,7 +38,7 @@ const mediaItems: MediaItem[] = [
         category: "Coastal Revival",
         year: "2016",
         image: "/archival-2.jpg",
-        size: "small",
+        layout: "square",
         type: "photo",
         views: "8K",
         chapter: "Mombasa"
@@ -48,7 +48,7 @@ const mediaItems: MediaItem[] = [
         category: "Documentary",
         year: "2014",
         image: "/mission-1.jpg",
-        size: "medium",
+        layout: "square",
         type: "documentary",
         views: "50K",
         chapter: "Continental"
@@ -58,7 +58,7 @@ const mediaItems: MediaItem[] = [
         category: "Historical",
         year: "2009",
         image: "/archival-2.jpg",
-        size: "small",
+        layout: "hero",
         type: "photo",
         views: "5K",
         chapter: "Mombasa"
@@ -69,35 +69,27 @@ const mediaItems: MediaItem[] = [
 function MediaCard({ item, index }: { item: MediaItem; index: number }) {
     const shouldReduceMotion = useReducedMotion();
     const [hovered, setHovered] = useState(false);
-    const cardRef = useRef<HTMLAnchorElement>(null);
 
-    // Magnetic button effect for the play/view icon
-    const [magneticPos, setMagneticPos] = useState({ x: 0, y: 0 });
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (shouldReduceMotion || !cardRef.current) return;
-        const rect = cardRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left) - rect.width / 2;
-        const y = (e.clientY - rect.top) - rect.height / 2;
-        // Move the button slightly towards the cursor (magnetic effect)
-        setMagneticPos({ x: x * 0.15, y: y * 0.15 });
+    const getTypeIcon = (type: string, isHero: boolean) => {
+        const size = isHero ? 32 : 20;
+        return (type === "video" || type === "documentary")
+            ? <SvgIcon name="play_arrow" size={size} />
+            : <SvgIcon name="visibility" size={size} />;
     };
 
-    const handleMouseLeave = () => {
-        setHovered(false);
-        setMagneticPos({ x: 0, y: 0 });
-    };
+    const isHero = item.layout === "hero";
 
-    const getTypeIcon = (type: string, size: "large" | "medium" | "small") => {
-        const iconSize = size === "large" ? 32 : size === "medium" ? 24 : 16;
-        return (type === "video" || type === "documentary") 
-            ? <SvgIcon name="play_arrow" size={iconSize} />
-            : <SvgIcon name="visibility" size={iconSize} />;
-    };
+    // Responsive grid spans and heights – no row numbers, purely column spans
+    const gridClasses = isHero
+        ? "col-span-1 sm:col-span-2 lg:col-span-4 h-64 sm:h-72 lg:h-[420px]"
+        : "col-span-1 sm:col-span-1 lg:col-span-2 h-56 sm:h-64 lg:h-[260px]";
 
-    const isLarge = item.size === "large";
-    const isMedium = item.size === "medium";
-    
+    const textSize = isHero
+        ? "text-4xl md:text-5xl lg:text-6xl"
+        : "text-2xl md:text-3xl";
+
+    const watermarkSize = isHero ? "text-6xl" : "text-3xl";
+
     const delay = (i: number) => shouldReduceMotion ? { duration: 0.15 } : { ...SPRING_IN, delay: i * 0.05 };
 
     return (
@@ -106,23 +98,17 @@ function MediaCard({ item, index }: { item: MediaItem; index: number }) {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={delay(index)}
-            className={`
-                ${isLarge ? "col-span-2 row-span-2" : ""}
-                ${isMedium ? "col-span-2 row-span-1" : ""}
-                ${item.size === "small" ? "col-span-1 row-span-1" : ""}
-            `}
+            className={gridClasses}
         >
             <Link
-                ref={cardRef}
                 href="/media"
                 onMouseEnter={() => setHovered(true)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
+                onMouseLeave={() => setHovered(false)}
                 className={`group relative block w-full h-full rounded-[2rem] overflow-hidden border border-white/8 cursor-pointer transform-gpu`}
                 style={{ WebkitTapHighlightColor: "transparent" }}
             >
                 {/* Background Image & Zoom */}
-                <motion.div 
+                <motion.div
                     className="absolute inset-0 w-full h-full"
                     animate={{ scale: hovered ? 1.05 : 1, filter: hovered ? "grayscale(0%)" : "grayscale(100%)" }}
                     transition={{ duration: 1.2, ease: "easeOut" }}
@@ -151,7 +137,7 @@ function MediaCard({ item, index }: { item: MediaItem; index: number }) {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
                         >
-                            <span className={`text-white font-black tracking-[0.4em] uppercase select-none ${isLarge ? 'text-6xl' : 'text-3xl'}`}>
+                            <span className={`text-white font-black tracking-[0.4em] uppercase select-none ${watermarkSize}`}>
                                 AFLEWO
                             </span>
                         </motion.div>
@@ -160,7 +146,7 @@ function MediaCard({ item, index }: { item: MediaItem; index: number }) {
 
                 {/* Content Container */}
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-20">
-                    
+
                     {/* Top Row: Badges */}
                     <div className="flex justify-between items-start gap-2">
                         <div className="flex flex-wrap gap-2">
@@ -182,35 +168,34 @@ function MediaCard({ item, index }: { item: MediaItem; index: number }) {
 
                     {/* Bottom Row: Text & Action */}
                     <div className="flex items-end justify-between gap-4">
-                        <motion.div 
+                        <motion.div
                             className="space-y-1"
                             animate={{ y: hovered ? 0 : 8 }}
                             transition={SPRING}
                         >
                             <span className="text-gold text-[10px] font-black uppercase tracking-[0.25em] block">{item.year}</span>
-                            <h3 className={`font-black text-white leading-tight tracking-tight ${isLarge ? "text-4xl md:text-5xl" : isMedium ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"}`}>
+                            <h3 className={`font-black text-white leading-tight tracking-tight ${textSize}`}>
                                 {item.title}
                             </h3>
                         </motion.div>
 
+                        {/* Button with only scale animation – no magnetic movement */}
                         <motion.div
-                            animate={{ 
-                                x: magneticPos.x, 
-                                y: magneticPos.y,
+                            animate={{
                                 scale: hovered ? 1 : 0.8,
-                                opacity: hovered ? 1 : 0 
+                                opacity: hovered ? 1 : 0
                             }}
                             transition={SPRING}
-                            className={`shrink-0 bg-gold text-brown rounded-full flex items-center justify-center shadow-glow ${item.size === "small" ? "p-3" : "p-4 md:p-5"}`}
+                            className={`shrink-0 bg-gold text-brown rounded-full flex items-center justify-center shadow-glow ${isHero ? "p-4 md:p-5" : "p-3"}`}
                         >
-                            {getTypeIcon(item.type, item.size)}
+                            {getTypeIcon(item.type, isHero)}
                         </motion.div>
                     </div>
 
                 </div>
 
                 {/* Hover border effect */}
-                <motion.div 
+                <motion.div
                     className="absolute inset-0 border-[3px] border-gold/0 rounded-[2rem] pointer-events-none z-30"
                     animate={{ borderColor: hovered ? "rgba(212,175,55,0.3)" : "rgba(212,175,55,0)" }}
                     transition={{ duration: 0.3 }}
@@ -223,7 +208,7 @@ function MediaCard({ item, index }: { item: MediaItem; index: number }) {
 // ─── Main Section ─────────────────────────────────────────────────────────────
 export default function MediaPreview() {
     const shouldReduceMotion = useReducedMotion();
-    
+
     const stagger = (i: number) => shouldReduceMotion ? { duration: 0.15 } : { ...SPRING_IN, delay: i * 0.05 };
 
     const stats = [
@@ -260,7 +245,7 @@ export default function MediaPreview() {
                             20 years of worship captured. From the first gathering in 2004 to today's continental movement.
                         </p>
                     </div>
-                    
+
                     <motion.div
                         whileTap={{ scale: 0.96 }}
                         transition={SPRING}
@@ -276,8 +261,8 @@ export default function MediaPreview() {
                     </motion.div>
                 </motion.div>
 
-                {/* Bento Grid Gallery */}
-                <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[260px] gap-4 md:gap-5">
+                {/* Bento Grid Gallery – no auto-rows, explicit heights on cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
                     {mediaItems.map((item, i) => (
                         <MediaCard key={i} item={item} index={i} />
                     ))}
@@ -292,7 +277,7 @@ export default function MediaPreview() {
                     className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
                 >
                     {stats.map((stat, i) => (
-                        <motion.div 
+                        <motion.div
                             key={i}
                             whileHover={{ y: -4, borderColor: "rgba(212,175,55,0.25)", background: "rgba(255,255,255,0.04)" }}
                             className="p-8 rounded-[2rem] border border-white/6 text-center transition-colors cursor-default"

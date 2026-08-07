@@ -157,13 +157,12 @@ function PortraitEventCard({
             transition={shouldReduceMotion ? { duration: 0.18 } : { ...SPRING_SLOW, delay }}
             whileHover={past ? {} : { y: -5 }}
             onClick={() => onSelect(event)}
-            className={`group relative rounded-[1.75rem] border overflow-hidden flex flex-col cursor-pointer transition-all ${
-                past
-                    ? "border-white/4 opacity-45"
-                    : selected
+            className={`group relative rounded-[1.75rem] border overflow-hidden flex flex-col cursor-pointer transition-all ${past
+                ? "border-white/4 opacity-45"
+                : selected
                     ? "border-gold/50 shadow-[0_0_30px_rgba(212,175,55,0.18)]"
                     : "border-white/6 hover:border-white/12"
-            }`}
+                }`}
             style={{ background: "rgba(255,255,255,0.018)", backdropFilter: "blur(20px)" }}
         >
             {/* Portrait image area */}
@@ -294,13 +293,12 @@ function EventRowCard({
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
             transition={shouldReduceMotion ? { duration: 0.15 } : { ...SPRING_SLOW, delay }}
             onClick={() => onSelect(event)}
-            className={`group flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all ${
-                past
-                    ? "border-white/3 opacity-45"
-                    : selected
+            className={`group flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all ${past
+                ? "border-white/3 opacity-45"
+                : selected
                     ? "border-gold/35 bg-gold/5"
                     : "border-white/5 hover:border-white/10 hover:bg-white/2"
-            }`}
+                }`}
             style={{ background: selected ? "rgba(212,175,55,0.04)" : "rgba(255,255,255,0.014)" }}
         >
             {/* Optional dynamic image preview or Date badge */}
@@ -400,6 +398,18 @@ function AvatarCluster({ dayEvents }: { dayEvents: AFLEWOEvent[] }) {
     );
 }
 
+// ─── Today Indicator (Panel A) ─────────────────────────────────────────────────
+// Hollow gold ring when today has no events, filled gold dot when today has events.
+// Renders in place of AvatarCluster on today's cell specifically.
+function TodayDot({ hasEvents }: { hasEvents: boolean }) {
+    return (
+        <span
+            className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-[7px] h-[7px] rounded-full ${hasEvents ? "bg-gold" : "bg-transparent border border-gold"
+                }`}
+        />
+    );
+}
+
 // ─── Panel A - Calendar Widget ─────────────────────────────────────────────────
 function CalendarPanel({
     currentMonth, selectedDate,
@@ -447,9 +457,9 @@ function CalendarPanel({
             </div>
 
             {/* Days grid */}
-            <div className="grid grid-cols-7 gap-0.5">
+            <div className="grid grid-cols-7 gap-1">
                 {Array.from({ length: getFirstDay(currentMonth) }).map((_, i) => (
-                    <div key={`e-${i}`} className="h-9 md:h-10" />
+                    <div key={`e-${i}`} className="aspect-square" />
                 ))}
                 {Array.from({ length: getDaysInMonth(currentMonth) }).map((_, i) => {
                     const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i + 1);
@@ -460,24 +470,34 @@ function CalendarPanel({
                     return (
                         <motion.button
                             key={i}
-                            whileTap={{ scale: 0.88 }}
+                            whileTap={{ scale: 0.86 }}
                             transition={SPRING}
                             onClick={() => onDaySelect(isSelected ? null : date)}
-                            className={`relative h-9 md:h-10 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-start pt-1 ${isSelected ? "bg-gold text-brown shadow-[0_0_16px_rgba(212,175,55,0.4)]" :
-                                    isToday ? "bg-white/10 text-white border border-white/20" :
-                                        hasEvents ? "bg-white/4 hover:bg-white/8 text-white" :
-                                            "text-white/30 hover:bg-white/4 hover:text-white/60"
+                            className={`relative aspect-square w-full rounded-[28%] text-[11px] font-semibold tracking-tight transition-colors duration-200 flex flex-col items-center justify-center gap-0.5 ${isSelected
+                                ? "bg-gold text-brown shadow-[0_2px_10px_rgba(212,175,55,0.45)]"
+                                : isToday
+                                    ? "bg-white/10 text-white ring-1 ring-white/25"
+                                    : hasEvents
+                                        ? "bg-white/[0.04] hover:bg-white/[0.08] text-white"
+                                        : "text-white/30 hover:bg-white/[0.04] hover:text-white/60"
                                 }`}
                             style={{ WebkitTapHighlightColor: "transparent" }}
                         >
                             <span className="leading-none">{i + 1}</span>
-                            {/* Avatar cluster for days with events (not gold-selected so contrast is fine) */}
-                            {hasEvents && !isSelected && (
+
+                            {/* Today: hollow ring (no events) or filled dot (events), takes priority over AvatarCluster */}
+                            {isToday && !isSelected && (
+                                <TodayDot hasEvents={hasEvents} />
+                            )}
+
+                            {/* Non-today with events: chapter avatar cluster */}
+                            {hasEvents && !isSelected && !isToday && (
                                 <AvatarCluster dayEvents={dayEvents} />
                             )}
-                            {/* Gold dot fallback when selected */}
+
+                            {/* Selected day with events: small brown dot fallback for contrast on gold */}
                             {hasEvents && isSelected && (
-                                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brown opacity-70" />
+                                <span className="w-1 h-1 rounded-full bg-brown/70" />
                             )}
                         </motion.button>
                     );
@@ -844,7 +864,7 @@ function DiscoveryRails({ onSelect, session, typeFilter, setTypeFilter }: {
                             whileTap={{ scale: 0.93 }}
                             transition={SPRING}
                             onClick={() => setTypeFilter(t)}
-                            className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.18em] border transition-all ${typeFilter === t ? "bg-gold text-brown border-gold shadow-[0_0_12px_rgba(212,175,55,0.3)]" : "border-white/8 text-white/35 hover:border-white/20 hover:text-white/70"
+                            className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.18em] border border-separate:0 border:1 border-opacity-50 transition-all ${typeFilter === t ? "bg-gold text-brown border-gold shadow-[0_0_12px_rgba(212,175,55,0.3)]" : "border-white/8 text-white/35 hover:border-white/20 hover:text-white/70"
                                 }`}
                         >
                             {t}
@@ -870,7 +890,7 @@ function DiscoveryRails({ onSelect, session, typeFilter, setTypeFilter }: {
                                     className="flex items-center gap-2.5 p-3 rounded-2xl border border-white/5 hover:border-white/12 text-left transition-all group"
                                     style={{ background: `${colour}0A` }}
                                 >
-                                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black shrink-0 border-2"
+                                    <div className="w-8 h-8 rounded-full flex items-center text-center justify-center text-sm font-black shrink-0"
                                         style={{ borderColor: `${colour}40`, background: `${colour}22` }}>
                                         {CHAPTER_FLAGS[chapter] ?? chapter[0]}
                                     </div>

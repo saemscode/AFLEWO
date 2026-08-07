@@ -284,10 +284,10 @@ export default function EventHub() {
                                 ))}
                             </div>
 
-                            {/* Days grid - upgraded with avatar clusters */}
+                            {/* Days grid - upgraded with avatar clusters and today dot */}
                             <div className="grid grid-cols-7 gap-1">
                                 {Array.from({ length: getFirstDay(currentMonth) }).map((_, i) => (
-                                    <div key={`e-${i}`} className="h-10 md:h-12" />
+                                    <div key={`e-${i}`} className="aspect-square" />
                                 ))}
                                 {Array.from({ length: getDaysInMonth(currentMonth) }).map((_, i) => {
                                     const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i + 1);
@@ -298,20 +298,37 @@ export default function EventHub() {
                                     return (
                                         <motion.button
                                             key={i}
-                                            whileTap={{ scale: 0.88 }}
+                                            whileTap={{ scale: 0.86 }}
                                             transition={SPRING}
                                             onClick={() => setSelectedDate(isSelected ? null : date)}
-                                            className={`relative h-10 md:h-12 rounded-xl text-sm font-bold transition-all flex flex-col items-center justify-start pt-1.5 ${isSelected ? "bg-gold text-brown shadow-glow" :
-                                                    isToday ? "bg-white/10 text-white border border-white/20" :
-                                                        hasEvents ? "bg-white/5 hover:bg-white/10 text-white" :
-                                                            "text-white/30 hover:bg-white/5 hover:text-white/60"
+                                            className={`relative aspect-square w-full rounded-[28%] text-[11px] font-semibold tracking-tight transition-colors duration-200 flex flex-col items-center justify-center gap-0.5 ${isSelected
+                                                    ? "bg-gold text-brown shadow-[0_2px_10px_rgba(212,175,55,0.45)]"
+                                                    : isToday
+                                                        ? "bg-white/10 text-white ring-1 ring-white/25"
+                                                        : hasEvents
+                                                            ? "bg-white/[0.04] hover:bg-white/[0.08] text-white"
+                                                            : "text-white/30 hover:bg-white/[0.04] hover:text-white/60"
                                                 }`}
                                             style={{ WebkitTapHighlightColor: "transparent" }}
                                         >
-                                            <span className="text-[12px] leading-none">{i + 1}</span>
-                                            {/* Avatar cluster for days with events */}
-                                            {hasEvents && (
+                                            <span className="leading-none">{i + 1}</span>
+
+                                            {/* Today dot: hollow ring if no events, filled gold if events */}
+                                            {isToday && !isSelected && (
+                                                <span
+                                                    className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-[7px] h-[7px] rounded-full ${hasEvents ? "bg-gold" : "bg-transparent border border-gold"
+                                                        }`}
+                                                />
+                                            )}
+
+                                            {/* Non‑today with events: chapter avatar cluster */}
+                                            {hasEvents && !isSelected && !isToday && (
                                                 <DayAvatarCluster dayEvents={dayEvents} isSelected={isSelected} />
+                                            )}
+
+                                            {/* Selected day with events: small brown dot for contrast on gold */}
+                                            {hasEvents && isSelected && (
+                                                <span className="w-1 h-1 rounded-full bg-brown/70" />
                                             )}
                                         </motion.button>
                                     );
@@ -382,8 +399,8 @@ export default function EventHub() {
                                                 transition={SPRING}
                                                 onClick={() => toggleFilter(c)}
                                                 className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border transition-all flex items-center gap-1.5 ${activeFilters.includes(c)
-                                                        ? `${chapterColors[c]} shadow-sm`
-                                                        : "border-white/8 text-white/40 hover:border-white/20 hover:text-white/70"
+                                                    ? `${chapterColors[c]} shadow-sm`
+                                                    : "border-white/8 text-white/40 hover:border-white/20 hover:text-white/70"
                                                     }`}
                                             >
                                                 {activeFilters.includes(c) && <SvgIcon name="check" size={10} />}
@@ -482,7 +499,7 @@ export default function EventHub() {
                                                     className="p-2.5 rounded-xl bg-gold/10 hover:bg-gold border border-gold/20 hover:border-gold text-gold hover:text-brown transition-all shrink-0 active:scale-90"
                                                     style={{ WebkitTapHighlightColor: "transparent" }}
                                                 >
-                                                    <SvgIcon name="location" size={16} />
+                                                    <SvgIcon name="location_on" size={20} />
                                                 </a>
                                             </motion.div>
                                         );

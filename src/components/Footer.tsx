@@ -43,7 +43,7 @@ export default function Footer() {
                     {/* Logo & Vision */}
                     <div className="md:col-span-12 lg:col-span-5 space-y-8">
                         <Link href="/" className="flex items-center gap-4 group">
-                            <div className="relative w-16 h-16 group-hover:rotate-6 transition-transform duration-500">
+                            <div className="relative w-16 h-16 group-hover:scale-105 transition-transform duration-500">
                                 <Image
                                     src="/brand/AFLEWO LOGO 1-Photoroom.png"
                                     alt="AFLEWO"
@@ -59,19 +59,19 @@ export default function Footer() {
                         </p>
                         <div className="flex gap-4">
                             <a href="https://aflewo.org" target="_blank" rel="noopener noreferrer" aria-label="AFLEWO Website"
-                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
+                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-brown/75 hover:text-black transition-all z-10">
                                 <SvgIcon name="globe" size={20} className="text-gold" />
                             </a>
                             <a href="https://chat.whatsapp.com/AflewoNairobi" target="_blank" rel="noopener noreferrer" aria-label="AFLEWO WhatsApp"
-                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
+                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-brown/75 hover:text-black transition-all z-10">
                                 <SvgIcon name="whatsapp" size={20} className="text-gold" />
                             </a>
                             <a href="https://youtube.com/@aflewoke" target="_blank" rel="noopener noreferrer" aria-label="AFLEWO YouTube"
-                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
+                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-brown/75 hover:text-black transition-all z-10">
                                 <SvgIcon name="youtube" size={20} className="text-gold" />
                             </a>
                             <a href="mailto:nairobi@aflewo.org" aria-label="Email AFLEWO"
-                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-gold hover:text-brown transition-all z-10">
+                                className="p-3 bg-black/40 rounded-lg backdrop-blur-md border border-white/10 rounded-ios text-gold hover:bg-brown/75 hover:text-black transition-all z-10">
                                 <SvgIcon name="mail" size={20} className="text-gold" />
                             </a>
                         </div>
