@@ -181,12 +181,6 @@
   font-family: 'League Spartan', system-ui, sans-serif;
 }
 
-/* Smart contrast utility: shifts from gold (over dark) to dark-brown (over light) */
-.text-adaptive-contrast {
-  color: #E2C88F;
-  mix-blend-mode: difference;
-}
-
 @layer components {
 
   /* Hero section specific styles */
