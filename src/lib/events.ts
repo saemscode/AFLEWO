@@ -263,7 +263,7 @@ export const events: AFLEWOEvent[] = [
     },
     {
         id: "nbi-alumni", title: "Alumni Connect", date: "Aug 08, 2026", start: "20260808T090000", end: "20260808T150000",
-        time: "09:00 AM", type: "Event", chapter: "Nairobi", location: "TBD", venueName: "TBD",
+        time: "09:00 AM", type: "Event", chapter: "Nairobi", location: "Mamlaka Hill Chapek, Ruaka", venueName: "Mamlaka Hill Chapek, Ruaka",
         startTime: "Aug 08–08", visibility: "public"
     },
     {
