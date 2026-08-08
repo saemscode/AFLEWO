@@ -262,9 +262,9 @@ export const events: AFLEWOEvent[] = [
         startTime: "Aug 01 · 09:00 AM", visibility: "member"
     },
     {
-        id: "nbi-alumni", title: "Alumni Connect", date: "Aug 07, 2026", start: "20260807T180000", end: "20260808T180000",
-        time: "06:00 PM", type: "Event", chapter: "Nairobi", location: "TBD", venueName: "TBD",
-        startTime: "Aug 07–08", visibility: "public"
+        id: "nbi-alumni", title: "Alumni Connect", date: "Aug 07, 2026", start: "20260807T090000", end: "20260808T150000",
+        time: "09:00 AM", type: "Event", chapter: "Nairobi", location: "TBD", venueName: "TBD",
+        startTime: "Aug 08–08", visibility: "public"
     },
     {
         id: "nbi-prac-6", title: "6th Practice", date: "Aug 09, 2026", start: "20260809T140000", end: "20260809T180000",

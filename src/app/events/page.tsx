@@ -818,10 +818,10 @@ function FlagshipCountdown() {
                     <h2 className="font-black tracking-tighter leading-[0.9] text-white" style={{ fontSize: "clamp(2rem,4vw,3.5rem)", letterSpacing: "-0.04em" }}>
                         Alumni Connect
                     </h2>
-                    <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.25em]">Nairobi · Aug 07, 2026</p>
+                    <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.25em]">Nairobi · Aug 08, 2026</p>
                 </div>
                 <div className="mb-12">
-                    <FlipClockCountdown targetDate={new Date("2026-08-07T18:00:00+03:00")} />
+                    <FlipClockCountdown targetDate={new Date("2026-08-08T09:00:00+03:00")} />
                 </div>
                 <Link href="/join" className="w-full flex items-center justify-center gap-2 py-4 bg-gold text-brown rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] hover:brightness-110 transition-all active:scale-[0.99] shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
                     <SvgIcon name="check_circle" size={16} />
